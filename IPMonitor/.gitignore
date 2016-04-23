@@ -1,1 +1,6 @@
-/bin/
+bin/
+dist/
+
+files/ipmonitor.cfg
+files/lastcheck.dat
+logs/
