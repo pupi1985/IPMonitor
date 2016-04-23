@@ -3,27 +3,52 @@
  */
 package controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.service.services.*;
-import java.awt.event.*;
-import java.io.*;
-import java.net.*;
-import javax.swing.*;
-import controller.extras.*;
-import controller.options.*;
 import java.awt.Component;
-import model.configuration.*;
-import model.ipmonitor.*;
-import model.ipmonitor.exceptions.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+import controller.extras.LookAndFeelInfoWrapper;
+import controller.extras.TimeUnitConverter;
+import controller.options.AudioConfigurationController;
+import controller.options.CommandConfigurationController;
+import controller.options.MailConfigurationController;
+import controller.options.VisualConfigurationController;
+import model.configuration.ConfigurationManager;
+import model.configuration.IPMonitorProperties;
+import model.configuration.IPMonitorPropertiesManager;
+import model.ipmonitor.IPMonitor;
+import model.ipmonitor.exceptions.InvalidIntervalException;
 import model.logger.MainLogger;
-import model.logger.exceptions.*;
-import model.notification.*;
-import model.notification.configuration.*;
-import model.notification.performers.*;
-import model.service.exceptions.*;
-import model.service.os.*;
-import view.*;
+import model.logger.exceptions.InvalidMaxDaysToKeepLogs;
+import model.notification.AudioNotification;
+import model.notification.CommandNotification;
+import model.notification.MailNotification;
+import model.notification.VisualNotification;
+import model.notification.configuration.AudioConfiguration;
+import model.notification.configuration.CommandConfiguration;
+import model.notification.performers.AudioPerformer;
+import model.notification.performers.CommandPerformer;
+import model.notification.performers.MailPerformer;
+import model.notification.performers.VisualPerformer;
+import model.service.exceptions.OSNotSupportedException;
+import model.service.os.OSManager;
+import model.service.services.AbstractService;
+import model.service.services.ServiceManager;
+import view.OptionsView;
 
 public class OptionsController {
 
@@ -531,6 +556,6 @@ public class OptionsController {
 
         public boolean isEverythingOk() {
             return isEveryhingOk;
-        }
-    }
+		}
+	}
 }

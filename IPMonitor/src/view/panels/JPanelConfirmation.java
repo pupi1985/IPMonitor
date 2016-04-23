@@ -3,9 +3,13 @@
  */
 package view.panels;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 public class JPanelConfirmation extends javax.swing.JPanel {
+	
+    private javax.swing.JButton jButtonApply;
+    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonOk;
 
     public JPanelConfirmation(boolean okVisible, boolean cancelVisible, boolean applyVisible) {
         initComponents();
@@ -25,7 +29,7 @@ public class JPanelConfirmation extends javax.swing.JPanel {
     public JPanelConfirmation() {
         this(true, false, false);
     }
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
     private void initComponents() {
 
         javax.swing.JPanel jPanelTemp = new javax.swing.JPanel();
@@ -64,13 +68,8 @@ public class JPanelConfirmation extends javax.swing.JPanel {
         jPanelTempLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonApply, jButtonCancel, jButtonOk});
 
         add(jPanelTemp);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonApply;
-    private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonOk;
-    // End of variables declaration//GEN-END:variables
     public JButton getJButtonApply() {
         return jButtonApply;
     }

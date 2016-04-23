@@ -3,13 +3,14 @@
  */
 package view.extras;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+
+import javax.swing.JLabel;
 
 public class JLabelRequired extends JLabel {
 
-    public JLabelRequired() {
-        setText("*");
-        setForeground(Color.RED);
-    }
+	public JLabelRequired() {
+		setText("*");
+		setForeground(Color.RED);
+	}
 }

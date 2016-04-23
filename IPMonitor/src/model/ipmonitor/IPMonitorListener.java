@@ -3,9 +3,9 @@
  */
 package model.ipmonitor;
 
-import java.util.*;
-import model.observable.*;
-import model.*;
+import java.util.Date;
+
+import model.observable.ObservableModelListener;
 
 public interface IPMonitorListener extends ObservableModelListener {
 

@@ -3,14 +3,26 @@
  */
 package view.options.panels;
 
-import controller.extras.*;
-import javax.swing.*;
-import model.configuration.*;
-import model.service.exceptions.*;
-import model.service.os.*;
-import model.service.services.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+
+import controller.extras.OSModel;
+import model.configuration.ConfigurationManager;
+import model.service.exceptions.OSNotSupportedException;
+import model.service.os.OSManager;
+import model.service.os.Windows;
+import model.service.services.ServiceManager;
 
 public class JPanelOptionsService extends javax.swing.JPanel {
+	
+    private javax.swing.JButton jButtonInstall;
+    private javax.swing.JButton jButtonStart;
+    private javax.swing.JButton jButtonStop;
+    private javax.swing.JButton jButtonTest;
+    private javax.swing.JButton jButtonUninstall;
+    private javax.swing.JComboBox jComboBoxOS;
+    private javax.swing.JPanel jPanelTemp;
 
     private String serviceName;
 
@@ -23,13 +35,10 @@ public class JPanelOptionsService extends javax.swing.JPanel {
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jPanelTemp = new javax.swing.JPanel();
         OSModel OSModel = new OSModel();
         jComboBoxOS = new JComboBox(OSModel);
-        //jComboBoxOS.getModel().setSelectedItem(jComboBoxOS.getModel().getElementAt(0));
         if (jComboBoxOS.getModel().getSize() == 1) {
             jComboBoxOS.setEnabled(false);
         }
@@ -98,16 +107,7 @@ public class JPanelOptionsService extends javax.swing.JPanel {
         }
 
         add(jPanelTemp, new java.awt.GridBagConstraints());
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonInstall;
-    private javax.swing.JButton jButtonStart;
-    private javax.swing.JButton jButtonStop;
-    private javax.swing.JButton jButtonTest;
-    private javax.swing.JButton jButtonUninstall;
-    private javax.swing.JComboBox jComboBoxOS;
-    private javax.swing.JPanel jPanelTemp;
-    // End of variables declaration//GEN-END:variables
+    }
 
     public JButton getJButtonInstall() {
         return jButtonInstall;

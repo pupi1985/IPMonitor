@@ -3,22 +3,46 @@
  */
 package view;
 
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+
+import controller.extras.TimeUnitConverter;
 import model.extras.AboutInformation;
-import controller.extras.*;
-import java.awt.*;
-import javax.swing.*;
-import model.ipmonitor.*;
+import model.ipmonitor.IPMonitor;
 
 public class MainView extends JFrame {
+	
+    private javax.swing.JButton jButtonCheckIP;
+    private javax.swing.JButton jButtonStartStop;
+    private javax.swing.JLabel jLabelCurrentIPField;
+    private javax.swing.JLabel jLabelIntervalField;
+    private javax.swing.JLabel jLabelLastChangeField;
+    private javax.swing.JLabel jLabelLastCheckedField;
+    private javax.swing.JLabel jLabelStatusField;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItemFileExit;
+    private javax.swing.JMenuItem jMenuItemFileOptions;
+    private javax.swing.JMenuItem jMenuItemHelpAbout;
+    private java.awt.MenuItem menuItemCheckIP;
+    private java.awt.MenuItem menuItemExit;
+    private java.awt.MenuItem menuItemOptions;
+    private java.awt.MenuItem menuItemStartStop;
+    private java.awt.PopupMenu popupMenu;
+    
+    private IPMonitor ipMonitor = null;
 
     public MainView(IPMonitor ipMonitor) {
         this.ipMonitor = ipMonitor;
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         popupMenu = new java.awt.PopupMenu();
         menuItemCheckIP = new java.awt.MenuItem();
         menuItemStartStop = new java.awt.MenuItem();
@@ -211,28 +235,8 @@ public class MainView extends JFrame {
         setJMenuBar(jMenuBar);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCheckIP;
-    private javax.swing.JButton jButtonStartStop;
-    private javax.swing.JLabel jLabelCurrentIPField;
-    private javax.swing.JLabel jLabelIntervalField;
-    private javax.swing.JLabel jLabelLastChangeField;
-    private javax.swing.JLabel jLabelLastCheckedField;
-    private javax.swing.JLabel jLabelStatusField;
-    private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenuItem jMenuItemFileExit;
-    private javax.swing.JMenuItem jMenuItemFileOptions;
-    private javax.swing.JMenuItem jMenuItemHelpAbout;
-    private java.awt.MenuItem menuItemCheckIP;
-    private java.awt.MenuItem menuItemExit;
-    private java.awt.MenuItem menuItemOptions;
-    private java.awt.MenuItem menuItemStartStop;
-    private java.awt.PopupMenu popupMenu;
-    // End of variables declaration//GEN-END:variables
-    private IPMonitor ipMonitor = null;
-
+    }
+    
     public JButton getJButtonCheckIP() {
         return jButtonCheckIP;
     }

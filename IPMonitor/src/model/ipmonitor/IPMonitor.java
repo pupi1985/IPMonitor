@@ -3,19 +3,22 @@
  */
 package model.ipmonitor;
 
-import model.observable.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import model.*;
-import model.alarm.*;
-import model.configuration.*;
-import model.extras.*;
-import model.ipmonitor.exceptions.*;
-import model.ipreader.*;
-import model.ipreader.exceptions.*;
-import model.logger.MainLogger;
-import model.notification.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Date;
+import java.util.LinkedList;
+
+import model.alarm.Alarm;
+import model.alarm.AlarmListener;
+import model.configuration.ConfigurationManager;
+import model.extras.CommonFunctions;
+import model.ipmonitor.exceptions.InvalidIPAddressException;
+import model.ipmonitor.exceptions.InvalidIntervalException;
+import model.ipreader.IPReader;
+import model.ipreader.exceptions.IPNotFoundException;
+import model.notification.AbstractNotification;
+import model.observable.ObservableModelListener;
+import model.observable.ObservableModelUnique;
 
 public class IPMonitor extends ObservableModelUnique {
 

@@ -3,8 +3,7 @@
  */
 package model.logger.exceptions;
 
-import model.extras.exceptions.*;
-import model.*;
+import model.extras.exceptions.AbstractIPMonitorException;
 
 public class InvalidMaxDaysToKeepLogs extends AbstractIPMonitorException {
 

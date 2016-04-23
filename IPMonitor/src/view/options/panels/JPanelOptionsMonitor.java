@@ -3,25 +3,33 @@
  */
 package view.options.panels;
 
-import controller.extras.*;
-import javax.swing.*;
-import model.configuration.*;
-import model.ipmonitor.*;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import controller.extras.TimeUnitConverter;
+import model.configuration.ConfigurationManager;
+import model.ipmonitor.IPMonitor;
 
 public class JPanelOptionsMonitor extends JPanel {
     
-    public JPanelOptionsMonitor() {
+	private javax.swing.JCheckBox jCheckBoxAutostart;
+	private javax.swing.JTextField jTextFieldHours;
+	private javax.swing.JTextField jTextFieldMinutes;
+	private javax.swing.JTextField jTextFieldSeconds;
+	private javax.swing.JTextField jTextFieldURL;
+
+	private IPMonitor ipMonitor = null;
+	
+	public JPanelOptionsMonitor() {
     }
     
     public JPanelOptionsMonitor(IPMonitor ipMonitor) {
         this.ipMonitor = ipMonitor;
         initComponents();
     }
-            
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         javax.swing.JLabel jLabelInterval = new javax.swing.JLabel();
         javax.swing.JLabel jLabelCheckingURL = new javax.swing.JLabel();
         TimeUnitConverter timeUnitConverter = new TimeUnitConverter(ipMonitor.getInterval());
@@ -111,33 +119,25 @@ public class JPanelOptionsMonitor extends JPanel {
                 .addComponent(jCheckBoxAutostart)
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBoxAutostart;
-    private javax.swing.JTextField jTextFieldHours;
-    private javax.swing.JTextField jTextFieldMinutes;
-    private javax.swing.JTextField jTextFieldSeconds;
-    private javax.swing.JTextField jTextFieldURL;
-    // End of variables declaration//GEN-END:variables
-    private IPMonitor ipMonitor = null;
-    
-        public JTextField getJTextFieldHours() {
-        return jTextFieldHours;
-    }
+	}
 
-    public JTextField getJTextFieldMinutes() {
-        return jTextFieldMinutes;
-    }
+	public JTextField getJTextFieldHours() {
+		return jTextFieldHours;
+	}
 
-    public JTextField getJTextFieldSeconds() {
-        return jTextFieldSeconds;
-    }
+	public JTextField getJTextFieldMinutes() {
+		return jTextFieldMinutes;
+	}
 
-    public JTextField getJTextFieldURL() {
-        return jTextFieldURL;
-    }
+	public JTextField getJTextFieldSeconds() {
+		return jTextFieldSeconds;
+	}
 
-    public JCheckBox getJCheckBoxAutoStart() {
-        return jCheckBoxAutostart;
-    }
+	public JTextField getJTextFieldURL() {
+		return jTextFieldURL;
+	}
+
+	public JCheckBox getJCheckBoxAutoStart() {
+		return jCheckBoxAutostart;
+	}
 }

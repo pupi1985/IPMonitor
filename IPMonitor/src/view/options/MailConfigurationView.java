@@ -3,10 +3,34 @@
  */
 package view.options;
 
-import javax.swing.*;
-import model.notification.configuration.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import model.notification.configuration.MailConfiguration;
 
 public class MailConfigurationView extends JDialog {
+	
+    private view.extras.JButtonInfo jButtonInfo;
+    private javax.swing.JCheckBox jCheckBoxRequiresAuthentication;
+    private javax.swing.JCheckBox jCheckBoxUseHTML;
+    private javax.swing.JCheckBox jCheckBoxUseSSL;
+    private javax.swing.JPanel jPanelAuthentication;
+    private javax.swing.JPanel jPanelCenter;
+    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private javax.swing.JPasswordField jPasswordFieldPassword;
+    private javax.swing.JTextArea jTextAreaMessage;
+    private javax.swing.JTextField jTextFieldFromAddress;
+    private javax.swing.JTextField jTextFieldFromName;
+    private javax.swing.JTextField jTextFieldPort;
+    private javax.swing.JTextField jTextFieldServer;
+    private javax.swing.JTextField jTextFieldSubject;
+    private javax.swing.JTextField jTextFieldToAddresses;
+    private javax.swing.JTextField jTextFieldUser;
     
     public MailConfigurationView(JDialog owner) {
         super(owner, true);
@@ -15,9 +39,7 @@ public class MailConfigurationView extends JDialog {
         setLocationRelativeTo(null);
     }
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jPanelCenter = new javax.swing.JPanel();
         javax.swing.JPanel jPanelClientConfiguration = new javax.swing.JPanel();
         javax.swing.JLabel jLabelServer = new javax.swing.JLabel();
@@ -252,26 +274,8 @@ public class MailConfigurationView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.extras.JButtonInfo jButtonInfo;
-    private javax.swing.JCheckBox jCheckBoxRequiresAuthentication;
-    private javax.swing.JCheckBox jCheckBoxUseHTML;
-    private javax.swing.JCheckBox jCheckBoxUseSSL;
-    private javax.swing.JPanel jPanelAuthentication;
-    private javax.swing.JPanel jPanelCenter;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JPasswordField jPasswordFieldPassword;
-    private javax.swing.JTextArea jTextAreaMessage;
-    private javax.swing.JTextField jTextFieldFromAddress;
-    private javax.swing.JTextField jTextFieldFromName;
-    private javax.swing.JTextField jTextFieldPort;
-    private javax.swing.JTextField jTextFieldServer;
-    private javax.swing.JTextField jTextFieldSubject;
-    private javax.swing.JTextField jTextFieldToAddresses;
-    private javax.swing.JTextField jTextFieldUser;
-    // End of variables declaration//GEN-END:variables
+    }
+
     public JPanel getJPanelAuthentication() {
         return jPanelAuthentication;
     }

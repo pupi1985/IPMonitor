@@ -3,10 +3,17 @@
  */
 package view.options;
 
-import javax.swing.*;
-import model.notification.configuration.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
+
+import model.notification.configuration.AudioConfiguration;
 
 public class AudioConfigurationView extends JDialog {
+	
+	private javax.swing.JButton jButtonBrowse;
+	private view.panels.JPanelConfirmation jPanelConfirmation;
+	private javax.swing.JTextField jTextFieldFilePath;
 
     public AudioConfigurationView() {
         initComponents();
@@ -19,9 +26,7 @@ public class AudioConfigurationView extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         javax.swing.JPanel jPanelCenter = new javax.swing.JPanel();
         javax.swing.JPanel jPanelCenterBorder = new javax.swing.JPanel();
         jTextFieldFilePath = new javax.swing.JTextField();
@@ -77,12 +82,8 @@ public class AudioConfigurationView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBrowse;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JTextField jTextFieldFilePath;
-    // End of variables declaration//GEN-END:variables
+    }
+
     public JButton getJButtonBrowse() {
         return jButtonBrowse;
     }

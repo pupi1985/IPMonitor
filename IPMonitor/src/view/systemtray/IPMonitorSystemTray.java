@@ -3,11 +3,14 @@
  */
 package view.systemtray;
 
-import java.awt.*;
-import java.awt.TrayIcon.*;
-import model.extras.*;
-import model.configuration.*;
-import view.systemtray.exceptions.*;
+import java.awt.AWTException;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
+
+import model.configuration.ConfigurationManager;
+import model.extras.AboutInformation;
+import view.systemtray.exceptions.SystemTrayNotSupportedException;
 
 public class IPMonitorSystemTray {
 

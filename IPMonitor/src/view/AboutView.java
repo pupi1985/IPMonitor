@@ -3,21 +3,31 @@
  */
 package view;
 
+import java.awt.Cursor;
+import java.awt.Frame;
+import java.text.DateFormat;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
 import model.extras.AboutInformation;
-import java.awt.*;
-import java.text.*;
-import javax.swing.*;
 
 public class AboutView extends JDialog {
+	
+    private javax.swing.JLabel jLabelURLField;
+    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelMainBorder;
     
     public AboutView(Frame owner) {
         super(owner, true);
         initComponents();
         setLocationRelativeTo(null);
     }
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
 
+    private void initComponents() {
         jPanelMain = new javax.swing.JPanel();
         jPanelMainBorder = new javax.swing.JPanel();
         javax.swing.JPanel jPanelTemp = new javax.swing.JPanel();
@@ -154,14 +164,7 @@ public class AboutView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.PAGE_END);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelURLField;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelMainBorder;
-    // End of variables declaration//GEN-END:variables
+    }
     
     public JLabel getJLabelURLField() {
         return jLabelURLField;

@@ -3,10 +3,18 @@
  */
 package view.options;
 
-import javax.swing.*;
-import model.notification.configuration.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
+
+import model.notification.configuration.CommandConfiguration;
 
 public class CommandConfigurationView extends JDialog {
+	
+    private javax.swing.JButton jButtonBrowse;
+    private view.extras.JButtonInfo jButtonInfo;
+    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private javax.swing.JTextField jTextFieldFilePath;
 
     public CommandConfigurationView() {
         initComponents();
@@ -19,9 +27,7 @@ public class CommandConfigurationView extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         javax.swing.JPanel jPanelCenter = new javax.swing.JPanel();
         javax.swing.JPanel jPanelCenterBorder = new javax.swing.JPanel();
         jTextFieldFilePath = new javax.swing.JTextField();
@@ -81,13 +87,8 @@ public class CommandConfigurationView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBrowse;
-    private view.extras.JButtonInfo jButtonInfo;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JTextField jTextFieldFilePath;
-    // End of variables declaration//GEN-END:variables
+    }
+
     public JButton getJButtonInfo() {
         return jButtonInfo;
     }

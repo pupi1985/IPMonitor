@@ -7,5 +7,3 @@ import model.extras.exceptions.AbstractIPMonitorException;
 
 public class SystemTrayNotSupportedException extends AbstractIPMonitorException {
 }
-
-

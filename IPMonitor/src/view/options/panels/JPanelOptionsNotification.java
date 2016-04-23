@@ -3,11 +3,33 @@
  */
 package view.options.panels;
 
-import javax.swing.*;
-import model.ipmonitor.*;
-import model.notification.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+
+import model.ipmonitor.IPMonitor;
+import model.notification.AudioNotification;
+import model.notification.CommandNotification;
+import model.notification.MailNotification;
+import model.notification.VisualNotification;
 
 public class JPanelOptionsNotification extends JPanel {
+	
+    private view.options.extras.JButtonConfigure jButtonAudioConfiguration;
+    private view.extras.JButtonTest jButtonAudioTest;
+    private view.options.extras.JButtonConfigure jButtonCommandConfiguration;
+    private view.extras.JButtonTest jButtonCommandTest;
+    private view.options.extras.JButtonConfigure jButtonMailConfiguration;
+    private view.extras.JButtonTest jButtonMailTest;
+    private view.options.extras.JButtonConfigure jButtonVisualConfiguration;
+    private view.extras.JButtonTest jButtonVisualTest;
+    private javax.swing.JCheckBox jCheckBoxEnableAudioNotification;
+    private javax.swing.JCheckBox jCheckBoxEnableCommandNotification;
+    private javax.swing.JCheckBox jCheckBoxEnableMailNotification;
+    private javax.swing.JCheckBox jCheckBoxEnableVisualNotification;
+    private javax.swing.JCheckBox jCheckBoxEnableVisualNotification1;
+    
+    private IPMonitor ipMonitor = null;
 
     public JPanelOptionsNotification() {
     }
@@ -17,10 +39,7 @@ public class JPanelOptionsNotification extends JPanel {
         initComponents();
     }
 
-
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jCheckBoxEnableAudioNotification = new javax.swing.JCheckBox();
         jCheckBoxEnableMailNotification = new javax.swing.JCheckBox();
         jCheckBoxEnableVisualNotification = new javax.swing.JCheckBox();
@@ -111,23 +130,7 @@ public class JPanelOptionsNotification extends JPanel {
                     .addComponent(jButtonCommandTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.options.extras.JButtonConfigure jButtonAudioConfiguration;
-    private view.extras.JButtonTest jButtonAudioTest;
-    private view.options.extras.JButtonConfigure jButtonCommandConfiguration;
-    private view.extras.JButtonTest jButtonCommandTest;
-    private view.options.extras.JButtonConfigure jButtonMailConfiguration;
-    private view.extras.JButtonTest jButtonMailTest;
-    private view.options.extras.JButtonConfigure jButtonVisualConfiguration;
-    private view.extras.JButtonTest jButtonVisualTest;
-    private javax.swing.JCheckBox jCheckBoxEnableAudioNotification;
-    private javax.swing.JCheckBox jCheckBoxEnableCommandNotification;
-    private javax.swing.JCheckBox jCheckBoxEnableMailNotification;
-    private javax.swing.JCheckBox jCheckBoxEnableVisualNotification;
-    private javax.swing.JCheckBox jCheckBoxEnableVisualNotification1;
-    // End of variables declaration//GEN-END:variables
-    private IPMonitor ipMonitor = null;
+    }
 
     public JButton getJButtonAudioConfiguration() {
         return jButtonAudioConfiguration;

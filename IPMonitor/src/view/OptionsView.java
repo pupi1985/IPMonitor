@@ -3,15 +3,33 @@
  */
 package view;
 
-import model.service.services.*;
-import java.awt.*;
-import java.awt.event.*;
-import view.options.panels.*;
-import javax.swing.*;
-import model.ipmonitor.*;
-import model.notification.performers.*;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+import model.ipmonitor.IPMonitor;
+import model.notification.performers.AudioPerformer;
+import model.service.services.ServiceManager;
+import view.options.panels.JPanelOptionsInterface;
+import view.options.panels.JPanelOptionsLogging;
+import view.options.panels.JPanelOptionsMonitor;
+import view.options.panels.JPanelOptionsNotification;
+import view.options.panels.JPanelOptionsService;
 
 public class OptionsView extends JDialog {
+	
+    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private view.options.panels.JPanelOptionsInterface jPanelOptionsInterface;
+    private view.options.panels.JPanelOptionsLogging jPanelOptionsLogging;
+    private view.options.panels.JPanelOptionsMonitor jPanelOptionsMonitor;
+    private view.options.panels.JPanelOptionsNotification jPanelOptionsNotification;
+    private view.options.panels.JPanelOptionsService jPanelOptionsService;
+    
+    private IPMonitor ipMonitor;
 
     public OptionsView(Frame owner, IPMonitor ipMonitor) {
         super(owner, true);
@@ -22,7 +40,6 @@ public class OptionsView extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -83,17 +100,7 @@ public class OptionsView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private view.options.panels.JPanelOptionsInterface jPanelOptionsInterface;
-    private view.options.panels.JPanelOptionsLogging jPanelOptionsLogging;
-    private view.options.panels.JPanelOptionsMonitor jPanelOptionsMonitor;
-    private view.options.panels.JPanelOptionsNotification jPanelOptionsNotification;
-    private view.options.panels.JPanelOptionsService jPanelOptionsService;
-    // End of variables declaration//GEN-END:variables
-    private IPMonitor ipMonitor;
+    }
 
     public JPanelOptionsInterface getJPanelOptionsInterface() {
         return jPanelOptionsInterface;

@@ -3,19 +3,21 @@
  */
 package view.options.panels;
 
-import controller.extras.*;
-import javax.swing.*;
-import model.configuration.*;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+import controller.extras.LookAndFeelInfoModel;
+import model.configuration.ConfigurationManager;
 
 public class JPanelOptionsInterface extends JPanel {
+	
+    private javax.swing.JList jListLookAndFeel;
 
     public JPanelOptionsInterface() {
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         javax.swing.JLabel jLabelLookAndFeel = new javax.swing.JLabel();
         javax.swing.JScrollPane jScrollPaneLookAndFeel = new javax.swing.JScrollPane();
         jListLookAndFeel = new javax.swing.JList();
@@ -50,10 +52,8 @@ public class JPanelOptionsInterface extends JPanel {
                 .addComponent(jScrollPaneLookAndFeel, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jListLookAndFeel;
-    // End of variables declaration//GEN-END:variables
+    }
+
     public JList getJListLookAndFeel() {
         return jListLookAndFeel;
     }

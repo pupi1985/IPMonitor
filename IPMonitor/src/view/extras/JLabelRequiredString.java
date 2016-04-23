@@ -3,12 +3,11 @@
  */
 package view.extras;
 
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.JLabel;
 
 public class JLabelRequiredString extends JLabel {
 
-    public JLabelRequiredString() {
-        setText("Required field");
-    }
+	public JLabelRequiredString() {
+		setText("Required field");
+	}
 }

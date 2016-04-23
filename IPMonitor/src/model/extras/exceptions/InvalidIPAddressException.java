@@ -3,7 +3,5 @@
  */
 package model.extras.exceptions;
 
-import model.*;
-
 public class InvalidIPAddressException extends AbstractIPMonitorException {
 }

@@ -3,11 +3,11 @@
  */
 package view.extras;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 public class JButtonTest extends JButton {
 
-    public JButtonTest() {
-        setText("Test");
-    }
+	public JButtonTest() {
+		setText("Test");
+	}
 }

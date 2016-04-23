@@ -3,18 +3,22 @@
  */
 package view.options.panels;
 
-import javax.swing.*;
-import model.logger.*;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class JPanelOptionsLogging extends javax.swing.JPanel {
+
+	private javax.swing.JCheckBox jCheckBoxEnableLogging;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JPanel jPanelLoggingConfiguration;
+	private javax.swing.JTextField jTextFieldDaysToKeepLogs;
 
     public JPanelOptionsLogging() {
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jCheckBoxEnableLogging = new javax.swing.JCheckBox();
         jPanelLoggingConfiguration = new javax.swing.JPanel();
         javax.swing.JLabel jLabelDaysToKeepLogs = new javax.swing.JLabel();
@@ -85,14 +89,8 @@ public class JPanelOptionsLogging extends javax.swing.JPanel {
                 .addComponent(jPanelLoggingConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBoxEnableLogging;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanelLoggingConfiguration;
-    private javax.swing.JTextField jTextFieldDaysToKeepLogs;
-    // End of variables declaration//GEN-END:variables
     public JCheckBox getJCheckBoxEnableLogging() {
         return jCheckBoxEnableLogging;
     }

@@ -3,11 +3,22 @@
  */
 package view.options;
 
-import controller.extras.*;
-import javax.swing.*;
-import model.notification.configuration.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import controller.extras.MessageTypeModel;
+import model.notification.configuration.VisualConfiguration;
 
 public class VisualConfigurationView extends JDialog {
+	
+    private view.extras.JButtonInfo jButtonInfo;
+    private javax.swing.JComboBox jComboBoxIcons;
+    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private javax.swing.JTextArea jTextAreaText;
+    private javax.swing.JTextField jTextFieldTitle;
 
     public VisualConfigurationView(JDialog owner) {
         super(owner, true);
@@ -16,9 +27,7 @@ public class VisualConfigurationView extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         javax.swing.JPanel jPanelCenter = new javax.swing.JPanel();
         javax.swing.JPanel jPanelCenterBorder = new javax.swing.JPanel();
         javax.swing.JLabel jLabelTitle = new javax.swing.JLabel();
@@ -110,15 +119,8 @@ public class VisualConfigurationView extends JDialog {
         getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.extras.JButtonInfo jButtonInfo;
-    private javax.swing.JComboBox jComboBoxIcons;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JTextArea jTextAreaText;
-    private javax.swing.JTextField jTextFieldTitle;
-    // End of variables declaration//GEN-END:variables
     public JTextField getJTextFieldTitle() {
         return jTextFieldTitle;
     }
