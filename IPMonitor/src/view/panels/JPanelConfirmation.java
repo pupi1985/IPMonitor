@@ -3,13 +3,19 @@
  */
 package view.panels;
 
-import javax.swing.JButton;
+import java.awt.Component;
 
-public class JPanelConfirmation extends javax.swing.JPanel {
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
+
+public class JPanelConfirmation extends JPanel {
 	
-    private javax.swing.JButton jButtonApply;
-    private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonOk;
+    private JButton jButtonApply;
+    private JButton jButtonCancel;
+    private JButton jButtonOk;
 
     public JPanelConfirmation(boolean okVisible, boolean cancelVisible, boolean applyVisible) {
         initComponents();
@@ -32,10 +38,10 @@ public class JPanelConfirmation extends javax.swing.JPanel {
 
     private void initComponents() {
 
-        javax.swing.JPanel jPanelTemp = new javax.swing.JPanel();
-        jButtonOk = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
-        jButtonApply = new javax.swing.JButton();
+        JPanel jPanelTemp = new JPanel();
+        jButtonOk = new JButton();
+        jButtonCancel = new JButton();
+        jButtonApply = new JButton();
 
         jButtonOk.setText("Ok");
 
@@ -43,29 +49,29 @@ public class JPanelConfirmation extends javax.swing.JPanel {
 
         jButtonApply.setText("Apply");
 
-        javax.swing.GroupLayout jPanelTempLayout = new javax.swing.GroupLayout(jPanelTemp);
+        GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
         jPanelTemp.setLayout(jPanelTempLayout);
         jPanelTempLayout.setHorizontalGroup(
-            jPanelTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTempLayout.createSequentialGroup()
                 .addComponent(jButtonOk)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonApply))
         );
 
-        jPanelTempLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonApply, jButtonCancel, jButtonOk});
+        jPanelTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jButtonApply, jButtonCancel, jButtonOk});
 
         jPanelTempLayout.setVerticalGroup(
-            jPanelTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(jButtonOk)
-            .addGroup(jPanelTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(jButtonCancel)
                 .addComponent(jButtonApply))
         );
 
-        jPanelTempLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonApply, jButtonCancel, jButtonOk});
+        jPanelTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {jButtonApply, jButtonCancel, jButtonOk});
 
         add(jPanelTemp);
     }

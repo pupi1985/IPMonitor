@@ -3,90 +3,94 @@
  */
 package view.options.panels;
 
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
-public class JPanelOptionsLogging extends javax.swing.JPanel {
+public class JPanelOptionsLogging extends JPanel {
 
-	private javax.swing.JCheckBox jCheckBoxEnableLogging;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JPanel jPanelLoggingConfiguration;
-	private javax.swing.JTextField jTextFieldDaysToKeepLogs;
+	private JCheckBox jCheckBoxEnableLogging;
+	private JLabel jLabel1;
+	private JPanel jPanelLoggingConfiguration;
+	private JTextField jTextFieldDaysToKeepLogs;
 
     public JPanelOptionsLogging() {
         initComponents();
     }
 
     private void initComponents() {
-        jCheckBoxEnableLogging = new javax.swing.JCheckBox();
-        jPanelLoggingConfiguration = new javax.swing.JPanel();
-        javax.swing.JLabel jLabelDaysToKeepLogs = new javax.swing.JLabel();
-        jTextFieldDaysToKeepLogs = new javax.swing.JTextField();
-        javax.swing.JLabel jLabelDescription = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jCheckBoxEnableLogging = new JCheckBox();
+        jPanelLoggingConfiguration = new JPanel();
+        JLabel jLabelDaysToKeepLogs = new JLabel();
+        jTextFieldDaysToKeepLogs = new JTextField();
+        JLabel jLabelDescription = new JLabel();
+        jLabel1 = new JLabel();
 
         jCheckBoxEnableLogging.setSelected(model.logger.MainLogger.getInstance().isEnabled());
         jCheckBoxEnableLogging.setText("Enable logging");
 
-        jPanelLoggingConfiguration.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logging configuration"));
+        jPanelLoggingConfiguration.setBorder(BorderFactory.createTitledBorder(null, "Logging configuration"));
 
         jLabelDaysToKeepLogs.setText("Number of log files to keep:");
 
         jTextFieldDaysToKeepLogs.setColumns(2);
-        jTextFieldDaysToKeepLogs.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextFieldDaysToKeepLogs.setHorizontalAlignment(JTextField.RIGHT);
         jTextFieldDaysToKeepLogs.setText(String.valueOf(model.logger.MainLogger.getInstance().getMaxDaysToKeepLogs()));
 
         jLabelDescription.setText("NOTE: Log files are saved daily."); // NOI18N
 
         jLabel1.setText("New files will replace older files.");
 
-        javax.swing.GroupLayout jPanelLoggingConfigurationLayout = new javax.swing.GroupLayout(jPanelLoggingConfiguration);
+        GroupLayout jPanelLoggingConfigurationLayout = new GroupLayout(jPanelLoggingConfiguration);
         jPanelLoggingConfiguration.setLayout(jPanelLoggingConfigurationLayout);
         jPanelLoggingConfigurationLayout.setHorizontalGroup(
-            jPanelLoggingConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelLoggingConfigurationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoggingConfigurationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelLoggingConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelLoggingConfigurationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLoggingConfigurationLayout.createSequentialGroup()
                         .addComponent(jLabelDaysToKeepLogs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDaysToKeepLogs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldDaysToKeepLogs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelDescription)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoggingConfigurationLayout.setVerticalGroup(
-            jPanelLoggingConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelLoggingConfigurationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoggingConfigurationLayout.createSequentialGroup()
-                .addGroup(jPanelLoggingConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLoggingConfigurationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDaysToKeepLogs)
-                    .addComponent(jTextFieldDaysToKeepLogs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextFieldDaysToKeepLogs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDescription)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelLoggingConfiguration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelLoggingConfiguration, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCheckBoxEnableLogging))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jCheckBoxEnableLogging)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelLoggingConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelLoggingConfiguration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }

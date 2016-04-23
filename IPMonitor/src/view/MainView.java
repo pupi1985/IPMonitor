@@ -3,14 +3,28 @@
  */
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import controller.extras.TimeUnitConverter;
 import model.extras.AboutInformation;
@@ -18,22 +32,22 @@ import model.ipmonitor.IPMonitor;
 
 public class MainView extends JFrame {
 	
-    private javax.swing.JButton jButtonCheckIP;
-    private javax.swing.JButton jButtonStartStop;
-    private javax.swing.JLabel jLabelCurrentIPField;
-    private javax.swing.JLabel jLabelIntervalField;
-    private javax.swing.JLabel jLabelLastChangeField;
-    private javax.swing.JLabel jLabelLastCheckedField;
-    private javax.swing.JLabel jLabelStatusField;
-    private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenuItem jMenuItemFileExit;
-    private javax.swing.JMenuItem jMenuItemFileOptions;
-    private javax.swing.JMenuItem jMenuItemHelpAbout;
-    private java.awt.MenuItem menuItemCheckIP;
-    private java.awt.MenuItem menuItemExit;
-    private java.awt.MenuItem menuItemOptions;
-    private java.awt.MenuItem menuItemStartStop;
-    private java.awt.PopupMenu popupMenu;
+    private JButton jButtonCheckIP;
+    private JButton jButtonStartStop;
+    private JLabel jLabelCurrentIPField;
+    private JLabel jLabelIntervalField;
+    private JLabel jLabelLastChangeField;
+    private JLabel jLabelLastCheckedField;
+    private JLabel jLabelStatusField;
+    private JMenuBar jMenuBar;
+    private JMenuItem jMenuItemFileExit;
+    private JMenuItem jMenuItemFileOptions;
+    private JMenuItem jMenuItemHelpAbout;
+    private MenuItem menuItemCheckIP;
+    private MenuItem menuItemExit;
+    private MenuItem menuItemOptions;
+    private MenuItem menuItemStartStop;
+    private PopupMenu popupMenu;
     
     private IPMonitor ipMonitor = null;
 
@@ -43,35 +57,35 @@ public class MainView extends JFrame {
     }
 
     private void initComponents() {
-        popupMenu = new java.awt.PopupMenu();
-        menuItemCheckIP = new java.awt.MenuItem();
-        menuItemStartStop = new java.awt.MenuItem();
-        menuItemOptions = new java.awt.MenuItem();
-        menuItemExit = new java.awt.MenuItem();
-        javax.swing.JPanel jPanelCenter = new javax.swing.JPanel();
-        javax.swing.JPanel jPanelCenterBorder = new javax.swing.JPanel();
-        javax.swing.JPanel jPanelMainPanel = new javax.swing.JPanel();
-        javax.swing.JLabel jLabelStatus = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelInterval = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelCurrentIP = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelLastChecked = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelLastChange = new javax.swing.JLabel();
-        jLabelStatusField = new javax.swing.JLabel();
-        jLabelIntervalField = new javax.swing.JLabel();
-        jLabelCurrentIPField = new javax.swing.JLabel();
-        jLabelLastCheckedField = new javax.swing.JLabel();
-        jLabelLastChangeField = new javax.swing.JLabel();
-        javax.swing.JPanel jPanelSouth = new javax.swing.JPanel();
-        javax.swing.JPanel jPanelSouthTemp = new javax.swing.JPanel();
-        jButtonStartStop = new javax.swing.JButton();
-        jButtonCheckIP = new javax.swing.JButton();
-        jMenuBar = new javax.swing.JMenuBar();
-        javax.swing.JMenu jMenuFile = new javax.swing.JMenu();
-        jMenuItemFileOptions = new javax.swing.JMenuItem();
-        javax.swing.JSeparator jSeparatorFile1 = new javax.swing.JSeparator();
-        jMenuItemFileExit = new javax.swing.JMenuItem();
-        javax.swing.JMenu jMenuHelp = new javax.swing.JMenu();
-        jMenuItemHelpAbout = new javax.swing.JMenuItem();
+        popupMenu = new PopupMenu();
+        menuItemCheckIP = new MenuItem();
+        menuItemStartStop = new MenuItem();
+        menuItemOptions = new MenuItem();
+        menuItemExit = new MenuItem();
+        JPanel jPanelCenter = new JPanel();
+        JPanel jPanelCenterBorder = new JPanel();
+        JPanel jPanelMainPanel = new JPanel();
+        JLabel jLabelStatus = new JLabel();
+        JLabel jLabelInterval = new JLabel();
+        JLabel jLabelCurrentIP = new JLabel();
+        JLabel jLabelLastChecked = new JLabel();
+        JLabel jLabelLastChange = new JLabel();
+        jLabelStatusField = new JLabel();
+        jLabelIntervalField = new JLabel();
+        jLabelCurrentIPField = new JLabel();
+        jLabelLastCheckedField = new JLabel();
+        jLabelLastChangeField = new JLabel();
+        JPanel jPanelSouth = new JPanel();
+        JPanel jPanelSouthTemp = new JPanel();
+        jButtonStartStop = new JButton();
+        jButtonCheckIP = new JButton();
+        jMenuBar = new JMenuBar();
+        JMenu jMenuFile = new JMenu();
+        jMenuItemFileOptions = new JMenuItem();
+        JSeparator jSeparatorFile1 = new JSeparator();
+        jMenuItemFileExit = new JMenuItem();
+        JMenu jMenuHelp = new JMenu();
+        jMenuItemHelpAbout = new JMenuItem();
 
         popupMenu.setLabel("PopupMenu");
 
@@ -91,12 +105,12 @@ public class MainView extends JFrame {
         menuItemExit.setLabel("Exit");
         popupMenu.add(menuItemExit);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(AboutInformation.getInstance().getName());
         setIconImage(AboutInformation.getInstance().getImage());
 
-        jPanelCenterBorder.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelCenterBorder.setLayout(new java.awt.GridBagLayout());
+        jPanelCenterBorder.setBorder(BorderFactory.createEtchedBorder());
+        jPanelCenterBorder.setLayout(new GridBagLayout());
 
         jLabelStatus.setText("Status:");
 
@@ -108,27 +122,27 @@ public class MainView extends JFrame {
 
         jLabelLastChange.setText("Last change:");
 
-        jLabelStatusField.setForeground(new java.awt.Color(192, 0, 0));
+        jLabelStatusField.setForeground(new Color(192, 0, 0));
         jLabelStatusField.setText(ipMonitor.isChecking() ? "On" : "Off");
 
         jLabelIntervalField.setText(new TimeUnitConverter(ipMonitor.getInterval()).toString());
 
         jLabelCurrentIPField.setText("Not obtained");
 
-        javax.swing.GroupLayout jPanelMainPanelLayout = new javax.swing.GroupLayout(jPanelMainPanel);
+        GroupLayout jPanelMainPanelLayout = new GroupLayout(jPanelMainPanel);
         jPanelMainPanel.setLayout(jPanelMainPanelLayout);
         jPanelMainPanelLayout.setHorizontalGroup(
-            jPanelMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelStatus)
                     .addComponent(jLabelInterval)
                     .addComponent(jLabelCurrentIP)
                     .addComponent(jLabelLastChecked)
                     .addComponent(jLabelLastChange))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelStatusField)
                     .addComponent(jLabelIntervalField)
                     .addComponent(jLabelCurrentIPField)
@@ -137,82 +151,82 @@ public class MainView extends JFrame {
                 .addContainerGap())
         );
         jPanelMainPanelLayout.setVerticalGroup(
-            jPanelMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainPanelLayout.createSequentialGroup()
                         .addComponent(jLabelStatusField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelIntervalField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCurrentIPField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelLastCheckedField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelLastChangeField))
                     .addGroup(jPanelMainPanelLayout.createSequentialGroup()
                         .addComponent(jLabelStatus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelInterval)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCurrentIP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelLastChecked)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelLastChange)))
                 .addContainerGap())
         );
 
-        jPanelCenterBorder.add(jPanelMainPanel, new java.awt.GridBagConstraints());
+        jPanelCenterBorder.add(jPanelMainPanel, new GridBagConstraints());
 
-        javax.swing.GroupLayout jPanelCenterLayout = new javax.swing.GroupLayout(jPanelCenter);
+        GroupLayout jPanelCenterLayout = new GroupLayout(jPanelCenter);
         jPanelCenter.setLayout(jPanelCenterLayout);
         jPanelCenterLayout.setHorizontalGroup(
-            jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCenterBorder, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelCenterLayout.setVerticalGroup(
-            jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCenterBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanelCenter, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanelCenter, BorderLayout.CENTER);
 
         jButtonStartStop.setText("Start");
 
         jButtonCheckIP.setText("Check IP");
 
-        javax.swing.GroupLayout jPanelSouthTempLayout = new javax.swing.GroupLayout(jPanelSouthTemp);
+        GroupLayout jPanelSouthTempLayout = new GroupLayout(jPanelSouthTemp);
         jPanelSouthTemp.setLayout(jPanelSouthTempLayout);
         jPanelSouthTempLayout.setHorizontalGroup(
-            jPanelSouthTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelSouthTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSouthTempLayout.createSequentialGroup()
                 .addComponent(jButtonStartStop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCheckIP))
         );
 
-        jPanelSouthTempLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCheckIP, jButtonStartStop});
+        jPanelSouthTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jButtonCheckIP, jButtonStartStop});
 
         jPanelSouthTempLayout.setVerticalGroup(
-            jPanelSouthTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSouthTempLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            jPanelSouthTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSouthTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(jButtonStartStop)
                 .addComponent(jButtonCheckIP))
         );
 
-        jPanelSouthTempLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonCheckIP, jButtonStartStop});
+        jPanelSouthTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {jButtonCheckIP, jButtonStartStop});
 
         jPanelSouth.add(jPanelSouthTemp);
 
-        getContentPane().add(jPanelSouth, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanelSouth, BorderLayout.SOUTH);
 
         jMenuFile.setText("File");
         jMenuFile.setMnemonic(KeyStroke.getKeyStroke(jMenuFile.getText().substring(0, 1).toUpperCase()).getKeyCode());

@@ -3,46 +3,49 @@
  */
 package controller.extras;
 
-import java.util.*;
-import javax.swing.*;
-import model.service.os.*;
-import model.service.services.*;
+import java.util.ArrayList;
 
-public class OSModel extends AbstractListModel implements ComboBoxModel {
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 
-    private ArrayList<AbstractOS> OSList;
-    private Object selectedItem;
+import model.service.os.AbstractOS;
+import model.service.services.ServiceManager;
 
-    public OSModel() {
-        OSList = new ArrayList<AbstractOS>();
-        ArrayList<Class> classes = ServiceManager.getInstance().getValidOSClassesForOSFamily();
-        for (Class aClass : classes) {
-            try {
-                OSList.add((AbstractOS) aClass.newInstance());
-            } catch (Exception e) {
-            }
-        }
-    }
+public class OSModel extends AbstractListModel<AbstractOS> implements ComboBoxModel<AbstractOS> {
 
-    public Object getSelectedItem() {
-        return selectedItem;
-    }
+	private ArrayList<AbstractOS> OSList;
+	private Object selectedItem;
 
-    public void setSelectedItem(Object item) {
-        selectedItem = item;
-        fireContentsChanged(this, OSList.indexOf(item), OSList.indexOf(item));
-    }
+	public OSModel() {
+		OSList = new ArrayList<AbstractOS>();
+		ArrayList<Class> classes = ServiceManager.getInstance().getValidOSClassesForOSFamily();
+		for (Class aClass : classes) {
+			try {
+				OSList.add((AbstractOS) aClass.newInstance());
+			} catch (Exception e) {
+			}
+		}
+	}
 
-    public Object getElementAt(int index) {
-        try {
-            return OSList.get(index);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+	public Object getSelectedItem() {
+		return selectedItem;
+	}
 
-    public int getSize() {
-        return OSList.size();
-    }
+	public void setSelectedItem(Object item) {
+		selectedItem = item;
+		fireContentsChanged(this, OSList.indexOf(item), OSList.indexOf(item));
+	}
+
+	public AbstractOS getElementAt(int index) {
+		try {
+			return OSList.get(index);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public int getSize() {
+		return OSList.size();
+	}
 }

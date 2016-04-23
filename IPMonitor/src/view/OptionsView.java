@@ -3,13 +3,18 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
 
 import model.ipmonitor.IPMonitor;
 import model.notification.performers.AudioPerformer;
@@ -19,15 +24,16 @@ import view.options.panels.JPanelOptionsLogging;
 import view.options.panels.JPanelOptionsMonitor;
 import view.options.panels.JPanelOptionsNotification;
 import view.options.panels.JPanelOptionsService;
+import view.panels.JPanelConfirmation;
 
 public class OptionsView extends JDialog {
 	
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private view.options.panels.JPanelOptionsInterface jPanelOptionsInterface;
-    private view.options.panels.JPanelOptionsLogging jPanelOptionsLogging;
-    private view.options.panels.JPanelOptionsMonitor jPanelOptionsMonitor;
-    private view.options.panels.JPanelOptionsNotification jPanelOptionsNotification;
-    private view.options.panels.JPanelOptionsService jPanelOptionsService;
+    private JPanelConfirmation jPanelConfirmation;
+    private JPanelOptionsInterface jPanelOptionsInterface;
+    private JPanelOptionsLogging jPanelOptionsLogging;
+    private JPanelOptionsMonitor jPanelOptionsMonitor;
+    private JPanelOptionsNotification jPanelOptionsNotification;
+    private JPanelOptionsService jPanelOptionsService;
     
     private IPMonitor ipMonitor;
 
@@ -41,49 +47,49 @@ public class OptionsView extends JDialog {
     }
 
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        javax.swing.JTabbedPane jTabbedPaneOptions = new javax.swing.JTabbedPane();
-        javax.swing.JPanel jPanelOptionsMonitorTemp = new javax.swing.JPanel();
-        jPanelOptionsMonitor = new view.options.panels.JPanelOptionsMonitor(ipMonitor);
-        javax.swing.JPanel jPanelOptionsNotificationTemp = new javax.swing.JPanel();
-        jPanelOptionsNotification = new view.options.panels.JPanelOptionsNotification(ipMonitor);
-        javax.swing.JPanel jPanelOptionsInterfaceTemp = new javax.swing.JPanel();
-        jPanelOptionsInterface = new view.options.panels.JPanelOptionsInterface();
-        javax.swing.JPanel jPanelOptionsServicesTemp = new javax.swing.JPanel();
-        jPanelOptionsService = new view.options.panels.JPanelOptionsService();
-        javax.swing.JPanel jPanelOptionsLoggingTemp = new javax.swing.JPanel();
-        jPanelOptionsLogging = new view.options.panels.JPanelOptionsLogging();
-        jPanelConfirmation = new view.panels.JPanelConfirmation(true, true);
+        JTabbedPane jTabbedPaneOptions = new JTabbedPane();
+        JPanel jPanelOptionsMonitorTemp = new JPanel();
+        jPanelOptionsMonitor = new JPanelOptionsMonitor(ipMonitor);
+        JPanel jPanelOptionsNotificationTemp = new JPanel();
+        jPanelOptionsNotification = new JPanelOptionsNotification(ipMonitor);
+        JPanel jPanelOptionsInterfaceTemp = new JPanel();
+        jPanelOptionsInterface = new JPanelOptionsInterface();
+        JPanel jPanelOptionsServicesTemp = new JPanel();
+        jPanelOptionsService = new JPanelOptionsService();
+        JPanel jPanelOptionsLoggingTemp = new JPanel();
+        jPanelOptionsLogging = new JPanelOptionsLogging();
+        jPanelConfirmation = new JPanelConfirmation(true, true);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Options");
         setResizable(false);
 
-        jTabbedPaneOptions.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jTabbedPaneOptions.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        jPanelOptionsMonitorTemp.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanelOptionsMonitorTemp.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         jPanelOptionsMonitorTemp.add(jPanelOptionsMonitor, gridBagConstraints);
 
         jTabbedPaneOptions.addTab("Monitor", jPanelOptionsMonitorTemp);
 
-        jPanelOptionsNotificationTemp.setLayout(new java.awt.GridBagLayout());
-        jPanelOptionsNotificationTemp.add(jPanelOptionsNotification, new java.awt.GridBagConstraints());
+        jPanelOptionsNotificationTemp.setLayout(new GridBagLayout());
+        jPanelOptionsNotificationTemp.add(jPanelOptionsNotification, new GridBagConstraints());
 
         jTabbedPaneOptions.addTab("Notification", jPanelOptionsNotificationTemp);
 
-        jPanelOptionsInterfaceTemp.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanelOptionsInterfaceTemp.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         jPanelOptionsInterfaceTemp.add(jPanelOptionsInterface, gridBagConstraints);
 
         jTabbedPaneOptions.addTab("Interface", jPanelOptionsInterfaceTemp);
 
-        jPanelOptionsServicesTemp.setLayout(new java.awt.GridBagLayout());
-        jPanelOptionsServicesTemp.add(jPanelOptionsService, new java.awt.GridBagConstraints());
+        jPanelOptionsServicesTemp.setLayout(new GridBagLayout());
+        jPanelOptionsServicesTemp.add(jPanelOptionsService, new GridBagConstraints());
 
         try {
 
@@ -91,13 +97,13 @@ public class OptionsView extends JDialog {
         } catch (Exception e) {
         }
 
-        jPanelOptionsLoggingTemp.setLayout(new java.awt.GridBagLayout());
-        jPanelOptionsLoggingTemp.add(jPanelOptionsLogging, new java.awt.GridBagConstraints());
+        jPanelOptionsLoggingTemp.setLayout(new GridBagLayout());
+        jPanelOptionsLoggingTemp.add(jPanelOptionsLogging, new GridBagConstraints());
 
         jTabbedPaneOptions.addTab("Logging", jPanelOptionsLoggingTemp);
 
-        getContentPane().add(jTabbedPaneOptions, java.awt.BorderLayout.CENTER);
-        getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jTabbedPaneOptions, BorderLayout.CENTER);
+        getContentPane().add(jPanelConfirmation, BorderLayout.SOUTH);
 
         pack();
     }

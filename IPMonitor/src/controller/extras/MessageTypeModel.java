@@ -3,49 +3,54 @@
  */
 package controller.extras;
 
-import java.awt.TrayIcon.*;
-import javax.swing.*;
+import java.awt.TrayIcon.MessageType;
 
-public class MessageTypeModel extends AbstractListModel implements ComboBoxModel {
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 
-    private MessageTypeWrapper[] messageTypeWrappers;
-    private Object selectedItem;
+public class MessageTypeModel extends AbstractListModel<MessageTypeWrapper>
+		implements ComboBoxModel<MessageTypeWrapper> {
 
-    public MessageTypeModel() {
-        messageTypeWrappers = new MessageTypeWrapper[]{
-                    new MessageTypeWrapper("None", MessageType.NONE),
-                    new MessageTypeWrapper("Information", MessageType.INFO),
-                    new MessageTypeWrapper("Warning", MessageType.WARNING),
-                    new MessageTypeWrapper("Error", MessageType.ERROR)};
-    }
+	private MessageTypeWrapper[] messageTypeWrappers;
+	private MessageTypeWrapper selectedItem;
 
-    public Object getSelectedItem() {
-        return selectedItem;
-    }
+	public MessageTypeModel() {
+		messageTypeWrappers = new MessageTypeWrapper[] {
+				new MessageTypeWrapper("None", MessageType.NONE),
+				new MessageTypeWrapper("Information", MessageType.INFO),
+				new MessageTypeWrapper("Warning", MessageType.WARNING),
+				new MessageTypeWrapper("Error", MessageType.ERROR)
+		};
+	}
 
-    public void setSelectedItem(Object item) {
-        selectedItem = item;
-    }
+	public MessageTypeWrapper getSelectedItem() {
+		return selectedItem;
+	}
 
-    public Object getElementAt(int index) {
-        try {
-            return messageTypeWrappers[index];
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+	public void setSelectedItem(Object item) {
+		selectedItem = (MessageTypeWrapper) item;
+	}
 
-    public int getSize() {
-        return messageTypeWrappers.length;
-    }
+	public MessageTypeWrapper getElementAt(int index) {
+		try {
+			return messageTypeWrappers[index];
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-    public MessageTypeWrapper getMessageTypeWrapper(MessageType messageType) {
-        for (MessageTypeWrapper wrapper : messageTypeWrappers) {
-            if (wrapper.getMessageType().equals(messageType)) {
-                return wrapper;
-            }
-        }
-        return null;
-    }
+	public int getSize() {
+		return messageTypeWrappers.length;
+	}
+
+	public MessageTypeWrapper getMessageTypeWrapper(MessageType messageType) {
+		for (MessageTypeWrapper wrapper : messageTypeWrappers) {
+			if (wrapper.getMessageType().equals(messageType)) {
+				return wrapper;
+			}
+		}
+		return null;
+	}
+
 }

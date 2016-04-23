@@ -3,18 +3,25 @@
  */
 package view.options;
 
+import java.awt.BorderLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
 import model.notification.configuration.CommandConfiguration;
+import view.extras.JButtonInfo;
 
 public class CommandConfigurationView extends JDialog {
 	
-    private javax.swing.JButton jButtonBrowse;
-    private view.extras.JButtonInfo jButtonInfo;
+    private JButton jButtonBrowse;
+    private JButtonInfo jButtonInfo;
     private view.panels.JPanelConfirmation jPanelConfirmation;
-    private javax.swing.JTextField jTextFieldFilePath;
+    private JTextField jTextFieldFilePath;
 
     public CommandConfigurationView() {
         initComponents();
@@ -28,63 +35,63 @@ public class CommandConfigurationView extends JDialog {
     }
 
     private void initComponents() {
-        javax.swing.JPanel jPanelCenter = new javax.swing.JPanel();
-        javax.swing.JPanel jPanelCenterBorder = new javax.swing.JPanel();
-        jTextFieldFilePath = new javax.swing.JTextField();
-        jButtonBrowse = new javax.swing.JButton();
-        jButtonInfo = new view.extras.JButtonInfo();
+        JPanel jPanelCenter = new JPanel();
+        JPanel jPanelCenterBorder = new JPanel();
+        jTextFieldFilePath = new JTextField();
+        jButtonBrowse = new JButton();
+        jButtonInfo = new JButtonInfo();
         jPanelConfirmation = new view.panels.JPanelConfirmation(false);
 
         setResizable(false);
 
-        jPanelCenterBorder.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter a command to execute"));
+        jPanelCenterBorder.setBorder(BorderFactory.createTitledBorder("Enter a command to execute"));
 
         jTextFieldFilePath.setText(CommandConfiguration.getInstance().getCommand());
 
         jButtonBrowse.setText("Browse...");
 
-        javax.swing.GroupLayout jPanelCenterBorderLayout = new javax.swing.GroupLayout(jPanelCenterBorder);
+        GroupLayout jPanelCenterBorderLayout = new GroupLayout(jPanelCenterBorder);
         jPanelCenterBorder.setLayout(jPanelCenterBorderLayout);
         jPanelCenterBorderLayout.setHorizontalGroup(
-            jPanelCenterBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldFilePath, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldFilePath, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBrowse)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelCenterBorderLayout.setVerticalGroup(
-            jPanelCenterBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
-                .addGroup(jPanelCenterBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBrowse)
-                    .addComponent(jTextFieldFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextFieldFilePath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanelCenterLayout = new javax.swing.GroupLayout(jPanelCenter);
+        GroupLayout jPanelCenterLayout = new GroupLayout(jPanelCenter);
         jPanelCenter.setLayout(jPanelCenterLayout);
         jPanelCenterLayout.setHorizontalGroup(
-            jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCenterBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelCenterLayout.setVerticalGroup(
-            jPanelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCenterLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelCenterBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanelCenter, java.awt.BorderLayout.CENTER);
-        getContentPane().add(jPanelConfirmation, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanelCenter, BorderLayout.CENTER);
+        getContentPane().add(jPanelConfirmation, BorderLayout.SOUTH);
 
         pack();
     }

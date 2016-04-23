@@ -3,9 +3,12 @@
  */
 package view.options.panels;
 
+import javax.swing.GroupLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
 import controller.extras.TimeUnitConverter;
 import model.configuration.ConfigurationManager;
@@ -13,11 +16,11 @@ import model.ipmonitor.IPMonitor;
 
 public class JPanelOptionsMonitor extends JPanel {
     
-	private javax.swing.JCheckBox jCheckBoxAutostart;
-	private javax.swing.JTextField jTextFieldHours;
-	private javax.swing.JTextField jTextFieldMinutes;
-	private javax.swing.JTextField jTextFieldSeconds;
-	private javax.swing.JTextField jTextFieldURL;
+	private JCheckBox jCheckBoxAutostart;
+	private JTextField jTextFieldHours;
+	private JTextField jTextFieldMinutes;
+	private JTextField jTextFieldSeconds;
+	private JTextField jTextFieldURL;
 
 	private IPMonitor ipMonitor = null;
 	
@@ -30,24 +33,24 @@ public class JPanelOptionsMonitor extends JPanel {
     }
 
     private void initComponents() {
-        javax.swing.JLabel jLabelInterval = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelCheckingURL = new javax.swing.JLabel();
+        JLabel jLabelInterval = new JLabel();
+        JLabel jLabelCheckingURL = new JLabel();
         TimeUnitConverter timeUnitConverter = new TimeUnitConverter(ipMonitor.getInterval());
-        jTextFieldHours = new javax.swing.JTextField();
-        javax.swing.JLabel jLabelColon1 = new javax.swing.JLabel();
-        javax.swing.JLabel jLabelColon2 = new javax.swing.JLabel();
-        jTextFieldMinutes = new javax.swing.JTextField();
-        jTextFieldSeconds = new javax.swing.JTextField();
-        jTextFieldURL = new javax.swing.JTextField();
-        javax.swing.JLabel jLabelHMS = new javax.swing.JLabel();
-        jCheckBoxAutostart = new javax.swing.JCheckBox();
+        jTextFieldHours = new JTextField();
+        JLabel jLabelColon1 = new JLabel();
+        JLabel jLabelColon2 = new JLabel();
+        jTextFieldMinutes = new JTextField();
+        jTextFieldSeconds = new JTextField();
+        jTextFieldURL = new JTextField();
+        JLabel jLabelHMS = new JLabel();
+        jCheckBoxAutostart = new JCheckBox();
 
         jLabelInterval.setText("Interval:");
 
         jLabelCheckingURL.setText("Checking URL:");
 
         jTextFieldHours.setColumns(3);
-        jTextFieldHours.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldHours.setHorizontalAlignment(JTextField.CENTER);
         jTextFieldHours.setText(String.valueOf(timeUnitConverter.getHours()));
 
         jLabelColon1.setText(":");
@@ -55,11 +58,11 @@ public class JPanelOptionsMonitor extends JPanel {
         jLabelColon2.setText(":");
 
         jTextFieldMinutes.setColumns(3);
-        jTextFieldMinutes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldMinutes.setHorizontalAlignment(JTextField.CENTER);
         jTextFieldMinutes.setText(String.valueOf(timeUnitConverter.getMinutes()));
 
         jTextFieldSeconds.setColumns(3);
-        jTextFieldSeconds.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldSeconds.setHorizontalAlignment(JTextField.CENTER);
         jTextFieldSeconds.setText(String.valueOf(timeUnitConverter.getSeconds()));
 
         jTextFieldURL.setText(ipMonitor.getUrl());
@@ -69,53 +72,53 @@ public class JPanelOptionsMonitor extends JPanel {
         jCheckBoxAutostart.setSelected(ConfigurationManager.getInstance().isAutostart());
         jCheckBoxAutostart.setText("Autostart when IP Monitor launches");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelCheckingURL)
                             .addComponent(jLabelInterval))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldHours, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelColon1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldMinutes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelColon2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldSeconds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelHMS))
-                            .addComponent(jTextFieldURL, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
-                    .addComponent(jCheckBoxAutostart, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jTextFieldURL, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
+                    .addComponent(jCheckBoxAutostart, GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldHours, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelColon1)
-                    .addComponent(jTextFieldMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldMinutes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelColon2)
-                    .addComponent(jTextFieldSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSeconds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelHMS)
                     .addComponent(jLabelInterval))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCheckingURL)
-                    .addComponent(jTextFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jTextFieldURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBoxAutostart)
                 .addContainerGap())
         );
