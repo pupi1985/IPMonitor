@@ -14,7 +14,6 @@
 		<mkdir dir="${build.dir}" />
 	</target>
 
-
 	<path id="classpath.path">
 		<fileset id="classpath.fileset" dir="${basedir}/${lib.dir}/">
 			<include name="javamail/javax.mail.jar" />
@@ -32,15 +31,16 @@
 	<target name="copy-dependencies">
 		<copy todir="${dist.lib.dir}">
 			<fileset dir="${basedir}/${lib.dir}">
-				<include name="javamail/javax.mail.jar" />
-				<include name="javamail/gpl-2.0.txt" />
-				<include name="javamail/version" />
 			</fileset>
 		</copy>
 
-		<copy file="${basedir}/${lib.dir}/jsw/lib/wrapper.jar" todir="${dist.lib.dir}/jsw" />
-		<copy file="${basedir}/${lib.dir}/jsw/doc/wrapper-community-license-1.3.txt" todir="${dist.lib.dir}/jsw" />
-		<copy file="${basedir}/${lib.dir}/jsw/version" todir="${dist.lib.dir}/jsw" />
+		<chmod file="${dist.dir}/lib/jsw/bin/*" perm="a+x" />
+
+		<copy todir="${dist.dir}/files/jsw">
+			<fileset dir="${basedir}/files/jsw" />
+		</copy>
+
+		<chmod file="${dist.dir}/files/jsw/IPMonitor.sh" perm="a+x" />
 	</target>
 
 	<target name="jar" depends="compile, copy-dependencies">

@@ -28,27 +28,27 @@
 #       of code otherwise the service won't be displayed in the Service 
 #       Configuration GUI.
 ### BEGIN INIT INFO
-# Provides: @app.name@
+# Provides: ipmonitor
 # Required-Start: $local_fs $network $syslog
 # Should-Start: 
 # Required-Stop:
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
-# Short-Description: @app.long.name@
-# Description: @app.description@
+# Short-Description: IP Monitor
+# Description: IP Monitor is a simple to use application which monitors your public IP address for changes and lets you set different kinds of notifications such as email, audio, pop ups or executing a command.
 ### END INIT INFO
 
 # Application
-APP_NAME="@app.name@"
-APP_LONG_NAME="@app.long.name@"
+APP_NAME="ipmonitor"
+APP_LONG_NAME="IP Monitor"
 
 # If uncommented (and set to false), APP_NAME and APP_LONG_NAME will no longer 
 # be passed to the wrapper. See documentation for details.
 #APP_NAME_PASS_TO_WRAPPER=false
 
 # Wrapper
-WRAPPER_CMD="./wrapper"
-WRAPPER_CONF="../conf/wrapper.conf"
+WRAPPER_CMD="../../lib/jsw/bin/wrapper"
+WRAPPER_CONF="wrapper.conf"
 
 # Priority at which to run the wrapper.  See "man nice" for valid priorities.
 #  nice is only used if a priority is specified.
