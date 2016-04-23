@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jCheckBoxEnableCommandNotification" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxEnableVisualNotification" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxEnableMailNotification" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxEnableAudioNotification" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonCommandConfiguration" linkSize="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonCommandTest" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonVisualConfiguration" linkSize="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonVisualTest" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonMailConfiguration" linkSize="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonMailTest" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonAudioConfiguration" linkSize="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonAudioTest" linkSize="4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jCheckBoxEnableAudioNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAudioConfiguration" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAudioTest" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jCheckBoxEnableMailNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMailConfiguration" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMailTest" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jCheckBoxEnableVisualNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonVisualConfiguration" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonVisualTest" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jCheckBoxEnableCommandNotification" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCommandConfiguration" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCommandTest" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxEnableAudioNotification">
+      <Properties>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="ipMonitor.hasNotification(AudioNotification.getInstance())" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enable audio notification"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxEnableMailNotification">
+      <Properties>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="ipMonitor.hasNotification(MailNotification.getInstance())" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enable mail notification"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxEnableVisualNotification">
+      <Properties>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="ipMonitor.hasNotification(VisualNotification.getInstance())" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enable visual notification"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxEnableCommandNotification">
+      <Properties>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="ipMonitor.hasNotification(CommandNotification.getInstance())" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enable command notification"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxEnableVisualNotification1">
+      <Properties>
+        <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="ipMonitor.hasNotification(VisualNotification.getInstance())" type="code"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Enable visual notification"/>
+      </Properties>
+    </Component>
+    <Component class="view.options.extras.JButtonConfigure" name="jButtonAudioConfiguration">
+    </Component>
+    <Component class="view.options.extras.JButtonConfigure" name="jButtonMailConfiguration">
+    </Component>
+    <Component class="view.options.extras.JButtonConfigure" name="jButtonVisualConfiguration">
+    </Component>
+    <Component class="view.options.extras.JButtonConfigure" name="jButtonCommandConfiguration">
+    </Component>
+    <Component class="view.extras.JButtonTest" name="jButtonAudioTest">
+    </Component>
+    <Component class="view.extras.JButtonTest" name="jButtonMailTest">
+    </Component>
+    <Component class="view.extras.JButtonTest" name="jButtonVisualTest">
+    </Component>
+    <Component class="view.extras.JButtonTest" name="jButtonCommandTest">
+    </Component>
+  </SubComponents>
+</Form>
