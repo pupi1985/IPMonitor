@@ -3,12 +3,20 @@
  */
 package model.logger;
 
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import model.configuration.*;
-import model.extras.*;
-import model.logger.exceptions.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+
+import model.configuration.ConfigurationManager;
+import model.extras.CommonFunctions;
+import model.logger.exceptions.InvalidMaxDaysToKeepLogs;
 
 public class MainLogger {
 
@@ -50,7 +58,7 @@ public class MainLogger {
         try {
             Date date = new Date();
             File logFile = new File(
-                    ConfigurationManager.getInstance().getLogFilesDirectory() +
+                    ConfigurationManager.getInstance().getLogFilesDirectoryPath() +
                     new SimpleDateFormat(ConfigurationManager.getInstance().getLogFileNameFormat()).format(date) +
                     ".log");
             fileExists = logFile.exists();
@@ -74,7 +82,7 @@ public class MainLogger {
     }
 
     public void deleteOldFiles() {
-        File[] files = new File(ConfigurationManager.getInstance().getLogFilesDirectory()).listFiles(new LogFileFilter());
+        File[] files = new File(ConfigurationManager.getInstance().getLogFilesDirectoryPath()).listFiles(new LogFileFilter());
         Arrays.sort(files, new FileNameComparator());
         int filesExceeded = files.length - maxDaysToKeepLogs;
         for (; filesExceeded > 0; filesExceeded--) {

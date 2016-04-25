@@ -18,7 +18,7 @@ import javax.swing.WindowConstants;
 
 import model.ipmonitor.IPMonitor;
 import model.notification.performers.AudioPerformer;
-import model.service.services.ServiceManager;
+import model.service.ServiceManager;
 import view.options.panels.JPanelOptionsInterface;
 import view.options.panels.JPanelOptionsLogging;
 import view.options.panels.JPanelOptionsMonitor;

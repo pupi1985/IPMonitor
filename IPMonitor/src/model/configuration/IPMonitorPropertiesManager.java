@@ -3,21 +3,31 @@
  */
 package model.configuration;
 
-import java.awt.*;
-import java.awt.TrayIcon.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import javax.mail.internet.*;
-import model.encryption.*;
-import model.ipmonitor.*;
-import model.ipmonitor.exceptions.*;
-import model.logger.*;
-import model.logger.exceptions.*;
-import model.notification.*;
-import model.notification.configuration.*;
-import model.service.exceptions.*;
-import model.service.services.*;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.TrayIcon.MessageType;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.net.MalformedURLException;
+import java.util.Properties;
+
+import javax.mail.internet.AddressException;
+
+import model.encryption.DESAlgorithm;
+import model.ipmonitor.IPMonitor;
+import model.ipmonitor.exceptions.InvalidIntervalException;
+import model.logger.MainLogger;
+import model.logger.exceptions.InvalidMaxDaysToKeepLogs;
+import model.notification.AudioNotification;
+import model.notification.CommandNotification;
+import model.notification.MailNotification;
+import model.notification.VisualNotification;
+import model.notification.configuration.AudioConfiguration;
+import model.notification.configuration.CommandConfiguration;
+import model.notification.configuration.MailConfiguration;
+import model.notification.configuration.VisualConfiguration;
+
 
 public class IPMonitorPropertiesManager {
 
@@ -63,7 +73,6 @@ public class IPMonitorPropertiesManager {
         loadVisualNotificationConfigurationText(properties);
         loadVisualNotificationConfigurationIcon(properties);
         loadCommandNotificationConfigurationPath(properties);
-        loadServiceId(properties);
     }
 
     public void saveToFile() {
@@ -97,7 +106,6 @@ public class IPMonitorPropertiesManager {
         saveVisualNotificationConfigurationText(properties);
         saveVisualNotificationConfigurationIcon(properties);
         saveCommandNotificationConfigurationPath(properties);
-        saveServiceId(properties);
         try {
             properties.store(new FileOutputStream(new File(ConfigurationManager.getInstance().getConfigurationFilePath())), null);
         } catch (Exception e) {
@@ -615,37 +623,4 @@ public class IPMonitorPropertiesManager {
                 CommandConfiguration.getInstance().getCommand());
     }
 
-    private void loadServiceId(Properties properties) {
-        if (ServiceManager.getInstance().isOSSupported()) {
-            int validOSId;
-            try {
-                validOSId = ServiceManager.getInstance().getValidOSId();
-            } catch (OSNotSupportedException e) {
-                validOSId = 0;
-            }
-            int osId;
-            try {
-                osId = Integer.valueOf(properties.getProperty(
-                        IPMonitorProperties.OPTIONS_SERVICE_OS_ID,
-                        String.valueOf(validOSId)));
-            } catch (NumberFormatException e) {
-                osId = validOSId;
-            }
-            try {
-                ConfigurationManager.getInstance().setOsId(osId);
-            } catch (Exception e1) {
-                try {
-                    ConfigurationManager.getInstance().setOsId(validOSId);
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                }
-            }
-
-        }
-    }
-
-    private void saveServiceId(Properties properties) {
-        properties.setProperty(IPMonitorProperties.OPTIONS_SERVICE_OS_ID,
-                String.valueOf(ConfigurationManager.getInstance().getOsId()));
-    }
 }

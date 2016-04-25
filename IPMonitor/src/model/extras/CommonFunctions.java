@@ -3,13 +3,17 @@
  */
 package model.extras;
 
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
-import model.configuration.*;
-import model.ipmonitor.*;
-import model.logger.*;
+import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Pattern;
+
+import model.configuration.ConfigurationManager;
+import model.ipmonitor.IPMonitor;
+import model.logger.IPMonitorEventLogger;
+import model.logger.MainLogger;
 
 public class CommonFunctions {
 
@@ -42,7 +46,7 @@ public class CommonFunctions {
     }
 
     public void postLoadProperties(IPMonitor ipMonitor) {
-        new File(model.configuration.ConfigurationManager.getInstance().getLogFilesDirectory()).mkdirs();
+        new File(model.configuration.ConfigurationManager.getInstance().getLogFilesDirectoryPath()).mkdirs();
         MainLogger.getInstance().deleteOldFiles();
         ipMonitor.addIPMonitorListener(new IPMonitorEventLogger());
     }

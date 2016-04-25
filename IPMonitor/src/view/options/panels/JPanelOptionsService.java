@@ -9,139 +9,108 @@ import java.awt.GridBagLayout;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 
-import controller.extras.OSModel;
-import model.configuration.ConfigurationManager;
-import model.service.exceptions.OSNotSupportedException;
-import model.service.os.AbstractOS;
-import model.service.os.OSManager;
-import model.service.os.Windows;
-import model.service.services.ServiceManager;
+import model.service.ServiceManager;
 
 public class JPanelOptionsService extends JPanel {
-	
-    private JButton jButtonInstall;
-    private JButton jButtonStart;
-    private JButton jButtonStop;
-    private JButton jButtonTest;
-    private JButton jButtonUninstall;
-    private JComboBox<AbstractOS> jComboBoxOS;
-    private JPanel jPanelTemp;
 
-    private String serviceName;
+	private JButton jButtonInstall;
+	private JButton jButtonStart;
+	private JButton jButtonStop;
+	private JButton jButtonTest;
+	private JButton jButtonUninstall;
+	private JPanel jPanelTemp;
 
-    public JPanelOptionsService() {
-        try {
-            serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase();
-        } catch (OSNotSupportedException e) {
-            serviceName = new Windows().getService().getServiceName().toLowerCase();
-        }
-        initComponents();
-    }
+	public JPanelOptionsService() {
+		initComponents();
+	}
 
-    private void initComponents() {
-        jPanelTemp = new JPanel();
-        OSModel OSModel = new OSModel();
-        jComboBoxOS = new JComboBox<AbstractOS>(OSModel);
-        if (jComboBoxOS.getModel().getSize() == 1) {
-            jComboBoxOS.setEnabled(false);
-        }
-        jButtonInstall = new JButton();
-        jButtonStart = new JButton();
-        jButtonTest = new JButton();
-        jButtonUninstall = new JButton();
-        jButtonStop = new JButton();
+	private void initComponents() {
+		jPanelTemp = new JPanel();
+		jButtonInstall = new JButton();
+		jButtonStart = new JButton();
+		jButtonTest = new JButton();
+		jButtonUninstall = new JButton();
+		jButtonStop = new JButton();
 
-        setLayout(new GridBagLayout());
+		setLayout(new GridBagLayout());
 
-        jButtonInstall.setText("Install " + serviceName);
+		String serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase();
 
-        jButtonStart.setText("Start " + serviceName);
+		jButtonInstall.setText("Install " + serviceName);
 
-        jButtonTest.setText("Test " + serviceName);
+		jButtonStart.setText("Start " + serviceName);
 
-        jButtonUninstall.setText("Uninstall " + serviceName);
+		jButtonTest.setText("Test " + serviceName);
 
-        jButtonStop.setText("Stop " + serviceName);
+		jButtonUninstall.setText("Uninstall " + serviceName);
 
-        GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
-        jPanelTemp.setLayout(jPanelTempLayout);
-        jPanelTempLayout.setHorizontalGroup(
-            jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTempLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonStart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonInstall, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxOS, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonStop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonTest, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUninstall, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+		jButtonStop.setText("Stop " + serviceName);
 
-        jPanelTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall, jComboBoxOS});
+		GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
+		jPanelTemp.setLayout(jPanelTempLayout);
+		jPanelTempLayout.setHorizontalGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(jPanelTempLayout.createSequentialGroup().addContainerGap().addGroup(jPanelTempLayout
+						.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+						.addComponent(jButtonStart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jButtonInstall, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addComponent(jButtonTest, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addComponent(jButtonStop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addComponent(jButtonUninstall, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE))
+						.addContainerGap()));
 
-        jPanelTempLayout.setVerticalGroup(
-            jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTempLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxOS, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonTest))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInstall)
-                    .addComponent(jButtonUninstall))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonStart)
-                    .addComponent(jButtonStop))
-                .addContainerGap())
-        );
+		jPanelTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
+				jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
+		});
 
-        jPanelTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall, jComboBoxOS});
+		jPanelTempLayout.setVerticalGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(jPanelTempLayout.createSequentialGroup().addContainerGap()
+						.addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(jButtonInstall).addComponent(jButtonUninstall))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(jButtonStart).addComponent(jButtonStop))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanelTempLayout
+								.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jButtonTest))
+						.addContainerGap()));
 
-        try {
-            jComboBoxOS.getModel().setSelectedItem((OSManager.getInstance().getClassForID(ConfigurationManager.getInstance().getOsId())).newInstance());
-        } catch (Exception e) {
-            jComboBoxOS.setSelectedIndex(0);
-        }
+		jPanelTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {
+				jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
+		});
 
-        add(jPanelTemp, new GridBagConstraints());
-    }
+		add(jPanelTemp, new GridBagConstraints());
+	}
 
-    public JButton getJButtonInstall() {
-        return jButtonInstall;
-    }
+	public JButton getJButtonInstall() {
+		return jButtonInstall;
+	}
 
-    public JButton getJButtonUninstall() {
-        return jButtonUninstall;
-    }
+	public JButton getJButtonUninstall() {
+		return jButtonUninstall;
+	}
 
-    public JButton getJButtonStart() {
-        return jButtonStart;
-    }
+	public JButton getJButtonStart() {
+		return jButtonStart;
+	}
 
-    public JButton getJButtonStop() {
-        return jButtonStop;
-    }
+	public JButton getJButtonStop() {
+		return jButtonStop;
+	}
 
-    public JButton getJButtonTest() {
-        return jButtonTest;
-    }
+	public JButton getJButtonTest() {
+		return jButtonTest;
+	}
 
-    public JComboBox<AbstractOS> getJComboBoxOS() {
-        return jComboBoxOS;
-    }
-
-    public JPanel getJPanelInnerPanel() {
-        return jPanelTemp;
-    }
+	public JPanel getJPanelInnerPanel() {
+		return jPanelTemp;
+	}
 }

@@ -3,7 +3,7 @@
  */
 package model.configuration;
 
-import javax.swing.*;
+import javax.swing.UIManager;
 
 public class IPMonitorProperties {
 
@@ -65,6 +65,4 @@ public class IPMonitorProperties {
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH_VALUE = "";
     public static final String OPTIONS_INTERFACE_LOOK_AND_FEEL_CLASS_NAME = "OptionsInterfaceLookAndFeelClassName";
     public static final String OPTIONS_INTERFACE_LOOK_AND_FEEL_CLASS_NAME_VALUE = UIManager.getCrossPlatformLookAndFeelClassName();
-    public static final String OPTIONS_SERVICE_OS_ID = "OptionsServiceOSId";
-    public static final int OPTIONS_SERVICE_OS_ID_VALUE = 0;
 }

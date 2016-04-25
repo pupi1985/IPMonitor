@@ -5,6 +5,6 @@ package model.service.exceptions;
 
 import model.extras.exceptions.*;
 
-public class OSNotSupportedException extends AbstractIPMonitorException {
+public class ServiceOperationException extends AbstractIPMonitorException {
 
 }
