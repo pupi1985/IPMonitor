@@ -30,8 +30,7 @@
 
 	<target name="copy-dependencies">
 		<copy todir="${dist.lib.dir}">
-			<fileset dir="${basedir}/${lib.dir}">
-			</fileset>
+			<fileset dir="${basedir}/${lib.dir}" />
 		</copy>
 
 		<chmod file="${dist.dir}/lib/jsw/bin/*" perm="a+x" />
@@ -41,6 +40,18 @@
 		</copy>
 
 		<chmod file="${dist.dir}/files/jsw/IPMonitor.sh" perm="a+x" />
+
+		<copy todir="${dist.dir}">
+			<fileset dir="${basedir}/launchers" />
+		</copy>
+
+		<chmod file="${dist.dir}/linux-admin-gui-launcher.sh" perm="a+x" />
+		<chmod file="${dist.dir}/macos-admin-gui-lanucher.command" perm="a+x" />
+
+		<mkdir dir="${dist.dir}/logs" />
+
+		<touch file="${dist.dir}/files/ipmonitor.cfg" />
+		<touch file="${dist.dir}/files/lastcheck.dat" />
 	</target>
 
 	<target name="jar" depends="compile, copy-dependencies">
