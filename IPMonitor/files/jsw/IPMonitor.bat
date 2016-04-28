@@ -24,12 +24,12 @@ set _WRAPPER_BASE=wrapper
 rem The directory where the Wrapper binary (.exe) file is located. It can be
 rem  either an absolute or a relative path. If the path contains any special 
 rem  characters, please make sure to quote the variable. 
-set _WRAPPER_DIR=
+set _WRAPPER_DIR="../../lib/jsw/bin"
 
 rem The name and location of the Wrapper configuration file. This will be used
 rem  if the user does not specify a configuration file as the first parameter to
 rem  this script.
-set _WRAPPER_CONF="../conf/%_WRAPPER_BASE%.conf"
+set _WRAPPER_CONF="../../../files/jsw/%_WRAPPER_BASE%.conf"
 
 rem _FIXED_COMMAND tells the script to use a hard coded command rather than
 rem  expecting the first parameter of the command line to be the command.
@@ -92,7 +92,6 @@ if exist %_WRAPPER_EXE% goto conf
 echo Unable to locate a Wrapper executable using any of the following names:
 echo %_WRAPPER_L_EXE%
 echo %_WRAPPER_EXE%
-pause
 goto :eof
 
 :conf

@@ -10,7 +10,7 @@ public class ServiceManager {
 	private AbstractService service;
 
 	private ServiceManager() {
-		this.service = isOSFamilyWindows() ? new WindowsBasedService() : new UnixBasedService();
+		this.service = this.isOSFamilyWindows() ? new WindowsBasedService() : new UnixBasedService();
 	}
 
 	public static ServiceManager getInstance() {

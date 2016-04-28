@@ -32,6 +32,8 @@
 		<copy todir="${dist.lib.dir}">
 			<fileset dir="${basedir}/${lib.dir}" />
 		</copy>
+		<copy file="${dist.dir}/lib/jsw/bin/wrapper-windows-x86-32.exe" tofile="${dist.dir}/lib/jsw/bin/wrapper-windows-x86-64.exe" />
+		<copy file="${dist.dir}/lib/jsw/lib/wrapper-windows-x86-32.dll" tofile="${dist.dir}/lib/jsw/lib/wrapper-windows-x86-64.dll" />
 
 		<chmod file="${dist.dir}/lib/jsw/bin/*" perm="a+x" />
 

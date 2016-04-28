@@ -1,9 +1,7 @@
 package model.service;
 
 import java.io.IOException;
-import java.util.List;
-
-import model.service.helpers.ProcessResult;
+import java.util.Arrays;
 
 public class WindowsBasedService extends AbstractService {
 
@@ -14,33 +12,13 @@ public class WindowsBasedService extends AbstractService {
 	protected String getScriptFileName() {
 		return "IPMonitor.bat";
 	}
-	
-	public ProcessResult runScriptWithArguments(List<String> argumentList) throws IOException {
-		return null;
-	}
 
 	public boolean isRunning() throws IOException {
+		return this.runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase().contains("Running: Yes");
+	}
+
+	public boolean shouldIncludeExitCode() {
 		return false;
-	}
-
-	public ProcessResult start() throws IOException {
-		return null;
-	}
-
-	public ProcessResult stop() throws IOException {
-		return null;
-	}
-
-	public ProcessResult install() throws IOException {
-		return null;
-	}
-
-	public ProcessResult uninstall() throws IOException {
-		return null;
-	}
-
-	public ProcessResult status() throws IOException {
-		return null;
 	}
 
 }

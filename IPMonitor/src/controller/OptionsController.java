@@ -41,7 +41,6 @@ import model.notification.performers.AudioPerformer;
 import model.notification.performers.CommandPerformer;
 import model.notification.performers.MailPerformer;
 import model.notification.performers.VisualPerformer;
-import model.service.AbstractService;
 import model.service.ServiceManager;
 import model.service.helpers.ProcessResult;
 import view.OptionsView;
@@ -72,8 +71,7 @@ public class OptionsController {
 				.addActionListener(new JButtonCommandConfiguration());
 		optionsView.getJPanelOptionsNotification().getJButtonCommandTest().addActionListener(new JButtonCommandTest());
 
-		AbstractService genericService = ServiceManager.getInstance().getService();
-		serviceName = genericService.getServiceName().toLowerCase();
+		serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase();
 		optionsView.getJPanelOptionsService().getJButtonInstall().addActionListener(new JButtonInstallServiceAction());
 		optionsView.getJPanelOptionsService().getJButtonUninstall()
 				.addActionListener(new JButtonUninstallServiceAction());
@@ -343,8 +341,14 @@ public class OptionsController {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				ProcessResult processResult = serviceOperation();
-				JOptionPane.showMessageDialog(null, processResult.getOutput() + System.lineSeparator() + "Exit code: "
-						+ processResult.getExitCode(), this.title, JOptionPane.INFORMATION_MESSAGE);
+				StringBuffer output = new StringBuffer(processResult.getOutput().trim());
+				if (ServiceManager.getInstance().getService().shouldIncludeExitCode()) {
+					output.append(System.lineSeparator());
+					output.append(System.lineSeparator());
+					output.append("Exit code: ");
+					output.append(processResult.getExitCode());
+				}
+				JOptionPane.showMessageDialog(null, output.toString(), this.title, JOptionPane.INFORMATION_MESSAGE);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, this.errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 			}
