@@ -48,7 +48,7 @@
 		</copy>
 
 		<chmod file="${dist.dir}/linux-admin-gui-launcher.sh" perm="a+x" />
-		<chmod file="${dist.dir}/macos-admin-gui-lanucher.command" perm="a+x" />
+		<chmod file="${dist.dir}/macos-admin-gui-launcher.command" perm="a+x" />
 
 		<mkdir dir="${dist.dir}/logs" />
 
