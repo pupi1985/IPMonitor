@@ -54,6 +54,10 @@
 
 		<touch file="${dist.dir}/files/ipmonitor.cfg" />
 		<touch file="${dist.dir}/files/lastcheck.dat" />
+
+		<chmod file="${dist.dir}/IPMonitor.jar" perm="a+x" />
+
+		<copy file="license.txt" todir="${dist.dir}" />
 	</target>
 
 	<target name="jar" depends="compile, copy-dependencies">
