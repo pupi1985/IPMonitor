@@ -36,10 +36,9 @@ import model.ipmonitor.exceptions.InvalidIntervalException;
 import model.ipreader.IPReader;
 import model.ipreader.exceptions.IPNotFoundException;
 import model.notification.AbstractNotification;
-import model.observable.ObservableModelListener;
 import model.observable.ObservableModelUnique;
 
-public class IPMonitor extends ObservableModelUnique {
+public class IPMonitor extends ObservableModelUnique<IPMonitorListener> {
 
     private Alarm alarm;
     private IPReader ipReader;
@@ -51,7 +50,7 @@ public class IPMonitor extends ObservableModelUnique {
     private Date lastChange;
 
     public IPMonitor() {
-        exceptionListeners = new LinkedList<IPMonitorExceptionListener>();
+        exceptionListeners = new LinkedList<>();
         lastIP = "";
         ipReader = new IPReader();
         alarm = new Alarm(5);
@@ -162,38 +161,38 @@ public class IPMonitor extends ObservableModelUnique {
 
     /* Listeners IPMonitor */
     private void notifyStart() {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorStart();
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorStart();
         }
     }
 
     private void notifyStop() {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorStop();
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorStop();
         }
     }
 
     private void notifyIntervalChange() {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorIntervalChange();
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorIntervalChange();
         }
     }
 
     private void notifyIPCheckStart() {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorIPCheckStart();
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorIPCheckStart();
         }
     }
 
     private void notifyIPCheckEnd() {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorIPCheckEnd();
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorIPCheckEnd();
         }
     }
 
     private void notifyIPChange(String fromIP, String toIP, Date lastChecked, boolean firstTime) {
-        for (ObservableModelListener listener : listeners) {
-            ((IPMonitorListener) listener).ipMonitorIPChange(fromIP, toIP, lastChecked, firstTime);
+        for (IPMonitorListener listener : listeners) {
+            listener.ipMonitorIPChange(fromIP, toIP, lastChecked, firstTime);
         }
     }
 
@@ -248,7 +247,6 @@ public class IPMonitor extends ObservableModelUnique {
                     notifyIPChange(oldIP, newIP, lastChange, firstTime);
                 } else {
                     if (lastCheckFailed) {
-                        //lastChange = lastChecked;
                         notifyIPChange(lastIP, newIP, lastChange, true);
                     }
                 }

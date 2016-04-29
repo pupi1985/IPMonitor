@@ -22,9 +22,9 @@
 
 package model.observable;
 
-public class ObservableModelUnique extends ObservableModel {
+public class ObservableModelUnique<T extends ObservableModelListener> extends ObservableModel<T> {
 
-    public void addModelListener(ObservableModelListener listener) {
+    public void addModelListener(T listener) {
         if (!listeners.contains(listener)) {
             super.addModelListener(listener);
         }

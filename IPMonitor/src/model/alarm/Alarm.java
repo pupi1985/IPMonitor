@@ -28,9 +28,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import model.observable.ObservableModel;
-import model.observable.ObservableModelListener;
 
-public class Alarm extends ObservableModel {
+public class Alarm extends ObservableModel<AlarmListener> {
 
     private static final int THOUSAND = 1000;
     private Timer timer;
@@ -65,26 +64,26 @@ public class Alarm extends ObservableModel {
     }
 
     private void notifyAlarmStart() {
-        for (ObservableModelListener listener : listeners) {
-            ((AlarmListener) listener).alarmStart();
+        for (AlarmListener listener : listeners) {
+            listener.alarmStart();
         }
     }
 
     private void notifyAlarmStop() {
-        for (ObservableModelListener listener : listeners) {
-            ((AlarmListener) listener).alarmStop();
+        for (AlarmListener listener : listeners) {
+            listener.alarmStop();
         }
     }
 
     private void notifyIntervalChange() {
-        for (ObservableModelListener listener : listeners) {
-            ((AlarmListener) listener).alarmIntervalChange();
+        for (AlarmListener listener : listeners) {
+            listener.alarmIntervalChange();
         }
     }
 
     private void notifyTimerEvent() {
-        for (ObservableModelListener listener : listeners) {
-            ((AlarmListener) listener).alarmTimerEvent();
+        for (AlarmListener listener : listeners) {
+            listener.alarmTimerEvent();
         }
     }
 

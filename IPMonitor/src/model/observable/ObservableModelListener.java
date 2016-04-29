@@ -23,5 +23,4 @@
 package model.observable;
 
 public interface ObservableModelListener {
-
 }

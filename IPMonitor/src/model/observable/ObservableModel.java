@@ -22,21 +22,21 @@
 
 package model.observable;
 
-import java.util.*;
+import java.util.LinkedList;
 
-public class ObservableModel {
+public class ObservableModel<T extends ObservableModelListener> {
 
-    protected LinkedList<ObservableModelListener> listeners;
+    protected LinkedList<T> listeners;
 
     public ObservableModel() {
-        listeners = new LinkedList<ObservableModelListener>();
+        listeners = new LinkedList<>();
     }
 
-    protected void addModelListener(ObservableModelListener listener) {
+    protected void addModelListener(T listener) {
         listeners.add(listener);
     }
 
-    protected void removeModelListener(ObservableModelListener listener) {
+    protected void removeModelListener(T listener) {
         listeners.remove(listener);
     }
 
