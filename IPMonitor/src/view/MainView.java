@@ -1,6 +1,25 @@
 /*
- * Copyright (C) 2007 - 2010 Gabriel Zanetti
+ * IP Monitor is a simple application which monitors your public IP
+ * address for changes and lets you set different kinds of notification
+ * such as email, audio, pop up or executing a command. It can also run
+ * in background as a Windows service or Linux/Mac daemon.
+ *
+ * Copyright (C) 2007 - 2016  Gabriel Zanetti http://github.com/pupi1985
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package view;
 
 import java.awt.BorderLayout;
@@ -31,7 +50,7 @@ import model.extras.AboutInformation;
 import model.ipmonitor.IPMonitor;
 
 public class MainView extends JFrame {
-	
+
     private JButton jButtonCheckIP;
     private JButton jButtonStartStop;
     private JLabel jLabelCurrentIPField;
@@ -48,7 +67,7 @@ public class MainView extends JFrame {
     private MenuItem menuItemOptions;
     private MenuItem menuItemStartStop;
     private PopupMenu popupMenu;
-    
+
     private IPMonitor ipMonitor = null;
 
     public MainView(IPMonitor ipMonitor) {
@@ -90,7 +109,7 @@ public class MainView extends JFrame {
         popupMenu.setLabel("PopupMenu");
 
         menuItemCheckIP.setFont(menuItemCheckIP.getFont());
-        menuItemCheckIP.setLabel("Check IP"); // NOI18N
+        menuItemCheckIP.setLabel("Check IP");
         popupMenu.add(menuItemCheckIP);
 
         menuItemStartStop.setFont(menuItemStartStop.getFont());
@@ -240,7 +259,7 @@ public class MainView extends JFrame {
 
         jMenuBar.add(jMenuFile);
 
-        jMenuHelp.setText("Help"); // NOI18N
+        jMenuHelp.setText("Help");
         jMenuHelp.setMnemonic(KeyStroke.getKeyStroke(jMenuHelp.getText().substring(0, 1).toUpperCase()).getKeyCode());
         jMenuHelp.add(jMenuItemHelpAbout);
 
@@ -250,7 +269,7 @@ public class MainView extends JFrame {
 
         pack();
     }
-    
+
     public JButton getJButtonCheckIP() {
         return jButtonCheckIP;
     }
@@ -302,7 +321,7 @@ public class MainView extends JFrame {
     public JMenuItem getJMenuItemFileOptions() {
         return jMenuItemFileOptions;
     }
-    
+
     public JMenuItem getJMenuItemFileExit() {
         return jMenuItemFileExit;
     }
