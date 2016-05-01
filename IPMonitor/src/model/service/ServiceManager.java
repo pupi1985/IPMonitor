@@ -22,6 +22,8 @@
 
 package model.service;
 
+import java.util.Locale;
+
 public class ServiceManager {
 
 	private static ServiceManager instance;
@@ -44,7 +46,7 @@ public class ServiceManager {
 	}
 
 	private boolean isOSFamilyWindows() {
-		return System.getProperty("os.name").toLowerCase().contains("windows");
+		return System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("windows");
 	}
 
 }

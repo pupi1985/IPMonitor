@@ -22,13 +22,22 @@
 
 package controller.options;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.filechooser.*;
-import model.notification.configuration.*;
-import view.options.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
+
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileFilter;
+
+import model.notification.configuration.AudioConfiguration;
+import view.options.AudioConfigurationView;
 
 public class AudioConfigurationController {
 
@@ -94,7 +103,7 @@ public class AudioConfigurationController {
         private String getExtension(File file) {
             int index = file.getName().lastIndexOf('.');
             if (index > 0 && index < file.getName().length() - 1) {
-                return file.getName().substring(index + 1).toLowerCase();
+                return file.getName().substring(index + 1).toLowerCase(Locale.ENGLISH);
             } else {
                 return null;
             }

@@ -63,7 +63,6 @@ public class IPMonitorSystemTray {
         try {
             SystemTray.getSystemTray().add(trayIcon);
         } catch (AWTException e) {
-            e.printStackTrace();
         }
     }
 

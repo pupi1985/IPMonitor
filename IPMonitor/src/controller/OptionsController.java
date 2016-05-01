@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -91,7 +92,7 @@ public class OptionsController {
                 .addActionListener(new JButtonCommandConfiguration());
         optionsView.getJPanelOptionsNotification().getJButtonCommandTest().addActionListener(new JButtonCommandTest());
 
-        serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase();
+        serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase(Locale.ENGLISH);
         optionsView.getJPanelOptionsService().getJButtonInstall().addActionListener(new JButtonInstallServiceAction());
         optionsView.getJPanelOptionsService().getJButtonUninstall()
                 .addActionListener(new JButtonUninstallServiceAction());

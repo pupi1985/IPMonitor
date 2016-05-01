@@ -24,6 +24,7 @@ package model.service;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class UnixBasedService extends AbstractService {
 
@@ -36,7 +37,7 @@ public class UnixBasedService extends AbstractService {
 	}
 
 	public boolean isRunning() throws IOException {
-		return this.runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase().contains("is running");
+		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("is running");
 	}
 
 	public boolean shouldIncludeExitCode() {

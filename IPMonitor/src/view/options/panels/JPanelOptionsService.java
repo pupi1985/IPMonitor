@@ -25,6 +25,7 @@ package view.options.panels;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Locale;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -57,7 +58,7 @@ public class JPanelOptionsService extends JPanel {
 
 		setLayout(new GridBagLayout());
 
-		String serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase();
+		String serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase(Locale.ENGLISH);
 
 		jButtonInstall.setText("Install " + serviceName);
 

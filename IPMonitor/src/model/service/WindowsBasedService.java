@@ -24,6 +24,7 @@ package model.service;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class WindowsBasedService extends AbstractService {
 
@@ -36,7 +37,7 @@ public class WindowsBasedService extends AbstractService {
 	}
 
 	public boolean isRunning() throws IOException {
-		return this.runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase().contains("Running: Yes");
+		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("Running: Yes");
 	}
 
 	public boolean shouldIncludeExitCode() {
