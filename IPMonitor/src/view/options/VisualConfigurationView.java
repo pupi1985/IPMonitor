@@ -119,7 +119,7 @@ public class VisualConfigurationView extends JDialog {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelText)
-                    .addComponent(jScrollPaneText, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneText))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIcon)

@@ -22,9 +22,10 @@
 
 package model.extras;
 
-import java.awt.*;
-import java.text.*;
-import java.util.*;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AboutInformation {
 

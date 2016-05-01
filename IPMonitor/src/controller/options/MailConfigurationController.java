@@ -101,7 +101,7 @@ public class MailConfigurationController {
 
     private void setFromAddress() throws AddressException {
         try {
-            MailConfiguration.getInstance().setFromAddress(
+            MailConfiguration.getInstance().setFromEmailAddress(
                     mailConfigurationView.getJTextFieldFromAddress().getText());
         } catch (AddressException e) {
             JOptionPane.showMessageDialog(

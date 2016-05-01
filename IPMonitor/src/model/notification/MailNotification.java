@@ -22,8 +22,9 @@
 
 package model.notification;
 
-import java.util.*;
-import model.notification.performers.*;
+import java.util.Date;
+
+import model.notification.performers.MailPerformer;
 
 public class MailNotification extends AbstractNotification {
 
@@ -41,9 +42,8 @@ public class MailNotification extends AbstractNotification {
 
     public void ipMonitorIPChangeFiltered(String fromIP, String toIP, Date lastChecked, boolean firstTime) {
         try {
-            MailPerformer.getInstance().sendMail(fromIP, toIP);
+            new MailPerformer().sendMail(fromIP, toIP);
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

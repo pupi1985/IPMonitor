@@ -22,16 +22,15 @@
 
 package model.notification.configuration;
 
-import model.extras.InfoParser;
-import java.io.*;
-import java.util.*;
-import javax.mail.*;
-import javax.mail.Message.*;
-import javax.mail.internet.*;
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 public class MailConfiguration extends AbstractConfiguration {
 
     private static MailConfiguration instance;
+
     private String host;
     private int port;
     private boolean useSSL;
@@ -43,7 +42,6 @@ public class MailConfiguration extends AbstractConfiguration {
     private InternetAddress[] toAddresses;
     private String subject;
     private String text;
-    private Session session;
 
     private MailConfiguration() {
         fromAddress = new InternetAddress();
@@ -56,53 +54,15 @@ public class MailConfiguration extends AbstractConfiguration {
         return instance;
     }
 
-    public Properties getProperties() {
-        Properties properties = new Properties();
-        String protocol = (useSSL) ? "smtps" : "smtp";
-        properties.put("mail.transport.protocol", protocol);
-        properties.put("mail." + protocol + ".host", host);
-        properties.put("mail." + protocol + ".port", port);
-        if (authenticationRequired) {
-            properties.put("mail." + protocol + ".auth", "true");
-        }
-        properties.put("mail." + protocol + ".quitwait", "false");
-        return properties;
+    public InternetAddress getFromAddress() {
+        return fromAddress;
     }
 
-    public Transport getTransport() {
-        try {
-            return session.getTransport();
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public MimeMessage getMessage(String fromIP, String toIP)
-            throws MessagingException {
-        if (authenticationRequired) {
-            session = Session.getInstance(getProperties(),
-                    new SMTPAuthentication());
-        } else {
-            session = Session.getInstance(getProperties());
-        }
-        session.setDebug(false);
-        MimeMessage message = new MimeMessage(session);
-        message.setHeader("X-Priority", "1");
-        message.setFrom(fromAddress);
-        message.addRecipients(RecipientType.TO, toAddresses);
-        message.setSubject(InfoParser.getInstance().parseField(subject,
-                fromIP, toIP));
-        message.setContent(InfoParser.getInstance().parseField(text,
-                fromIP, toIP), (isHTML) ? "text/html" : "text/plain");
-        return message;
-    }
-
-    public String getFromAddress() {
+    public String getFromEmailAddress() {
         return fromAddress.getAddress();
     }
 
-    public void setFromAddress(String fromAddress) throws AddressException {
+    public void setFromEmailAddress(String fromAddress) throws AddressException {
         InternetAddress.parse(fromAddress);
         this.fromAddress.setAddress(fromAddress);
     }
@@ -203,13 +163,6 @@ public class MailConfiguration extends AbstractConfiguration {
         this.toAddresses = InternetAddress.parse(toAddresses);
         if (this.toAddresses == null) {
             this.toAddresses = new InternetAddress[1];
-        }
-    }
-
-    private class SMTPAuthentication extends Authenticator {
-
-        public PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(user, password);
         }
     }
 }

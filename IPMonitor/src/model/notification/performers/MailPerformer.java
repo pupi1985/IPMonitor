@@ -22,35 +22,109 @@
 
 package model.notification.performers;
 
-import javax.mail.*;
-import javax.mail.internet.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
+
+import model.extras.InfoParser;
 import model.notification.configuration.MailConfiguration;
 
 public class MailPerformer extends AbstractPerformer {
 
-    private static MailPerformer instance;
+    private Session session;
+    private ByteArrayOutputStream outputStream;
+    private PrintStream printStream;
 
-    private MailPerformer() {
+    public MailPerformer() {
     }
 
-    public static MailPerformer getInstance() {
-        if (instance == null) {
-            instance = new MailPerformer();
+    private Session getSession() {
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+
+        if (MailConfiguration.getInstance().isAuthenticationRequired()) {
+            session = Session.getInstance(getProperties(), new SMTPAuthentication());
+        } else {
+            session = Session.getInstance(getProperties());
         }
-        return instance;
+        session.setDebug(false);
+
+        session.setDebugOut(printStream);
+        session.setDebug(true);
+
+        return session;
+    }
+
+    private Properties getProperties() {
+        Properties properties = new Properties();
+        String protocol = (MailConfiguration.getInstance().isSSL()) ? "smtps" : "smtp";
+        properties.put("mail.transport.protocol", protocol);
+        properties.put("mail." + protocol + ".host", MailConfiguration.getInstance().getHost());
+        properties.put("mail." + protocol + ".port", MailConfiguration.getInstance().getPort());
+        if (MailConfiguration.getInstance().isAuthenticationRequired()) {
+            properties.put("mail." + protocol + ".auth", "true");
+        }
+        properties.put("mail." + protocol + ".quitwait", "false");
+
+        return properties;
+    }
+
+    private MimeMessage getMessage(String fromIP, String toIP) throws MessagingException {
+        Session session = this.getSession();
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(MailConfiguration.getInstance().getFromAddress());
+        message.addRecipients(RecipientType.TO, MailConfiguration.getInstance().getToAddresses());
+        message.setSubject(
+                InfoParser.getInstance().parseField(MailConfiguration.getInstance().getSubject(), fromIP, toIP));
+        message.setContent(InfoParser.getInstance().parseField(MailConfiguration.getInstance().getText(), fromIP, toIP),
+                (MailConfiguration.getInstance().isHTML()) ? "text/html" : "text/plain");
+
+        return message;
     }
 
     public void sendMail(String fromIP, String toIP) throws MessagingException {
         try {
-            MimeMessage message = MailConfiguration.getInstance().getMessage(
-                    fromIP, toIP);
-            Transport transport = MailConfiguration.getInstance().getTransport();
+            MimeMessage message = this.getMessage(fromIP, toIP);
+            Transport transport = session.getTransport();
             transport.connect();
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         } catch (MessagingException e) {
             throw e;
+        } finally {
+            try {
+                printStream.close();
+            } catch (Exception e) {
+            }
+            try {
+                outputStream.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    public String getLastMailDebugInformation() {
+        try {
+            return outputStream.toString("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return "";
+        }
+    }
+
+    private class SMTPAuthentication extends Authenticator {
+
+        public PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(MailConfiguration.getInstance().getUser(),
+                    MailConfiguration.getInstance().getPassword());
         }
     }
 }

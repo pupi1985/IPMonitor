@@ -36,23 +36,25 @@ import model.notification.AudioNotification;
 import model.notification.CommandNotification;
 import model.notification.MailNotification;
 import model.notification.VisualNotification;
+import view.extras.JButtonTest;
+import view.options.extras.JButtonConfigure;
 
 public class JPanelOptionsNotification extends JPanel {
-	
-    private view.options.extras.JButtonConfigure jButtonAudioConfiguration;
-    private view.extras.JButtonTest jButtonAudioTest;
-    private view.options.extras.JButtonConfigure jButtonCommandConfiguration;
-    private view.extras.JButtonTest jButtonCommandTest;
-    private view.options.extras.JButtonConfigure jButtonMailConfiguration;
-    private view.extras.JButtonTest jButtonMailTest;
-    private view.options.extras.JButtonConfigure jButtonVisualConfiguration;
-    private view.extras.JButtonTest jButtonVisualTest;
+
+    private JButtonConfigure jButtonAudioConfiguration;
+    private JButtonTest jButtonAudioTest;
+    private JButtonConfigure jButtonCommandConfiguration;
+    private JButtonTest jButtonCommandTest;
+    private JButtonConfigure jButtonMailConfiguration;
+    private JButtonTest jButtonMailTest;
+    private JButtonConfigure jButtonVisualConfiguration;
+    private JButtonTest jButtonVisualTest;
     private JCheckBox jCheckBoxEnableAudioNotification;
     private JCheckBox jCheckBoxEnableCommandNotification;
     private JCheckBox jCheckBoxEnableMailNotification;
     private JCheckBox jCheckBoxEnableVisualNotification;
     private JCheckBox jCheckBoxEnableVisualNotification1;
-    
+
     private IPMonitor ipMonitor = null;
 
     public JPanelOptionsNotification() {
@@ -69,14 +71,14 @@ public class JPanelOptionsNotification extends JPanel {
         jCheckBoxEnableVisualNotification = new JCheckBox();
         jCheckBoxEnableCommandNotification = new JCheckBox();
         jCheckBoxEnableVisualNotification1 = new JCheckBox();
-        jButtonAudioConfiguration = new view.options.extras.JButtonConfigure();
-        jButtonMailConfiguration = new view.options.extras.JButtonConfigure();
-        jButtonVisualConfiguration = new view.options.extras.JButtonConfigure();
-        jButtonCommandConfiguration = new view.options.extras.JButtonConfigure();
-        jButtonAudioTest = new view.extras.JButtonTest();
-        jButtonMailTest = new view.extras.JButtonTest();
-        jButtonVisualTest = new view.extras.JButtonTest();
-        jButtonCommandTest = new view.extras.JButtonTest();
+        jButtonAudioConfiguration = new JButtonConfigure();
+        jButtonMailConfiguration = new JButtonConfigure();
+        jButtonVisualConfiguration = new JButtonConfigure();
+        jButtonCommandConfiguration = new JButtonConfigure();
+        jButtonAudioTest = new JButtonTest();
+        jButtonMailTest = new JButtonTest();
+        jButtonVisualTest = new JButtonTest();
+        jButtonCommandTest = new JButtonTest();
 
         jCheckBoxEnableAudioNotification.setSelected(ipMonitor.hasNotification(AudioNotification.getInstance()));
         jCheckBoxEnableAudioNotification.setText("Enable audio notification");

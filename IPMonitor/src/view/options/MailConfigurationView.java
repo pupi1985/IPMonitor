@@ -40,16 +40,17 @@ import javax.swing.WindowConstants;
 
 import model.notification.configuration.MailConfiguration;
 import view.extras.JButtonInfo;
+import view.panels.JPanelConfirmation;
 
 public class MailConfigurationView extends JDialog {
-	
+
     private JButtonInfo jButtonInfo;
     private JCheckBox jCheckBoxRequiresAuthentication;
     private JCheckBox jCheckBoxUseHTML;
     private JCheckBox jCheckBoxUseSSL;
     private JPanel jPanelAuthentication;
     private JPanel jPanelCenter;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
+    private JPanelConfirmation jPanelConfirmation;
     private JPasswordField jPasswordFieldPassword;
     private JTextArea jTextAreaMessage;
     private JTextField jTextFieldFromAddress;
@@ -59,14 +60,14 @@ public class MailConfigurationView extends JDialog {
     private JTextField jTextFieldSubject;
     private JTextField jTextFieldToAddresses;
     private JTextField jTextFieldUser;
-    
+
     public MailConfigurationView(JDialog owner) {
         super(owner, true);
         initComponents();
         getRootPane().setDefaultButton(getJButtonOk());
         setLocationRelativeTo(null);
     }
-    
+
     private void initComponents() {
         jPanelCenter = new JPanel();
         JPanel jPanelClientConfiguration = new JPanel();
@@ -94,7 +95,7 @@ public class MailConfigurationView extends JDialog {
         jTextAreaMessage = new JTextArea();
         jCheckBoxUseHTML = new JCheckBox();
         jButtonInfo = new JButtonInfo();
-        jPanelConfirmation = new view.panels.JPanelConfirmation(true, true);
+        jPanelConfirmation = new JPanelConfirmation(true, true);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Email notification configuration");
@@ -203,7 +204,7 @@ public class MailConfigurationView extends JDialog {
         jLabelFromAddress.setText("From address:");
 
         jTextFieldFromAddress.setColumns(40);
-        jTextFieldFromAddress.setText(MailConfiguration.getInstance().getFromAddress());
+        jTextFieldFromAddress.setText(MailConfiguration.getInstance().getFromEmailAddress());
 
         jLabelToAddresses.setText("To addresses:");
 
@@ -231,7 +232,7 @@ public class MailConfigurationView extends JDialog {
             .addGroup(jPanelMessageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneMessge, GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneMessge)
                     .addGroup(jPanelMessageLayout.createSequentialGroup()
                         .addComponent(jCheckBoxUseHTML)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
@@ -269,7 +270,7 @@ public class MailConfigurationView extends JDialog {
                     .addComponent(jLabelSubject)
                     .addComponent(jTextFieldSubject, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPaneMessge, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(jScrollPaneMessge)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBoxUseHTML)

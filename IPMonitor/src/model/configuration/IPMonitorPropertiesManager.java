@@ -498,13 +498,13 @@ public class IPMonitorPropertiesManager {
     private void loadMailNotificationConfigurationFromAddress(
             Properties properties) {
         try {
-            MailConfiguration.getInstance().setFromAddress(
+            MailConfiguration.getInstance().setFromEmailAddress(
                     properties.getProperty(
                     IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_ADDRESS,
                     IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_ADDRESS_VALUE));
         } catch (AddressException e) {
             try {
-                MailConfiguration.getInstance().setFromAddress(
+                MailConfiguration.getInstance().setFromEmailAddress(
                         IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_ADDRESS_VALUE);
             } catch (AddressException e1) {
                 e1.printStackTrace();
@@ -517,7 +517,7 @@ public class IPMonitorPropertiesManager {
             Properties properties) {
         properties.setProperty(
                 IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_ADDRESS,
-                MailConfiguration.getInstance().getFromAddress());
+                MailConfiguration.getInstance().getFromEmailAddress());
     }
 
     private void loadMailNotificationConfigurationToAddresses(
