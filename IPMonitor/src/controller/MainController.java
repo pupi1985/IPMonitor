@@ -22,17 +22,31 @@
 
 package controller;
 
-import java.awt.*;
-import java.awt.event.*;
-import controller.extras.*;
-import java.util.*;
-import javax.swing.*;
-import model.extras.*;
-import view.*;
-import view.systemtray.*;
-import view.systemtray.exceptions.*;
-import model.configuration.*;
-import model.ipmonitor.*;
+import java.awt.Color;
+import java.awt.TrayIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.Date;
+
+import javax.swing.AbstractAction;
+import javax.swing.JFrame;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+
+import controller.extras.TimeUnitConverter;
+import model.configuration.ConfigurationManager;
+import model.configuration.IPMonitorPropertiesManager;
+import model.extras.CommonFunctions;
+import model.ipmonitor.IPMonitor;
+import model.ipmonitor.IPMonitorExceptionListener;
+import model.ipmonitor.IPMonitorListener;
+import view.MainView;
+import view.systemtray.IPMonitorSystemTray;
+import view.systemtray.exceptions.SystemTrayNotSupportedException;
 
 public class MainController {
 
@@ -85,7 +99,8 @@ public class MainController {
         if (ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewLocation() == null) {
             mainView.setLocationRelativeTo(null);
         } else {
-            mainView.setLocation(ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewLocation());
+            mainView.setLocation(
+                    ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewLocation());
         }
         if (ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewSize() != null) {
             mainView.setSize(ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewSize());
@@ -93,10 +108,8 @@ public class MainController {
     }
 
     private void saveToFile() {
-        ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewLocation(
-                mainView.getLocation());
-        ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewSize(
-                mainView.getSize());
+        ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewLocation(mainView.getLocation());
+        ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewSize(mainView.getSize());
         new IPMonitorPropertiesManager(ipMonitor).saveToFile();
     }
 
@@ -104,8 +117,8 @@ public class MainController {
 
         public void ipMonitorIPCheckStart() {
             checkIPAction.setEnabled(false);
-            mainView.getJLabelLastCheckedField().setText(
-                    CommonFunctions.getInstance().getFormattedDateTime(ipMonitor.getLastChecked()));
+            mainView.getJLabelLastCheckedField()
+                    .setText(CommonFunctions.getInstance().getFormattedDateTime(ipMonitor.getLastChecked()));
         }
 
         public void ipMonitorIPCheckEnd() {
@@ -113,8 +126,7 @@ public class MainController {
         }
 
         public void ipMonitorIntervalChange() {
-            mainView.getJLabelIntervalField().setText(
-                    new TimeUnitConverter(ipMonitor.getInterval()).toString());
+            mainView.getJLabelIntervalField().setText(new TimeUnitConverter(ipMonitor.getInterval()).toString());
         }
 
         public void ipMonitorStart() {
@@ -138,8 +150,7 @@ public class MainController {
         }
     }
 
-    private class IPMonitorExceptionListenerImpl implements
-            IPMonitorExceptionListener {
+    private class IPMonitorExceptionListenerImpl implements IPMonitorExceptionListener {
 
         public void ipMonitorIO() {
             SwingUtilities.invokeLater(new Runnable() {
@@ -189,8 +200,7 @@ public class MainController {
         }
     }
 
-    private class TrayIconMouseListener implements ActionListener,
-            MouseListener {
+    private class TrayIconMouseListener implements ActionListener, MouseListener {
 
         public void actionPerformed(ActionEvent event) {
         }
@@ -308,8 +318,8 @@ public class MainController {
         public void run() {
             mainView.getJLabelCurrentIPField().setText(toIP);
             if (!firstTime) {
-                mainView.getJLabelLastChangeField().setText(
-                        CommonFunctions.getInstance().getFormattedDateTime(this.lastChange));
+                mainView.getJLabelLastChangeField()
+                        .setText(CommonFunctions.getInstance().getFormattedDateTime(this.lastChange));
             }
         }
     }
