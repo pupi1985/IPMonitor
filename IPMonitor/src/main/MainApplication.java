@@ -22,15 +22,19 @@
 
 package main;
 
-import javax.swing.*;
-import controller.*;
-import model.configuration.*;
-import model.extras.*;
-import model.ipmonitor.*;
+import javax.swing.UIManager;
+
+import controller.MainController;
+import model.configuration.ConfigurationManager;
+import model.configuration.IPMonitorPropertiesManager;
+import model.extras.CommonFunctions;
+import model.extras.OperativeSystemGuesser;
+import model.ipmonitor.IPMonitor;
 
 public class MainApplication {
 
     public MainApplication() {
+        applyOperativeSystemCustomConfigurations();
         IPMonitor ipMonitor = new IPMonitor();
         new IPMonitorPropertiesManager(ipMonitor).loadFromFile();
         CommonFunctions.getInstance().postLoadProperties(ipMonitor);
@@ -39,9 +43,18 @@ public class MainApplication {
         this.postOpenWindow(ipMonitor);
     }
 
+    private void applyOperativeSystemCustomConfigurations() {
+        OperativeSystemGuesser guesser = new OperativeSystemGuesser();
+        if (guesser.isMac()) {
+            // Remove the Java's coffee cup from the Dock
+            System.setProperty("apple.awt.UIElement", "true");
+        }
+    }
+
     private void loadLookAndFeel() {
         try {
-            UIManager.setLookAndFeel(ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName());
+            UIManager.setLookAndFeel(
+                    ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }

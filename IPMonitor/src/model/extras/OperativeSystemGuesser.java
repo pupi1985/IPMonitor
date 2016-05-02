@@ -20,28 +20,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package model.service;
+package model.extras;
 
-import model.extras.OperativeSystemGuesser;
+import java.util.Locale;
 
-public class ServiceManager {
+public class OperativeSystemGuesser {
 
-	private static ServiceManager instance;
+    public boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("windows");
+    }
 
-	private AbstractService service;
-
-	private ServiceManager() {
-		this.service = new OperativeSystemGuesser().isWindows() ? new WindowsBasedService() : new UnixBasedService();
-	}
-
-	public static ServiceManager getInstance() {
-		if (instance == null) {
-			instance = new ServiceManager();
-		}
-		return instance;
-	}
-
-	public AbstractService getService() {
-		return this.service;
-	}
+    public boolean isMac() {
+        String operativeSystem = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
+        return operativeSystem.contains("mac") || operativeSystem.contains("darwin");
+    }
 }
