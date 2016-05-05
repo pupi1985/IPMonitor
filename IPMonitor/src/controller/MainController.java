@@ -38,6 +38,7 @@ import java.util.Date;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import controller.extras.TimeUnitConverter;
@@ -277,12 +278,25 @@ public class MainController {
         }
     }
 
-    private class CheckIPAction extends AbstractAction {
+    private abstract class IPMonitorAction extends AbstractAction {
 
-        public CheckIPAction(String text) {
+        public IPMonitorAction(String text, int key) {
             super(text);
             putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_C);
+            if (OperativeSystemGuesser.isMac()) {
+                putValue(ACCELERATOR_KEY,
+                        KeyStroke.getKeyStroke(key, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+            } else {
+                putValue(MNEMONIC_KEY, key);
+            }
+        }
+
+    }
+
+    private class CheckIPAction extends IPMonitorAction {
+
+        public CheckIPAction(String text) {
+            super(text, KeyEvent.VK_C);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -290,12 +304,10 @@ public class MainController {
         }
     }
 
-    private class StartStopAction extends AbstractAction {
+    private class StartStopAction extends IPMonitorAction {
 
         public StartStopAction(String text) {
-            super(text);
-            putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_S);
+            super(text, KeyEvent.VK_S);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -307,12 +319,10 @@ public class MainController {
         }
     }
 
-    private class CopyIPAddressAction extends AbstractAction {
+    private class CopyIPAddressAction extends IPMonitorAction {
 
         public CopyIPAddressAction(String text) {
-            super(text);
-            putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_C);
+            super(text, KeyEvent.VK_C);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -323,12 +333,10 @@ public class MainController {
         }
     }
 
-    private class OptionsAction extends AbstractAction {
+    private class OptionsAction extends IPMonitorAction {
 
         public OptionsAction(String text) {
-            super(text);
-            putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_O);
+            super(text, KeyEvent.VK_O);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -336,12 +344,10 @@ public class MainController {
         }
     }
 
-    private class ExitAction extends AbstractAction {
+    private class ExitAction extends IPMonitorAction {
 
         public ExitAction(String text) {
-            super(text);
-            putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_E);
+            super(text, KeyEvent.VK_E);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -353,12 +359,10 @@ public class MainController {
         }
     }
 
-    private class AboutAction extends AbstractAction {
+    private class AboutAction extends IPMonitorAction {
 
         public AboutAction(String text) {
-            super(text);
-            putValue(Action.NAME, text);
-            putValue(MNEMONIC_KEY, KeyEvent.VK_A);
+            super(text, KeyEvent.VK_A);
         }
 
         public void actionPerformed(ActionEvent event) {
