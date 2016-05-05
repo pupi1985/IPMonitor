@@ -44,8 +44,7 @@ public class MainApplication {
     }
 
     private void applyOperativeSystemCustomConfigurations() {
-        OperativeSystemGuesser guesser = new OperativeSystemGuesser();
-        if (guesser.isMac()) {
+        if (OperativeSystemGuesser.isMac()) {
             // Remove the Java's coffee cup from the Dock
             System.setProperty("apple.awt.UIElement", "true");
         }

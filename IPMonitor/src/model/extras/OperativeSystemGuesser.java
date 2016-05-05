@@ -26,12 +26,20 @@ import java.util.Locale;
 
 public class OperativeSystemGuesser {
 
-    public boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("windows");
+    private static boolean isWindows;
+    private static boolean isMac;
+
+    static {
+        String operativeSystem = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
+        isWindows = operativeSystem.contains("windows");
+        isMac = operativeSystem.contains("mac") || operativeSystem.contains("darwin");
     }
 
-    public boolean isMac() {
-        String operativeSystem = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
-        return operativeSystem.contains("mac") || operativeSystem.contains("darwin");
+    public static boolean isWindows() {
+        return isWindows;
+    }
+
+    public static boolean isMac() {
+        return isMac;
     }
 }

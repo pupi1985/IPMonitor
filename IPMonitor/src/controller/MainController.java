@@ -23,9 +23,12 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.TrayIcon;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -33,14 +36,15 @@ import java.awt.event.WindowListener;
 import java.util.Date;
 
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JFrame;
-import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import controller.extras.TimeUnitConverter;
 import model.configuration.ConfigurationManager;
 import model.configuration.IPMonitorPropertiesManager;
 import model.extras.CommonFunctions;
+import model.extras.OperativeSystemGuesser;
 import model.ipmonitor.IPMonitor;
 import model.ipmonitor.IPMonitorExceptionListener;
 import model.ipmonitor.IPMonitorListener;
@@ -52,6 +56,8 @@ public class MainController {
 
     private IPMonitor ipMonitor;
     private MainView mainView;
+
+    private CopyIPAddressAction copyIPAddressAction;
     private CheckIPAction checkIPAction;
 
     public MainController(IPMonitor ipMonitor) {
@@ -62,26 +68,41 @@ public class MainController {
         mainView = new MainView(ipMonitor);
         mainView.addWindowListener(new WindowListenerImpl());
 
+        String actionName = "Check IP";
+        checkIPAction = new CheckIPAction(actionName);
+        mainView.getJButtonCheckIP().setAction(checkIPAction);
+        mainView.getMenuItemCheckIP().setLabel(actionName);
+        mainView.getJButtonCheckIP().setText(actionName);
+
+        actionName = "Start";
+        StartStopAction startStopAction = new StartStopAction(actionName);
+        mainView.getJButtonStartStop().setAction(startStopAction);
+        mainView.getMenuItemStartStop().setLabel(actionName);
+        mainView.getJButtonStartStop().setText(actionName);
+
+        copyIPAddressAction = new CopyIPAddressAction("Copy IP address");
+        copyIPAddressAction.setEnabled(false);
+        mainView.getJMenuItemFileCopyIPAddress().setAction(copyIPAddressAction);
+
+        actionName = "Options...";
+        OptionsAction optionsAction = new OptionsAction(actionName);
+        mainView.getJMenuItemFileOptions().setAction(optionsAction);
+        mainView.getMenuItemOptions().setLabel(actionName);
+
+        actionName = "Exit";
+        ExitAction exitAction = new ExitAction(actionName);
+        mainView.getJMenuItemFileExit().setAction(exitAction);
+        mainView.getMenuItemExit().setLabel(actionName);
+
         AboutAction aboutAction = new AboutAction("About...");
         mainView.getJMenuItemHelpAbout().setAction(aboutAction);
-
-        checkIPAction = new CheckIPAction("Check IP");
-        mainView.getJButtonCheckIP().setAction(checkIPAction);
-
-        StartStopAction startStopAction = new StartStopAction("Start");
-        mainView.getJButtonStartStop().setAction(startStopAction);
-
-        OptionsAction optionsAction = new OptionsAction("Options...");
-        mainView.getJMenuItemFileOptions().setAction(optionsAction);
-
-        ExitAction exitAction = new ExitAction("Exit");
-        mainView.getJMenuItemFileExit().setAction(exitAction);
 
         try {
             TrayIcon trayIcon = IPMonitorSystemTray.getInstance().getIcon(0);
             trayIcon.setPopupMenu(mainView.getPopupMenu());
             trayIcon.addMouseListener(new TrayIconMouseListener());
             mainView.getMenuItemCheckIP().addActionListener(checkIPAction);
+            mainView.getMenuItemCheckIP().addActionListener(copyIPAddressAction);
             mainView.getMenuItemStartStop().addActionListener(startStopAction);
             mainView.getMenuItemOptions().addActionListener(optionsAction);
             mainView.getMenuItemExit().addActionListener(exitAction);
@@ -91,8 +112,21 @@ public class MainController {
         if (ipMonitor.isChecking()) {
             iPMonitorListenerImpl.ipMonitorStart();
         }
-        mainView.setVisible(true);
 
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // Try to get focus to the window as when removed from the dock
+                // it stays in the background
+                mainView.setVisible(true);
+                if (OperativeSystemGuesser.isMac()) {
+                    mainView.setAlwaysOnTop(true);
+                    mainView.toFront();
+                    mainView.repaint();
+                    mainView.requestFocus();
+                    mainView.setAlwaysOnTop(false);
+                }
+            }
+        });
     }
 
     private void loadFromFile() {
@@ -206,16 +240,27 @@ public class MainController {
         }
 
         public void mouseClicked(MouseEvent event) {
-            if (event.getButton() != MouseEvent.BUTTON1) {
-                return;
-            }
-            if (mainView.getState() != JFrame.ICONIFIED) {
-                mainView.setVisible(false);
-                mainView.setState(JFrame.ICONIFIED);
+            if (OperativeSystemGuesser.isMac()) {
+                if (event.getButton() != MouseEvent.BUTTON3) {
+                    return;
+                }
+                if (mainView.getState() != JFrame.ICONIFIED) {
+                    mainView.setState(JFrame.ICONIFIED);
+                } else {
+                    mainView.setState(JFrame.NORMAL);
+                }
             } else {
-                mainView.setVisible(true);
-                mainView.setState(JFrame.NORMAL);
-                mainView.toFront();
+                if (event.getButton() != MouseEvent.BUTTON1) {
+                    return;
+                }
+                if (mainView.getState() != JFrame.ICONIFIED) {
+                    mainView.setVisible(false);
+                    mainView.setState(JFrame.ICONIFIED);
+                } else {
+                    mainView.setVisible(true);
+                    mainView.setState(JFrame.NORMAL);
+                    mainView.toFront();
+                }
             }
         }
 
@@ -232,29 +277,12 @@ public class MainController {
         }
     }
 
-    private abstract class AbstractMnemonicAction extends AbstractAction {
-
-        public AbstractMnemonicAction(String text) {
-            putValue(NAME, text);
-            putValue(MNEMONIC_KEY, KeyStroke.getKeyStroke(text.substring(0, 1).toUpperCase()).getKeyCode());
-        }
-    }
-
-    private class AboutAction extends AbstractMnemonicAction {
-
-        public AboutAction(String text) {
-            super(text);
-        }
-
-        public void actionPerformed(ActionEvent event) {
-            new AboutController(mainView);
-        }
-    }
-
-    private class CheckIPAction extends AbstractMnemonicAction {
+    private class CheckIPAction extends AbstractAction {
 
         public CheckIPAction(String text) {
             super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_C);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -262,10 +290,12 @@ public class MainController {
         }
     }
 
-    private class StartStopAction extends AbstractMnemonicAction {
+    private class StartStopAction extends AbstractAction {
 
         public StartStopAction(String text) {
             super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_S);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -277,10 +307,28 @@ public class MainController {
         }
     }
 
-    private class OptionsAction extends AbstractMnemonicAction {
+    private class CopyIPAddressAction extends AbstractAction {
+
+        public CopyIPAddressAction(String text) {
+            super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_C);
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            if (!ipMonitor.getLastIP().equals("")) {
+                StringSelection stringSelection = new StringSelection(ipMonitor.getLastIP());
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+            }
+        }
+    }
+
+    private class OptionsAction extends AbstractAction {
 
         public OptionsAction(String text) {
             super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_O);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -288,10 +336,12 @@ public class MainController {
         }
     }
 
-    private class ExitAction extends AbstractMnemonicAction {
+    private class ExitAction extends AbstractAction {
 
         public ExitAction(String text) {
             super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_E);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -300,6 +350,19 @@ public class MainController {
                 IPMonitorSystemTray.getInstance().removeIcons();
             } catch (SystemTrayNotSupportedException ex) {
             }
+        }
+    }
+
+    private class AboutAction extends AbstractAction {
+
+        public AboutAction(String text) {
+            super(text);
+            putValue(Action.NAME, text);
+            putValue(MNEMONIC_KEY, KeyEvent.VK_A);
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            new AboutController(mainView);
         }
     }
 
@@ -317,7 +380,9 @@ public class MainController {
 
         public void run() {
             mainView.getJLabelCurrentIPField().setText(toIP);
-            if (!firstTime) {
+            if (firstTime) {
+                copyIPAddressAction.setEnabled(true);
+            } else {
                 mainView.getJLabelLastChangeField()
                         .setText(CommonFunctions.getInstance().getFormattedDateTime(this.lastChange));
             }

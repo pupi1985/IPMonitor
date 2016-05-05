@@ -26,22 +26,22 @@ import model.extras.OperativeSystemGuesser;
 
 public class ServiceManager {
 
-	private static ServiceManager instance;
+    private static ServiceManager instance;
 
-	private AbstractService service;
+    private AbstractService service;
 
-	private ServiceManager() {
-		this.service = new OperativeSystemGuesser().isWindows() ? new WindowsBasedService() : new UnixBasedService();
-	}
+    private ServiceManager() {
+        this.service = OperativeSystemGuesser.isWindows() ? new WindowsBasedService() : new UnixBasedService();
+    }
 
-	public static ServiceManager getInstance() {
-		if (instance == null) {
-			instance = new ServiceManager();
-		}
-		return instance;
-	}
+    public static ServiceManager getInstance() {
+        if (instance == null) {
+            instance = new ServiceManager();
+        }
+        return instance;
+    }
 
-	public AbstractService getService() {
-		return this.service;
-	}
+    public AbstractService getService() {
+        return this.service;
+    }
 }

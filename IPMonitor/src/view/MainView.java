@@ -29,6 +29,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -40,7 +41,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -60,6 +60,7 @@ public class MainView extends JFrame {
     private JLabel jLabelStatusField;
     private JMenuBar jMenuBar;
     private JMenuItem jMenuItemFileExit;
+    private JMenuItem jMenuItemFileCopyIPAddress;
     private JMenuItem jMenuItemFileOptions;
     private JMenuItem jMenuItemHelpAbout;
     private MenuItem menuItemCheckIP;
@@ -100,28 +101,22 @@ public class MainView extends JFrame {
         jButtonCheckIP = new JButton();
         jMenuBar = new JMenuBar();
         JMenu jMenuFile = new JMenu();
+        jMenuItemFileCopyIPAddress = new JMenuItem();
         jMenuItemFileOptions = new JMenuItem();
-        JSeparator jSeparatorFile1 = new JSeparator();
         jMenuItemFileExit = new JMenuItem();
         JMenu jMenuHelp = new JMenu();
         jMenuItemHelpAbout = new JMenuItem();
 
-        popupMenu.setLabel("PopupMenu");
-
         menuItemCheckIP.setFont(menuItemCheckIP.getFont());
-        menuItemCheckIP.setLabel("Check IP");
         popupMenu.add(menuItemCheckIP);
 
         menuItemStartStop.setFont(menuItemStartStop.getFont());
-        menuItemStartStop.setLabel("Start");
         popupMenu.add(menuItemStartStop);
         popupMenu.addSeparator();
         menuItemOptions.setFont(menuItemOptions.getFont());
-        menuItemOptions.setLabel("Options...");
         popupMenu.add(menuItemOptions);
         popupMenu.addSeparator();
         menuItemExit.setFont(menuItemExit.getFont());
-        menuItemExit.setLabel("Exit");
         popupMenu.add(menuItemExit);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -218,10 +213,6 @@ public class MainView extends JFrame {
 
         getContentPane().add(jPanelCenter, BorderLayout.CENTER);
 
-        jButtonStartStop.setText("Start");
-
-        jButtonCheckIP.setText("Check IP");
-
         GroupLayout jPanelSouthTempLayout = new GroupLayout(jPanelSouthTemp);
         jPanelSouthTemp.setLayout(jPanelSouthTempLayout);
         jPanelSouthTempLayout.setHorizontalGroup(
@@ -248,19 +239,18 @@ public class MainView extends JFrame {
         getContentPane().add(jPanelSouth, BorderLayout.SOUTH);
 
         jMenuFile.setText("File");
-        jMenuFile.setMnemonic(KeyStroke.getKeyStroke(jMenuFile.getText().substring(0, 1).toUpperCase()).getKeyCode());
+        jMenuFile.setMnemonic(KeyEvent.VK_F);
 
-        jMenuItemFileOptions.setText("Options...");
+        jMenuFile.add(jMenuItemFileCopyIPAddress);
         jMenuFile.add(jMenuItemFileOptions);
-        jMenuFile.add(jSeparatorFile1);
+        jMenuFile.add(new JSeparator());
 
-        jMenuItemFileExit.setText("Exit");
         jMenuFile.add(jMenuItemFileExit);
 
         jMenuBar.add(jMenuFile);
 
         jMenuHelp.setText("Help");
-        jMenuHelp.setMnemonic(KeyStroke.getKeyStroke(jMenuHelp.getText().substring(0, 1).toUpperCase()).getKeyCode());
+        jMenuHelp.setMnemonic(KeyEvent.VK_H);
         jMenuHelp.add(jMenuItemHelpAbout);
 
         jMenuBar.add(jMenuHelp);
@@ -316,6 +306,10 @@ public class MainView extends JFrame {
 
     public MenuItem getMenuItemExit() {
         return menuItemExit;
+    }
+
+    public JMenuItem getJMenuItemFileCopyIPAddress() {
+        return jMenuItemFileCopyIPAddress;
     }
 
     public JMenuItem getJMenuItemFileOptions() {
