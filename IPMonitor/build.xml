@@ -55,8 +55,6 @@
 		<touch file="${dist.dir}/files/ipmonitor.cfg" />
 		<touch file="${dist.dir}/files/lastcheck.dat" />
 
-		<chmod file="${dist.dir}/IPMonitor.jar" perm="a+x" />
-
 		<copy file="license.txt" todir="${dist.dir}" />
 	</target>
 
@@ -80,6 +78,8 @@
 				<attribute name="Class-Path" value="${classpath}" />
 			</manifest>
 		</jar>
+
+		<chmod file="${dist.dir}/${projectName}.jar" perm="a+x" />
 	</target>
 
 	<target name="clean">
