@@ -22,16 +22,20 @@
 
 package model.ipreader;
 
-import java.io.*;
-import java.net.*;
-import java.util.regex.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import model.configuration.ConfigurationManager;
-import model.ipreader.exceptions.*;
+import model.extras.CommonFunctions;
+import model.ipreader.exceptions.IPNotFoundException;
 
 public class IPReader {
 
     private String url;
-    
+
     public String getUrl() {
         return url;
     }
@@ -41,19 +45,8 @@ public class IPReader {
         this.url = url;
     }
 
-    private String readWebPage() throws IOException {
-        String readString;
-        String result = "";
-        BufferedReader HTMLpage = new BufferedReader(new InputStreamReader(
-                new URL(url).openStream()));
-        while ((readString = HTMLpage.readLine()) != null) {
-            result += readString;
-        }
-        return result;
-    }
-
     public String getIP() throws IOException, IPNotFoundException {
-        String text = readWebPage();
+        String text = CommonFunctions.getInstance().readStringFromInputStream(new URL(url).openStream());
         String result = "";
         Pattern pattern = Pattern.compile(ConfigurationManager.getInstance().getIPPattern());
         Matcher matcher = pattern.matcher(text);

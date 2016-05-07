@@ -23,9 +23,13 @@
 package model.notification.performers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.extras.InfoParser;
-import model.notification.configuration.*;
-import model.notification.extras.*;
+import model.notification.configuration.CommandConfiguration;
+import model.service.helpers.ProcessResult;
+import model.service.helpers.ProcessRunner;
 
 public class CommandPerformer extends AbstractPerformer {
 
@@ -41,25 +45,13 @@ public class CommandPerformer extends AbstractPerformer {
         return instance;
     }
 
-    public void executeCommand(String fromIP, String toIP) throws IOException, InterruptedException  {
-        StringBuffer err = new StringBuffer();
-        StringBuffer out = new StringBuffer();
-        Process proc = Runtime.getRuntime().exec(
-                InfoParser.getInstance().parseField(
-                CommandConfiguration.getInstance().getCommand(), fromIP, toIP));
+    public void executeCommand(String fromIP, String toIP) throws IOException, InterruptedException {
+        List<String> allArgumentsList = new ArrayList<String>();
+        allArgumentsList
+                .add(new InfoParser().parseField(CommandConfiguration.getInstance().getCommand(), fromIP, toIP));
 
-        StreamReaderThread outThread = new StreamReaderThread(proc.getInputStream(), out);
-        StreamReaderThread errThread = new StreamReaderThread(proc.getErrorStream(), err);
-        outThread.start();
-        errThread.start();
-        proc.waitFor();
-        outThread.join();
-        errThread.join();
-        if (out.length() > 0) {
-            System.out.println(out.toString());
-        }
-        if (err.length() > 0) {
-            System.out.println(err.toString());
-        }
+        ProcessResult processResult = ProcessRunner.run(allArgumentsList);
+
+        System.out.println(processResult.getOutput());
     }
 }

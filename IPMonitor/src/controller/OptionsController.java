@@ -74,9 +74,12 @@ public class OptionsController {
 
     public OptionsController(JFrame owner, IPMonitor ipMonitor) {
         this.ipMonitor = ipMonitor;
+
+        ActionListener cancelAction = new CancelAction();
+
         optionsView = new OptionsView(owner, ipMonitor);
         optionsView.getJButtonOk().addActionListener(new JButtonOkAction());
-        optionsView.getJButtonCancel().addActionListener(new JButtonCancelAction());
+        optionsView.getJButtonCancel().addActionListener(cancelAction);
         optionsView.getJButtonApply().addActionListener(new JButtonApplyAction());
 
         optionsView.getJPanelOptionsNotification().getJButtonAudioConfiguration()
@@ -102,19 +105,18 @@ public class OptionsController {
 
         optionsView.getJPanelOptionsLogging().getJCheckBoxEnableLogging()
                 .addActionListener(new JCheckBoxEnableLoggingAction());
-        optionsView.getRootPane().registerKeyboardAction(optionsView.getJButtonCancel().getActionListeners()[0],
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        optionsView.getRootPane().registerKeyboardAction(cancelAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
         setEnableLogging();
         optionsView.setVisible(true);
     }
 
     private void setInterval() throws NumberFormatException, InvalidIntervalException {
-        int hours, minutes, seconds;
         try {
-            hours = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldHours().getText());
-            minutes = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldMinutes().getText());
-            seconds = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldSeconds().getText());
-            if ((hours < 0) || (minutes < 0 || minutes > 59) || (seconds < 0 || seconds > 59)) {
+            int hours = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldHours().getText());
+            int minutes = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldMinutes().getText());
+            int seconds = Integer.valueOf(optionsView.getJPanelOptionsMonitor().getJTextFieldSeconds().getText());
+            if (hours < 0 || (minutes < 0 || minutes > 59) || (seconds < 0 || seconds > 59)) {
                 throw new NumberFormatException();
             }
             ipMonitor.setInterval(hours * TimeUnitConverter.HOURS + minutes * TimeUnitConverter.MINUTES + seconds);
@@ -196,10 +198,8 @@ public class OptionsController {
                 optionsView.pack();
                 optionsView.getOwner().pack();
             } catch (Exception e1) {
-                e1.printStackTrace();
             }
         } catch (Exception e2) {
-            e2.printStackTrace();
         }
     }
 
@@ -259,7 +259,6 @@ public class OptionsController {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -305,12 +304,9 @@ public class OptionsController {
         public void actionPerformed(ActionEvent event) {
             JOptionPane.showMessageDialog(null,
                     "This test might take a few minutes depending on network" + System.lineSeparator()
-                            + "congestion and email notification configuration."
-                            + System.lineSeparator() + System.lineSeparator() +
-                            "Close this dialog to start the test.",
-                    "Please wait",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+                            + "congestion and email notification configuration." + System.lineSeparator()
+                            + System.lineSeparator() + "Close this dialog to start the test.",
+                    "Please wait", JOptionPane.INFORMATION_MESSAGE);
             MailPerformer mailPerformer = new MailPerformer();
             String result = System.lineSeparator() + System.lineSeparator();
             try {
@@ -463,7 +459,7 @@ public class OptionsController {
         }
     }
 
-    private class JButtonCancelAction implements ActionListener {
+    private class CancelAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             optionsView.dispose();

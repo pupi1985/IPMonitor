@@ -22,41 +22,43 @@
 
 package controller.extras;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.AbstractListModel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 public class LookAndFeelInfoModel extends AbstractListModel<LookAndFeelInfoWrapper> {
 
-	private LookAndFeelInfoWrapper[] lookAndFeelInfoWrappers;
+    private List<LookAndFeelInfoWrapper> lookAndFeelInfoWrappers;
 
-	public LookAndFeelInfoModel() {
-		LookAndFeelInfo[] lookAndFeelInfos = UIManager.getInstalledLookAndFeels();
-		lookAndFeelInfoWrappers = new LookAndFeelInfoWrapper[lookAndFeelInfos.length];
-		for (int i = 0; i < lookAndFeelInfoWrappers.length; i++) {
-			lookAndFeelInfoWrappers[i] = new LookAndFeelInfoWrapper(lookAndFeelInfos[i]);
-		}
-	}
+    public LookAndFeelInfoModel() {
+        LookAndFeelInfo[] lookAndFeelInfos = UIManager.getInstalledLookAndFeels();
+        lookAndFeelInfoWrappers = new ArrayList<>(lookAndFeelInfos.length);
+        for (LookAndFeelInfo lookAndFeelInfo : lookAndFeelInfos) {
+            lookAndFeelInfoWrappers.add(new LookAndFeelInfoWrapper(lookAndFeelInfo));
+        }
+    }
 
-	public LookAndFeelInfoWrapper getElementAt(int index) {
-		try {
-			return lookAndFeelInfoWrappers[index];
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    public LookAndFeelInfoWrapper getElementAt(int index) {
+        try {
+            return lookAndFeelInfoWrappers.get(index);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
-	public int getSize() {
-		return lookAndFeelInfoWrappers.length;
-	}
+    public int getSize() {
+        return lookAndFeelInfoWrappers.size();
+    }
 
-	public LookAndFeelInfoWrapper getLookAndFeelInfoWrapper(String className) {
-		for (LookAndFeelInfoWrapper wrapper : lookAndFeelInfoWrappers) {
-			if (wrapper.getClassName().equals(className)) {
-				return wrapper;
-			}
-		}
-		return null;
-	}
+    public LookAndFeelInfoWrapper getLookAndFeelInfoWrapper(String className) {
+        for (LookAndFeelInfoWrapper wrapper : lookAndFeelInfoWrappers) {
+            if (wrapper.getClassName().equals(className)) {
+                return wrapper;
+            }
+        }
+        return null;
+    }
 }

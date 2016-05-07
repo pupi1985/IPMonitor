@@ -72,5 +72,4 @@ public abstract class AbstractService {
 	}
 
 	public abstract boolean shouldIncludeExitCode();
-
 }

@@ -39,5 +39,4 @@ public class ObservableModel<T extends ObservableModelListener> {
     protected void removeModelListener(T listener) {
         listeners.remove(listener);
     }
-
 }

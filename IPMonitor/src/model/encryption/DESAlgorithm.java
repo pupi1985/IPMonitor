@@ -22,9 +22,10 @@
 
 package model.encryption;
 
-import java.security.*;
-import javax.crypto.*;
-import javax.crypto.spec.*;
+import java.security.Key;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class DESAlgorithm {
 
@@ -40,13 +41,13 @@ public class DESAlgorithm {
     }
 
     private DESAlgorithm() {
-        byte[] arr = {-4, 53, 7, -72, -25, 1, 105, 38, -125, -104, 37, 84,
-            -45, 81, -49, 24};
+        byte[] arr = {
+                -4, 53, 7, -72, -25, 1, 105, 38, -125, -104, 37, 84, -45, 81, -49, 24
+        };
         key = new SecretKeySpec(arr, "Blowfish");
         try {
             cipher = Cipher.getInstance(key.getAlgorithm());
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -55,7 +56,6 @@ public class DESAlgorithm {
             cipher.init(Cipher.ENCRYPT_MODE, key);
             return Base64.encodeBytes(cipher.doFinal(text.getBytes()));
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
 
@@ -66,7 +66,6 @@ public class DESAlgorithm {
             cipher.init(Cipher.DECRYPT_MODE, key);
             return new String(cipher.doFinal(Base64.decode(text)));
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }

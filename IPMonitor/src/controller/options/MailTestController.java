@@ -37,22 +37,20 @@ public class MailTestController {
     private MailTestView mailTestView;
 
     public MailTestController(JDialog owner, String debugOutputText) {
+        ActionListener OkAction = new OkAction();
+
         mailTestView = new MailTestView(owner);
-        mailTestView.getJButtonOk().addActionListener(new JButtonOkAction());
-        mailTestView.getRootPane().registerKeyboardAction(
-                mailTestView.getJButtonOk().getActionListeners()[0],
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW
-        );
+        mailTestView.getJButtonOk().addActionListener(OkAction);
+        mailTestView.getRootPane().registerKeyboardAction(OkAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
         mailTestView.getJTextAreaDebugOutput().setText(debugOutputText);
         mailTestView.setVisible(true);
     }
 
-    private class JButtonOkAction implements ActionListener {
+    private class OkAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             mailTestView.dispose();
         }
     }
-
 }

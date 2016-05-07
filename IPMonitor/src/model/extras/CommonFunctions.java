@@ -22,7 +22,11 @@
 
 package model.extras;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,8 +51,7 @@ public class CommonFunctions {
     }
 
     public String getFormattedDateTime(Date date) {
-        return DateFormat.getDateTimeInstance(DateFormat.SHORT,
-                DateFormat.MEDIUM).format(date);
+        return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(date);
     }
 
     public String getSystemFormattedDateTime(Date date) {
@@ -72,5 +75,15 @@ public class CommonFunctions {
 
     public boolean isValidIP(String ip) {
         return Pattern.matches(ConfigurationManager.getInstance().getIPPattern(), ip);
+    }
+
+    public String readStringFromInputStream(InputStream inputStream) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append(System.lineSeparator());
+        }
+        return sb.toString();
     }
 }

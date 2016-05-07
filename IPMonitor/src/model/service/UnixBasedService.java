@@ -43,5 +43,4 @@ public class UnixBasedService extends AbstractService {
 	public boolean shouldIncludeExitCode() {
 		return true;
 	}
-
 }

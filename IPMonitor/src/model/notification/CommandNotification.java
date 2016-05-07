@@ -22,8 +22,9 @@
 
 package model.notification;
 
-import java.util.*;
-import model.notification.performers.*;
+import java.util.Date;
+
+import model.notification.performers.CommandPerformer;
 
 public class CommandNotification extends AbstractNotification {
 
@@ -43,7 +44,6 @@ public class CommandNotification extends AbstractNotification {
         try {
             CommandPerformer.getInstance().executeCommand(fromIP, toIP);
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

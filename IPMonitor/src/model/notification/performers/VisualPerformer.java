@@ -22,10 +22,10 @@
 
 package model.notification.performers;
 
-import view.systemtray.*;
-import model.extras.*;
-import model.notification.configuration.*;
-import view.systemtray.exceptions.*;
+import model.extras.InfoParser;
+import model.notification.configuration.VisualConfiguration;
+import view.systemtray.IPMonitorSystemTray;
+import view.systemtray.exceptions.SystemTrayNotSupportedException;
 
 public class VisualPerformer extends AbstractPerformer {
 
@@ -42,15 +42,14 @@ public class VisualPerformer extends AbstractPerformer {
 
     public void displayMessage(String fromIP, String toIP) {
         try {
+            InfoParser infoParser = new InfoParser();
             IPMonitorSystemTray.getInstance().displayMessage(
-                    InfoParser.getInstance().parseField(
-                    VisualConfiguration.getInstance().getTitle(), fromIP, toIP),
-                    InfoParser.getInstance().parseField(
-                    VisualConfiguration.getInstance().getText(), fromIP, toIP),
+                    infoParser.parseField(VisualConfiguration.getInstance().getTitle(), fromIP, toIP),
+                    infoParser.parseField(VisualConfiguration.getInstance().getText(), fromIP, toIP),
                     VisualConfiguration.getInstance().getIcon());
         } catch (SystemTrayNotSupportedException e) {
-            //This is executed when running as a service or on a OS which does
-            //not support the system tray
+            // This is executed when running as a service or on a OS which does
+            // not support the system tray
         }
     }
 }

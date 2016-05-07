@@ -79,13 +79,13 @@ public class MailPerformer extends AbstractPerformer {
     }
 
     private MimeMessage getMessage(String fromIP, String toIP) throws MessagingException {
+        InfoParser infoParser = new InfoParser();
         Session session = this.getSession();
         MimeMessage message = new MimeMessage(session);
         message.setFrom(MailConfiguration.getInstance().getFromAddress());
         message.addRecipients(RecipientType.TO, MailConfiguration.getInstance().getToAddresses());
-        message.setSubject(
-                InfoParser.getInstance().parseField(MailConfiguration.getInstance().getSubject(), fromIP, toIP));
-        message.setContent(InfoParser.getInstance().parseField(MailConfiguration.getInstance().getText(), fromIP, toIP),
+        message.setSubject(infoParser.parseField(MailConfiguration.getInstance().getSubject(), fromIP, toIP));
+        message.setContent(infoParser.parseField(MailConfiguration.getInstance().getText(), fromIP, toIP),
                 (MailConfiguration.getInstance().isHTML()) ? "text/html" : "text/plain");
 
         return message;

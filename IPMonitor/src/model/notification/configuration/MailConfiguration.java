@@ -75,7 +75,6 @@ public class MailConfiguration extends AbstractConfiguration {
         try {
             this.fromAddress.setPersonal(fromName);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
     }
 

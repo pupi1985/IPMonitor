@@ -22,11 +22,14 @@
 
 package model.data;
 
-import java.io.*;
-import java.util.*;
-import model.configuration.*;
-import model.extras.*;
-import model.ipmonitor.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+import model.configuration.ConfigurationManager;
+import model.extras.CommonFunctions;
+import model.ipmonitor.IPMonitor;
 
 public class LastCheckPropertiesManager {
 
@@ -44,10 +47,6 @@ public class LastCheckPropertiesManager {
             //This is executed if the file doesn't exist
         }
         loadLastIP(properties);
-        /* No need to load these values
-        loadLastChecked(properties);
-        loadLastChanged(properties);
-        */
     }
 
     public void saveToFile() {
@@ -59,7 +58,6 @@ public class LastCheckPropertiesManager {
             properties.store(new FileOutputStream(new File(ConfigurationManager.getInstance().getLastCheckFilePath())),
                     "This file is only used when IP Monitor is run as a service");
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -76,36 +74,11 @@ public class LastCheckPropertiesManager {
         properties.setProperty(LastCheckProperties.LAST_IP, String.valueOf(this.ipMonitor.getLastIP()));
     }
 
-    /*
-    private void loadLastChecked(Properties properties) {
-        try {
-            this.ipMonitor.setLastChecked(CommonFunctions.getInstance().getSystemDateTime(
-                    String.valueOf(properties.getProperty(
-                    LastCheckProperties.LAST_CHECKED,
-                    LastCheckProperties.LAST_CHECKED_VALUE.toString()))));
-        } catch (ParseException ex) {
-            this.ipMonitor.setLastChecked(LastCheckProperties.LAST_CHECKED_VALUE);
-        }
-    }
-    */
-
     private void saveLastChecked(Properties properties) {
         properties.setProperty(LastCheckProperties.LAST_CHECKED,
                 CommonFunctions.getInstance().getSystemFormattedDateTime(this.ipMonitor.getLastChecked()));
     }
 
-    /*
-    private void loadLastChanged(Properties properties) {
-        try {
-            this.ipMonitor.setLastChange(CommonFunctions.getInstance().getSystemDateTime(
-                    String.valueOf(properties.getProperty(
-                    LastCheckProperties.LAST_CHANGE,
-                    LastCheckProperties.LAST_CHANGE_VALUE.toString()))));
-        } catch (ParseException ex) {
-            this.ipMonitor.setLastChange(LastCheckProperties.LAST_CHANGE_VALUE);
-        }
-    }
-    */
     private void saveLastChanged(Properties properties) {
         properties.setProperty(LastCheckProperties.LAST_CHANGE,
                 CommonFunctions.getInstance().getSystemFormattedDateTime(this.ipMonitor.getLastChange()));

@@ -22,8 +22,10 @@
 
 package model.data;
 
-import java.util.*;
-import model.ipmonitor.*;
+import java.util.Date;
+
+import model.ipmonitor.IPMonitor;
+import model.ipmonitor.IPMonitorListener;
 
 public class LastCheckServiceListener implements IPMonitorListener {
 

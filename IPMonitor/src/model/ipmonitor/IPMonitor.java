@@ -66,7 +66,6 @@ public class IPMonitor extends ObservableModelUnique<IPMonitorListener> {
                 try {
                     wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -227,7 +226,6 @@ public class IPMonitor extends ObservableModelUnique<IPMonitorListener> {
             try {
                 beginCheckingIP();
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }

@@ -22,7 +22,9 @@
 
 package model.configuration;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.SystemTray;
 
 public class VisualConfigurationManager {
 
@@ -70,5 +72,4 @@ public class VisualConfigurationManager {
     public void setLookAndFeelClassName(String lookAndFeelClassName) {
         this.lookAndFeelClassName = lookAndFeelClassName;
     }
-
 }

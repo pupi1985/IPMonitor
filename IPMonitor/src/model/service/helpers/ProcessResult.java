@@ -39,5 +39,4 @@ public class ProcessResult {
 	public int getExitCode() {
 		return exitCode;
 	}
-
 }

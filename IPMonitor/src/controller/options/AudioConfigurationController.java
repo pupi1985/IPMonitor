@@ -44,53 +44,47 @@ public class AudioConfigurationController {
     private AudioConfigurationView audioConfigurationView;
 
     public AudioConfigurationController(JDialog owner) {
+        ActionListener cancelAction = new CancelAction();
+
         audioConfigurationView = new AudioConfigurationView(owner);
-        audioConfigurationView.getJButtonOk().addActionListener(
-                new JButtonOkAction());
-        audioConfigurationView.getJButtonCancel().addActionListener(
-                new JButtonCancelAction());
-        audioConfigurationView.getJButtonBrowse().addActionListener(
-                new JButtonBrowseAction());
-        audioConfigurationView.getRootPane().registerKeyboardAction(
-                audioConfigurationView.getJButtonCancel().getActionListeners()[0],
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        audioConfigurationView.getJButtonOk().addActionListener(new OkAction());
+        audioConfigurationView.getJButtonCancel().addActionListener(cancelAction);
+        audioConfigurationView.getJButtonBrowse().addActionListener(new BrowseAction());
+        audioConfigurationView.getRootPane().registerKeyboardAction(cancelAction,
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
         audioConfigurationView.setVisible(true);
     }
 
-    private class JButtonOkAction implements ActionListener {
+    private class OkAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            AudioConfiguration.getInstance().setFileName(
-                    audioConfigurationView.getJTextFieldFilePath().getText());
+            AudioConfiguration.getInstance().setFileName(audioConfigurationView.getJTextFieldFilePath().getText());
             audioConfigurationView.dispose();
         }
     }
 
-    private class JButtonCancelAction implements ActionListener {
+    private class CancelAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             audioConfigurationView.dispose();
         }
     }
 
-    private class JButtonBrowseAction implements ActionListener {
+    private class BrowseAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             JFileChooser jFileChooser = new JFileChooser(AudioConfiguration.getInstance().getFileName());
             jFileChooser.setFileFilter(new SoundFileFilter());
             jFileChooser.setAcceptAllFileFilterUsed(false);
             if (jFileChooser.showOpenDialog(audioConfigurationView) == JFileChooser.APPROVE_OPTION) {
-                audioConfigurationView.getJTextFieldFilePath().setText(
-                        jFileChooser.getSelectedFile().getPath());
+                audioConfigurationView.getJTextFieldFilePath().setText(jFileChooser.getSelectedFile().getPath());
             }
         }
     }
 
     private class SoundFileFilter extends FileFilter {
 
-        private HashSet<String> extensions = new HashSet<String>(Arrays.asList(
-                "wav", "aiff", "au", "mid", "rmf"));
+        private HashSet<String> extensions = new HashSet<String>(Arrays.asList("wav", "aiff", "au", "mid", "rmf"));
 
         public boolean accept(File file) {
             return extensions.contains(getExtension(file)) || file.isDirectory();

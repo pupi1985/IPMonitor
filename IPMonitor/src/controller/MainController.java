@@ -108,6 +108,7 @@ public class MainController {
             mainView.getMenuItemExit().addActionListener(exitAction);
         } catch (SystemTrayNotSupportedException ex) {
         }
+
         loadFromFile();
         if (ipMonitor.isChecking()) {
             iPMonitorListenerImpl.ipMonitorStart();

@@ -43,5 +43,4 @@ public class WindowsBasedService extends AbstractService {
 	public boolean shouldIncludeExitCode() {
 		return false;
 	}
-
 }

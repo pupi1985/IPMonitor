@@ -22,8 +22,10 @@
 
 package model.logger;
 
-import java.util.*;
-import model.ipmonitor.*;
+import java.util.Date;
+
+import model.ipmonitor.IPMonitorExceptionListener;
+import model.ipmonitor.IPMonitorListener;
 
 public class IPMonitorEventLogger implements IPMonitorListener, IPMonitorExceptionListener {
 

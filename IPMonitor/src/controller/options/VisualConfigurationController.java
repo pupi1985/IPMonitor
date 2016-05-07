@@ -22,41 +22,43 @@
 
 package controller.options;
 
-import java.awt.event.*;
-import javax.swing.*;
-import model.notification.configuration.*;
-import controller.extras.*;
-import view.options.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.KeyStroke;
+
+import controller.extras.InfoActionListener;
+import controller.extras.MessageTypeWrapper;
+import model.notification.configuration.VisualConfiguration;
+import view.options.VisualConfigurationView;
 
 public class VisualConfigurationController {
 
     private VisualConfigurationView visualConfigurationView;
 
     public VisualConfigurationController(JDialog owner) {
+        ActionListener cancelAction = new CancelAction();
+
         visualConfigurationView = new VisualConfigurationView(owner);
-        visualConfigurationView.getJButtonInfo().addActionListener(
-                new InfoActionListener("Tips for Title and Text", false));
-        visualConfigurationView.getJButtonOk().addActionListener(
-                new JButtonOkAction());
-        visualConfigurationView.getJButtonApply().addActionListener(
-                new JButtonApplyAction());
-        visualConfigurationView.getJButtonCancel().addActionListener(
-                new JButtonCancelAction());
-        visualConfigurationView.getRootPane().registerKeyboardAction(
-                visualConfigurationView.getJButtonCancel().getActionListeners()[0],
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        visualConfigurationView.getJButtonInfo()
+                .addActionListener(new InfoActionListener("Tips for Title and Text", false));
+        visualConfigurationView.getJButtonOk().addActionListener(new OkAction());
+        visualConfigurationView.getJButtonApply().addActionListener(new ApplyAction());
+        visualConfigurationView.getJButtonCancel().addActionListener(cancelAction);
+        visualConfigurationView.getRootPane().registerKeyboardAction(cancelAction,
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
         visualConfigurationView.setVisible(true);
     }
 
     private void setTitle() {
-        VisualConfiguration.getInstance().setTitle(
-                visualConfigurationView.getJTextFieldTitle().getText());
+        VisualConfiguration.getInstance().setTitle(visualConfigurationView.getJTextFieldTitle().getText());
     }
 
     private void setText() {
-        VisualConfiguration.getInstance().setText(
-                visualConfigurationView.getJTextAreaText().getText());
+        VisualConfiguration.getInstance().setText(visualConfigurationView.getJTextAreaText().getText());
     }
 
     private void setIcon() {
@@ -64,7 +66,7 @@ public class VisualConfigurationController {
                 ((MessageTypeWrapper) visualConfigurationView.getJComboBoxIcons().getSelectedItem()).getMessageType());
     }
 
-    private class JButtonApplyAction implements ActionListener {
+    private class ApplyAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             setTitle();
@@ -73,15 +75,15 @@ public class VisualConfigurationController {
         }
     }
 
-    private class JButtonOkAction implements ActionListener {
+    private class OkAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            new JButtonApplyAction().actionPerformed(null);
+            new ApplyAction().actionPerformed(null);
             visualConfigurationView.dispose();
         }
     }
 
-    private class JButtonCancelAction implements ActionListener {
+    private class CancelAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             visualConfigurationView.dispose();

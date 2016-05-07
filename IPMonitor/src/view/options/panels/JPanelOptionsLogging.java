@@ -33,7 +33,6 @@ import javax.swing.LayoutStyle;
 public class JPanelOptionsLogging extends JPanel {
 
 	private JCheckBox jCheckBoxEnableLogging;
-	private JLabel jLabel1;
 	private JPanel jPanelLoggingConfiguration;
 	private JTextField jTextFieldDaysToKeepLogs;
 
@@ -46,8 +45,8 @@ public class JPanelOptionsLogging extends JPanel {
         jPanelLoggingConfiguration = new JPanel();
         JLabel jLabelDaysToKeepLogs = new JLabel();
         jTextFieldDaysToKeepLogs = new JTextField();
-        JLabel jLabelDescription = new JLabel();
-        jLabel1 = new JLabel();
+        JLabel jLabelDescription1 = new JLabel();
+        JLabel jLabelDescription2 = new JLabel();
 
         jCheckBoxEnableLogging.setSelected(model.logger.MainLogger.getInstance().isEnabled());
         jCheckBoxEnableLogging.setText("Enable logging");
@@ -60,9 +59,9 @@ public class JPanelOptionsLogging extends JPanel {
         jTextFieldDaysToKeepLogs.setHorizontalAlignment(JTextField.RIGHT);
         jTextFieldDaysToKeepLogs.setText(String.valueOf(model.logger.MainLogger.getInstance().getMaxDaysToKeepLogs()));
 
-        jLabelDescription.setText("NOTE: Log files are saved daily.");
+        jLabelDescription1.setText("NOTE: Log files are saved daily.");
 
-        jLabel1.setText("New files will replace older files.");
+        jLabelDescription2.setText("New files will replace older files.");
 
         GroupLayout jPanelLoggingConfigurationLayout = new GroupLayout(jPanelLoggingConfiguration);
         jPanelLoggingConfiguration.setLayout(jPanelLoggingConfigurationLayout);
@@ -75,8 +74,8 @@ public class JPanelOptionsLogging extends JPanel {
                         .addComponent(jLabelDaysToKeepLogs)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldDaysToKeepLogs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelDescription)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabelDescription1)
+                    .addComponent(jLabelDescription2))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLoggingConfigurationLayout.setVerticalGroup(
@@ -86,9 +85,9 @@ public class JPanelOptionsLogging extends JPanel {
                     .addComponent(jLabelDaysToKeepLogs)
                     .addComponent(jTextFieldDaysToKeepLogs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDescription)
+                .addComponent(jLabelDescription1)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabelDescription2)
                 .addContainerGap())
         );
 

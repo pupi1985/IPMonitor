@@ -22,56 +22,59 @@
 
 package controller.options;
 
-import controller.extras.*;
-import java.awt.event.*;
-import javax.swing.*;
-import model.notification.configuration.*;
-import view.options.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
+
+import controller.extras.InfoActionListener;
+import model.notification.configuration.AudioConfiguration;
+import model.notification.configuration.CommandConfiguration;
+import view.options.CommandConfigurationView;
 
 public class CommandConfigurationController {
 
     private CommandConfigurationView commandConfigurationView;
 
     public CommandConfigurationController(JDialog owner) {
+        ActionListener cancelAction = new CancelAction();
+
         commandConfigurationView = new CommandConfigurationView(owner);
-        commandConfigurationView.getJButtonInfo().addActionListener(
-                new InfoActionListener("Tips for the command", false));
-        commandConfigurationView.getJButtonOk().addActionListener(
-                new JButtonOkAction());
-        commandConfigurationView.getJButtonCancel().addActionListener(
-                new JButtonCancelAction());
-        commandConfigurationView.getJButtonBrowse().addActionListener(
-                new JButtonBrowseAction());
-        commandConfigurationView.getRootPane().registerKeyboardAction(
-                commandConfigurationView.getJButtonCancel().getActionListeners()[0],
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        commandConfigurationView.getJButtonInfo()
+                .addActionListener(new InfoActionListener("Tips for the command", false));
+        commandConfigurationView.getJButtonOk().addActionListener(new OkAction());
+        commandConfigurationView.getJButtonCancel().addActionListener(cancelAction);
+        commandConfigurationView.getJButtonBrowse().addActionListener(new BrowseAction());
+        commandConfigurationView.getRootPane().registerKeyboardAction(cancelAction,
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
         commandConfigurationView.setVisible(true);
     }
 
-    private class JButtonOkAction implements ActionListener {
+    private class OkAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            CommandConfiguration.getInstance().setCommand(
-                    commandConfigurationView.getJTextFieldFilePath().getText());
+            CommandConfiguration.getInstance().setCommand(commandConfigurationView.getJTextFieldFilePath().getText());
             commandConfigurationView.dispose();
         }
     }
 
-    private class JButtonCancelAction implements ActionListener {
+    private class CancelAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             commandConfigurationView.dispose();
         }
     }
 
-    private class JButtonBrowseAction implements ActionListener {
+    private class BrowseAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             JFileChooser jFileChooser = new JFileChooser(AudioConfiguration.getInstance().getFileName());
             if (jFileChooser.showOpenDialog(commandConfigurationView) == JFileChooser.APPROVE_OPTION) {
-                commandConfigurationView.getJTextFieldFilePath().setText(
-                        jFileChooser.getSelectedFile().getPath());
+                commandConfigurationView.getJTextFieldFilePath().setText(jFileChooser.getSelectedFile().getPath());
             }
         }
     }

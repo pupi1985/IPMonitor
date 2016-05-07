@@ -55,7 +55,6 @@ public class MainApplication {
             UIManager.setLookAndFeel(
                     ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName());
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

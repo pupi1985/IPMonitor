@@ -23,53 +23,54 @@
 package controller.extras;
 
 import java.awt.TrayIcon.MessageType;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 public class MessageTypeModel extends AbstractListModel<MessageTypeWrapper>
-		implements ComboBoxModel<MessageTypeWrapper> {
+        implements ComboBoxModel<MessageTypeWrapper> {
 
-	private MessageTypeWrapper[] messageTypeWrappers;
-	private MessageTypeWrapper selectedItem;
+    private List<MessageTypeWrapper> messageTypeWrappers;
+    private MessageTypeWrapper selectedItem;
 
-	public MessageTypeModel() {
-		messageTypeWrappers = new MessageTypeWrapper[] {
-				new MessageTypeWrapper("None", MessageType.NONE),
-				new MessageTypeWrapper("Information", MessageType.INFO),
-				new MessageTypeWrapper("Warning", MessageType.WARNING),
-				new MessageTypeWrapper("Error", MessageType.ERROR)
-		};
-	}
+    public MessageTypeModel() {
+        messageTypeWrappers = Arrays.asList(
+            new MessageTypeWrapper("None", MessageType.NONE),
+            new MessageTypeWrapper("Information", MessageType.INFO),
+            new MessageTypeWrapper("Warning", MessageType.WARNING),
+            new MessageTypeWrapper("Error", MessageType.ERROR)
+        );
+    }
 
-	public MessageTypeWrapper getSelectedItem() {
-		return selectedItem;
-	}
+    public MessageTypeWrapper getSelectedItem() {
+        return selectedItem;
+    }
 
-	public void setSelectedItem(Object item) {
-		selectedItem = (MessageTypeWrapper) item;
-	}
+    public void setSelectedItem(Object item) {
+        selectedItem = (MessageTypeWrapper) item;
+    }
 
-	public MessageTypeWrapper getElementAt(int index) {
-		try {
-			return messageTypeWrappers[index];
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    public MessageTypeWrapper getElementAt(int index) {
+        try {
+            return messageTypeWrappers.get(index);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
-	public int getSize() {
-		return messageTypeWrappers.length;
-	}
+    public int getSize() {
+        return messageTypeWrappers.size();
+    }
 
-	public MessageTypeWrapper getMessageTypeWrapper(MessageType messageType) {
-		for (MessageTypeWrapper wrapper : messageTypeWrappers) {
-			if (wrapper.getMessageType().equals(messageType)) {
-				return wrapper;
-			}
-		}
-		return null;
-	}
+    public MessageTypeWrapper getMessageTypeWrapper(MessageType messageType) {
+        for (MessageTypeWrapper wrapper : messageTypeWrappers) {
+            if (wrapper.getMessageType().equals(messageType)) {
+                return wrapper;
+            }
+        }
+        return null;
+    }
 
 }

@@ -60,11 +60,11 @@ public class MainLogger {
         }
         this.maxDaysToKeepLogs = maxDaysToKeepLogs;
     }
-    
+
     public boolean isEnabled() {
         return this.enabled;
     }
-    
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
@@ -87,12 +87,10 @@ public class MainLogger {
             bufferedWriter.newLine();
             bufferedWriter.close();
         } catch (IOException e1) {
-            e1.printStackTrace();
         } finally {
             try {
                 fileWriter.close();
             } catch (IOException e2) {
-                e2.printStackTrace();
             }
             if (!fileExists) {
                 deleteOldFiles();
@@ -108,7 +106,7 @@ public class MainLogger {
             files[filesExceeded - 1].delete();
         }
     }
-    
+
     private class LogFileFilter implements FilenameFilter {
 
         public boolean accept(File file, String fileName) {
@@ -117,7 +115,6 @@ public class MainLogger {
                     new SimpleDateFormat(ConfigurationManager.getInstance().getLogFileNameFormat()).parse(fileName.substring(0, 10));
                     return true;
                 } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
             return false;

@@ -22,7 +22,7 @@
 
 package model.alarm;
 
-import model.observable.*;
+import model.observable.ObservableModelListener;
 
 public interface AlarmListener extends ObservableModelListener {
 
@@ -33,4 +33,5 @@ public interface AlarmListener extends ObservableModelListener {
     void alarmIntervalChange();
 
     void alarmTimerEvent();
+
 }

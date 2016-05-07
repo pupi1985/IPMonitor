@@ -22,36 +22,29 @@
 
 package model.service.helpers;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
+
+import model.extras.CommonFunctions;
 
 public class ProcessRunner {
 
-	public static ProcessResult run(List<String> argumentList) throws IOException {
-		return new ProcessRunner().runCommand(argumentList);
-	}
+    public static ProcessResult run(List<String> argumentList) throws IOException {
+        return new ProcessRunner().runCommand(argumentList);
+    }
 
-	public ProcessResult runCommand(List<String> argumentList) throws IOException {
-		ProcessBuilder builder = new ProcessBuilder(argumentList);
-		builder.redirectErrorStream(true);
-		Process process = builder.start();
+    public ProcessResult runCommand(List<String> argumentList) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder(argumentList);
+        builder.redirectErrorStream(true);
+        Process process = builder.start();
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		StringBuilder sb = new StringBuilder();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			sb.append(line).append(System.lineSeparator());
-		}
+        String output = CommonFunctions.getInstance().readStringFromInputStream(process.getInputStream());
 
-		try {
-			process.waitFor();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+        try {
+            process.waitFor();
+        } catch (InterruptedException e) {
+        }
 
-		return new ProcessResult(sb.toString(), process.exitValue());
-	}
-
+        return new ProcessResult(output, process.exitValue());
+    }
 }
