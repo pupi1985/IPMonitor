@@ -260,6 +260,14 @@ public class MainView extends JFrame {
         pack();
     }
 
+    public void restore() {
+        setAlwaysOnTop(true);
+        toFront();
+        repaint();
+        requestFocus();
+        setAlwaysOnTop(false);
+    }
+
     public JButton getJButtonCheckIP() {
         return jButtonCheckIP;
     }

@@ -37,7 +37,6 @@ import java.util.Date;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -120,11 +119,7 @@ public class MainController {
                 // it stays in the background
                 mainView.setVisible(true);
                 if (OperativeSystemGuesser.isMac()) {
-                    mainView.setAlwaysOnTop(true);
-                    mainView.toFront();
-                    mainView.repaint();
-                    mainView.requestFocus();
-                    mainView.setAlwaysOnTop(false);
+                    mainView.restore();
                 }
             }
         });
@@ -245,23 +240,14 @@ public class MainController {
                 if (event.getButton() != MouseEvent.BUTTON3) {
                     return;
                 }
-                if (mainView.getState() != JFrame.ICONIFIED) {
-                    mainView.setState(JFrame.ICONIFIED);
-                } else {
-                    mainView.setState(JFrame.NORMAL);
-                }
+            } else if (event.getButton() != MouseEvent.BUTTON1) {
+                return;
+            }
+            if (mainView.isVisible()) {
+                mainView.setVisible(false);
             } else {
-                if (event.getButton() != MouseEvent.BUTTON1) {
-                    return;
-                }
-                if (mainView.getState() != JFrame.ICONIFIED) {
-                    mainView.setVisible(false);
-                    mainView.setState(JFrame.ICONIFIED);
-                } else {
-                    mainView.setVisible(true);
-                    mainView.setState(JFrame.NORMAL);
-                    mainView.toFront();
-                }
+                mainView.setVisible(true);
+                mainView.restore();
             }
         }
 
