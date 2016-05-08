@@ -150,10 +150,14 @@ public class MainController {
             checkIPAction.setEnabled(false);
             mainView.getJLabelLastCheckedField()
                     .setText(CommonFunctions.getInstance().getFormattedDateTime(ipMonitor.getLastChecked()));
+            mainView.getJProgressBar().setIndeterminate(true);
+            mainView.getJProgressBar().setEnabled(true);
         }
 
         public void ipMonitorIPCheckEnd() {
             checkIPAction.setEnabled(true);
+            mainView.getJProgressBar().setIndeterminate(false);
+            mainView.getJProgressBar().setEnabled(false);
         }
 
         public void ipMonitorIntervalChange() {

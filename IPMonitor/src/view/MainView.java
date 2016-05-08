@@ -40,6 +40,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
@@ -58,6 +59,7 @@ public class MainView extends JFrame {
     private JLabel jLabelLastChangeField;
     private JLabel jLabelLastCheckedField;
     private JLabel jLabelStatusField;
+
     private JMenuBar jMenuBar;
     private JMenuItem jMenuItemFileExit;
     private JMenuItem jMenuItemFileCopyIPAddress;
@@ -70,6 +72,7 @@ public class MainView extends JFrame {
     private PopupMenu popupMenu;
 
     private IPMonitor ipMonitor = null;
+    private JProgressBar jProgressBar;
 
     public MainView(IPMonitor ipMonitor) {
         this.ipMonitor = ipMonitor;
@@ -77,11 +80,6 @@ public class MainView extends JFrame {
     }
 
     private void initComponents() {
-        popupMenu = new PopupMenu();
-        menuItemCheckIP = new MenuItem();
-        menuItemStartStop = new MenuItem();
-        menuItemOptions = new MenuItem();
-        menuItemExit = new MenuItem();
         JPanel jPanelCenter = new JPanel();
         JPanel jPanelCenterBorder = new JPanel();
         JPanel jPanelMainPanel = new JPanel();
@@ -95,10 +93,19 @@ public class MainView extends JFrame {
         jLabelCurrentIPField = new JLabel();
         jLabelLastCheckedField = new JLabel();
         jLabelLastChangeField = new JLabel();
+        jProgressBar = new JProgressBar();
+
         JPanel jPanelSouth = new JPanel();
         JPanel jPanelSouthTemp = new JPanel();
         jButtonStartStop = new JButton();
         jButtonCheckIP = new JButton();
+
+        popupMenu = new PopupMenu();
+        menuItemCheckIP = new MenuItem();
+        menuItemStartStop = new MenuItem();
+        menuItemOptions = new MenuItem();
+        menuItemExit = new MenuItem();
+
         jMenuBar = new JMenuBar();
         JMenu jMenuFile = new JMenu();
         jMenuItemFileCopyIPAddress = new JMenuItem();
@@ -107,16 +114,11 @@ public class MainView extends JFrame {
         JMenu jMenuHelp = new JMenu();
         jMenuItemHelpAbout = new JMenuItem();
 
-        menuItemCheckIP.setFont(menuItemCheckIP.getFont());
         popupMenu.add(menuItemCheckIP);
-
-        menuItemStartStop.setFont(menuItemStartStop.getFont());
         popupMenu.add(menuItemStartStop);
         popupMenu.addSeparator();
-        menuItemOptions.setFont(menuItemOptions.getFont());
         popupMenu.add(menuItemOptions);
         popupMenu.addSeparator();
-        menuItemExit.setFont(menuItemExit.getFont());
         popupMenu.add(menuItemExit);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -132,9 +134,9 @@ public class MainView extends JFrame {
 
         jLabelCurrentIP.setText("Current IP:");
 
-        jLabelLastChecked.setText("Last checked:");
-
         jLabelLastChange.setText("Last change:");
+
+        jLabelLastChecked.setText("Last checked:");
 
         jLabelStatusField.setForeground(new Color(192, 0, 0));
         jLabelStatusField.setText(ipMonitor.isChecking() ? "On" : "Off");
@@ -143,25 +145,32 @@ public class MainView extends JFrame {
 
         jLabelCurrentIPField.setText("Not obtained");
 
+        jProgressBar.setEnabled(false);
+
         GroupLayout jPanelMainPanelLayout = new GroupLayout(jPanelMainPanel);
         jPanelMainPanel.setLayout(jPanelMainPanelLayout);
         jPanelMainPanelLayout.setHorizontalGroup(
             jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelStatus)
-                    .addComponent(jLabelInterval)
-                    .addComponent(jLabelCurrentIP)
-                    .addComponent(jLabelLastChecked)
-                    .addComponent(jLabelLastChange))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMainPanelLayout.createSequentialGroup()
+                    .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelStatus)
+                        .addComponent(jLabelInterval)
+                        .addComponent(jLabelCurrentIP)
+                        .addComponent(jLabelLastChecked)
+                        .addComponent(jLabelLastChange))
+                    .addContainerGap())
                 .addGroup(jPanelMainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelStatusField)
                     .addComponent(jLabelIntervalField)
                     .addComponent(jLabelCurrentIPField)
                     .addComponent(jLabelLastCheckedField)
                     .addComponent(jLabelLastChangeField))
+                .addContainerGap())
+            .addGroup(jPanelMainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jProgressBar)
                 .addContainerGap())
         );
         jPanelMainPanelLayout.setVerticalGroup(
@@ -189,6 +198,8 @@ public class MainView extends JFrame {
                         .addComponent(jLabelLastChecked)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelLastChange)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar)
                 .addContainerGap())
         );
 
@@ -276,6 +287,10 @@ public class MainView extends JFrame {
         return jButtonStartStop;
     }
 
+    public JLabel getJLabelStatusField() {
+        return jLabelStatusField;
+    }
+
     public JLabel getJLabelCurrentIPField() {
         return jLabelCurrentIPField;
     }
@@ -292,8 +307,8 @@ public class MainView extends JFrame {
         return jLabelLastCheckedField;
     }
 
-    public JLabel getJLabelStatusField() {
-        return jLabelStatusField;
+    public JProgressBar getJProgressBar() {
+        return jProgressBar;
     }
 
     public PopupMenu getPopupMenu() {
