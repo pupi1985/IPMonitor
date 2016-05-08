@@ -36,7 +36,7 @@ import model.notification.configuration.AudioConfiguration;
 import view.panels.JPanelConfirmation;
 
 public class AudioConfigurationView extends JDialog {
-	
+
 	private JButton jButtonBrowse;
 	private JPanelConfirmation jPanelConfirmation;
 	private JTextField jTextFieldFilePath;
@@ -57,7 +57,7 @@ public class AudioConfigurationView extends JDialog {
         JPanel jPanelCenterBorder = new JPanel();
         jTextFieldFilePath = new JTextField();
         jButtonBrowse = new JButton();
-        jPanelConfirmation = new JPanelConfirmation(false);
+        jPanelConfirmation = new JPanelConfirmation(true, true, false);
 
         setResizable(false);
 
@@ -73,7 +73,7 @@ public class AudioConfigurationView extends JDialog {
             jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, jPanelCenterBorderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextFieldFilePath, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addComponent(jTextFieldFilePath, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBrowse)
                 .addContainerGap())

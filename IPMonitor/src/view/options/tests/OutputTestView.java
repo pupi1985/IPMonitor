@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view.options;
+package view.options.tests;
 
 import java.awt.BorderLayout;
 
@@ -32,16 +32,18 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 
 import view.panels.JPanelConfirmation;
 
-public class MailTestView extends JDialog {
+public class OutputTestView extends JDialog {
 
-    private JTextArea jTextAreaDebugOutput;
+    private JTextArea jTextAreaOutput;
     private JPanelConfirmation jPanelConfirmation;
+    private JPanel jPanelCenterBorder;
 
-    public MailTestView(JDialog owner) {
+    public OutputTestView(JDialog owner) {
         super(owner, true);
         initComponents();
         getRootPane().setDefaultButton(getJButtonOk());
@@ -50,52 +52,51 @@ public class MailTestView extends JDialog {
 
     private void initComponents() {
         JPanel jPanelCenter = new JPanel();
-        JPanel jPanelCenterBorder = new JPanel();
-        JScrollPane jScrollPaneText = new JScrollPane();
-        jTextAreaDebugOutput = new JTextArea();
+        jPanelCenterBorder = new JPanel();
+        JScrollPane jScrollPaneTextAreaOutput = new JScrollPane();
+        jScrollPaneTextAreaOutput.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPaneTextAreaOutput.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPaneTextAreaOutput.setAutoscrolls(true);
+        jTextAreaOutput = new JTextArea();
+        jTextAreaOutput.setEditable(false);
         jPanelConfirmation = new JPanelConfirmation(true, false, false);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mail test results");
 
-        jPanelCenterBorder.setBorder(BorderFactory.createTitledBorder("Operation output"));
-
-        jTextAreaDebugOutput.setColumns(40);
-        jTextAreaDebugOutput.setRows(20);
-        jScrollPaneText.setViewportView(jTextAreaDebugOutput);
+        jScrollPaneTextAreaOutput.setViewportView(jTextAreaOutput);
+        jTextAreaOutput.setRows(20);
+        jTextAreaOutput.setColumns(40);
 
         GroupLayout jPanelCenterBorderLayout = new GroupLayout(jPanelCenterBorder);
         jPanelCenterBorderLayout.setHorizontalGroup(
             jPanelCenterBorderLayout.createParallelGroup(Alignment.LEADING)
                 .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPaneText)
-                    .addContainerGap())
-        );
+                    .addComponent(jScrollPaneTextAreaOutput)
+                    .addContainerGap()));
         jPanelCenterBorderLayout.setVerticalGroup(
             jPanelCenterBorderLayout.createParallelGroup(Alignment.LEADING)
                 .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPaneText)
-                    .addContainerGap())
-        );
+                    .addComponent(jScrollPaneTextAreaOutput)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         jPanelCenterBorder.setLayout(jPanelCenterBorderLayout);
 
         GroupLayout jPanelCenterLayout = new GroupLayout(jPanelCenter);
         jPanelCenter.setLayout(jPanelCenterLayout);
         jPanelCenterLayout.setHorizontalGroup(
             jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelCenterLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         jPanelCenterLayout.setVerticalGroup(
             jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelCenterLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
         );
 
         getContentPane().add(jPanelCenter, BorderLayout.CENTER);
@@ -104,8 +105,12 @@ public class MailTestView extends JDialog {
         pack();
     }
 
-    public JTextArea getJTextAreaDebugOutput() {
-        return jTextAreaDebugOutput;
+    public void setSubTitle(String subTitle) {
+        jPanelCenterBorder.setBorder(BorderFactory.createTitledBorder(subTitle));
+    }
+
+    public JTextArea getJTextAreaOutput() {
+        return jTextAreaOutput;
     }
 
     public JButton getJButtonOk() {

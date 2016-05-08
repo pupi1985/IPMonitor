@@ -91,7 +91,7 @@ public class IPMonitorPropertiesManager {
         loadVisualNotificationConfigurationTitle(properties);
         loadVisualNotificationConfigurationText(properties);
         loadVisualNotificationConfigurationIcon(properties);
-        loadCommandNotificationConfigurationPath(properties);
+        loadCommandNotificationConfigurationCommandLine(properties);
     }
 
     public void saveToFile() {
@@ -124,7 +124,7 @@ public class IPMonitorPropertiesManager {
         saveVisualNotificationConfigurationTitle(properties);
         saveVisualNotificationConfigurationText(properties);
         saveVisualNotificationConfigurationIcon(properties);
-        saveCommandNotificationConfigurationPath(properties);
+        saveCommandNotificationConfigurationCommandLine(properties);
         try {
             properties.store(
                     new FileOutputStream(new File(ConfigurationManager.getInstance().getConfigurationFilePath())),
@@ -564,14 +564,14 @@ public class IPMonitorPropertiesManager {
                 VisualConfiguration.getInstance().getIcon().name());
     }
 
-    private void loadCommandNotificationConfigurationPath(Properties properties) {
+    private void loadCommandNotificationConfigurationCommandLine(Properties properties) {
         CommandConfiguration.getInstance()
-                .setCommand(properties.getProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH,
-                        IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH_VALUE));
+                .setCommand(properties.getProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_COMMAND_LINE,
+                        IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_COMMAND_LINE_VALUE));
     }
 
-    private void saveCommandNotificationConfigurationPath(Properties properties) {
-        properties.setProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH,
+    private void saveCommandNotificationConfigurationCommandLine(Properties properties) {
+        properties.setProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_COMMAND_LINE,
                 CommandConfiguration.getInstance().getCommand());
     }
 }

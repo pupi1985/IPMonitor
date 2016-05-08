@@ -26,21 +26,23 @@ import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
 
 import model.notification.configuration.CommandConfiguration;
 import view.extras.JButtonInfo;
+import view.panels.JPanelConfirmation;
 
 public class CommandConfigurationView extends JDialog {
-	
-    private JButton jButtonBrowse;
     private JButtonInfo jButtonInfo;
-    private view.panels.JPanelConfirmation jPanelConfirmation;
-    private JTextField jTextFieldFilePath;
+    private JPanelConfirmation jPanelConfirmation;
+    private JTextArea jTextAreaCommand;
 
     public CommandConfigurationView() {
         initComponents();
@@ -56,57 +58,64 @@ public class CommandConfigurationView extends JDialog {
     private void initComponents() {
         JPanel jPanelCenter = new JPanel();
         JPanel jPanelCenterBorder = new JPanel();
-        jTextFieldFilePath = new JTextField();
-        jButtonBrowse = new JButton();
+        JScrollPane jScrollPaneTextAreaCommand = new JScrollPane();
+        jTextAreaCommand = new JTextArea();
+        JLabel jLabelDescription = new JLabel("<html>Add the command to call in the first line.<br>"
+                + "Add arguments to pass to the command in subsequent lines.</html>");
         jButtonInfo = new JButtonInfo();
-        jPanelConfirmation = new view.panels.JPanelConfirmation(false);
+        jPanelConfirmation = new JPanelConfirmation(true, true, false);
 
         setResizable(false);
 
         jPanelCenterBorder.setBorder(BorderFactory.createTitledBorder("Enter a command to execute"));
 
-        jTextFieldFilePath.setText(CommandConfiguration.getInstance().getCommand());
-
-        jButtonBrowse.setText("Browse...");
+        jTextAreaCommand.setRows(10);
+        jTextAreaCommand.setColumns(40);
+        jTextAreaCommand.setText(CommandConfiguration.getInstance().getCommand());
+        jScrollPaneTextAreaCommand.setViewportView(jTextAreaCommand);
 
         GroupLayout jPanelCenterBorderLayout = new GroupLayout(jPanelCenterBorder);
-        jPanelCenterBorder.setLayout(jPanelCenterBorderLayout);
         jPanelCenterBorderLayout.setHorizontalGroup(
-            jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextFieldFilePath, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBrowse)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            jPanelCenterBorderLayout.createParallelGroup(Alignment.LEADING)
+                .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPaneTextAreaCommand)
+                    .addContainerGap())
+                .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelDescription)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
         jPanelCenterBorderLayout.setVerticalGroup(
-            jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
-                .addGroup(jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBrowse)
-                    .addComponent(jTextFieldFilePath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanelCenterBorderLayout.createParallelGroup(Alignment.TRAILING)
+                .addGroup(jPanelCenterBorderLayout.createSequentialGroup()
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneTextAreaCommand)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanelCenterBorderLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabelDescription)
+                        .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
         );
+        jPanelCenterBorder.setLayout(jPanelCenterBorderLayout);
 
         GroupLayout jPanelCenterLayout = new GroupLayout(jPanelCenter);
         jPanelCenter.setLayout(jPanelCenterLayout);
         jPanelCenterLayout.setHorizontalGroup(
             jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelCenterLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         jPanelCenterLayout.setVerticalGroup(
             jPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCenterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelCenterLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelCenterBorder, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
         );
 
         getContentPane().add(jPanelCenter, BorderLayout.CENTER);
@@ -119,12 +128,8 @@ public class CommandConfigurationView extends JDialog {
         return jButtonInfo;
     }
 
-    public JButton getJButtonBrowse() {
-        return jButtonBrowse;
-    }
-
-    public JTextField getJTextFieldFilePath() {
-        return jTextFieldFilePath;
+    public JTextArea getJTextFieldFilePath() {
+        return jTextAreaCommand;
     }
 
     public JButton getJButtonOk() {

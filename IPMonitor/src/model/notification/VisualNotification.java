@@ -22,8 +22,9 @@
 
 package model.notification;
 
-import java.util.*;
-import model.notification.performers.*;
+import java.util.Date;
+
+import model.notification.performers.VisualPerformer;
 
 public class VisualNotification extends AbstractNotification {
 
@@ -40,7 +41,7 @@ public class VisualNotification extends AbstractNotification {
     }
 
     public void ipMonitorIPChangeFiltered(String fromIP, String toIP, Date lastChecked, boolean firstTime) {
-        VisualPerformer.getInstance().displayMessage(fromIP, toIP);
+        new VisualPerformer().displayMessage(fromIP, toIP);
     }
 
     public void ipMonitorIPCheckStart() {

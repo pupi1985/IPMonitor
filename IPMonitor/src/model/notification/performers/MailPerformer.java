@@ -44,9 +44,6 @@ public class MailPerformer extends AbstractPerformer {
     private ByteArrayOutputStream outputStream;
     private PrintStream printStream;
 
-    public MailPerformer() {
-    }
-
     private Session getSession() {
         outputStream = new ByteArrayOutputStream();
         printStream = new PrintStream(outputStream);

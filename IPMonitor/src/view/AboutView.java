@@ -69,7 +69,7 @@ public class AboutView extends JDialog {
 		JLabel jLabelDeveloperField = new JLabel();
 		JLabel jLabelURL = new JLabel();
 		jLabelURLField = new JLabel();
-		jPanelConfirmation = new JPanelConfirmation(false, false);
+		jPanelConfirmation = new JPanelConfirmation(true, false, false);
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("About IP Monitor");

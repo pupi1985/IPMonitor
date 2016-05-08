@@ -43,18 +43,6 @@ public class JPanelConfirmation extends JPanel {
         jButtonApply.setVisible(applyVisible);
     }
 
-    public JPanelConfirmation(boolean cancelVisible, boolean applyVisible) {
-        this(true, cancelVisible, applyVisible);
-    }
-
-    public JPanelConfirmation(boolean applyVisible) {
-        this(true, true, applyVisible);
-    }
-
-    public JPanelConfirmation() {
-        this(true, false, false);
-    }
-
     private void initComponents() {
 
         JPanel jPanelTemp = new JPanel();

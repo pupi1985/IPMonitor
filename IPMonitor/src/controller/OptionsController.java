@@ -43,8 +43,9 @@ import controller.extras.TimeUnitConverter;
 import controller.options.AudioConfigurationController;
 import controller.options.CommandConfigurationController;
 import controller.options.MailConfigurationController;
-import controller.options.MailTestController;
 import controller.options.VisualConfigurationController;
+import controller.options.tests.CommandTestController;
+import controller.options.tests.MailTestController;
 import model.configuration.ConfigurationManager;
 import model.configuration.IPMonitorProperties;
 import model.configuration.IPMonitorPropertiesManager;
@@ -331,7 +332,7 @@ public class OptionsController {
     private class JButtonVisualTest implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            VisualPerformer.getInstance().displayMessage(getOldIP(), getNewIP());
+            new VisualPerformer().displayMessage(getOldIP(), getNewIP());
         }
     }
 
@@ -345,14 +346,17 @@ public class OptionsController {
     private class JButtonCommandTest implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
+            CommandPerformer commandPerformer = new CommandPerformer();
             try {
-                CommandPerformer.getInstance().executeCommand(getOldIP(), getNewIP());
+                commandPerformer.executeCommand(getOldIP(), getNewIP());
             } catch (Exception e) {
                 JOptionPane
                         .showMessageDialog(null,
                                 "An error has been detected while executing command\n"
                                         + CommandConfiguration.getInstance().getCommand(),
                                 "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                new CommandTestController(optionsView, commandPerformer.getCommandOutput());
             }
         }
     }

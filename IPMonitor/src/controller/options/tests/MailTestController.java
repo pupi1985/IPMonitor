@@ -20,49 +20,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package model.notification;
+package controller.options.tests;
 
-import java.util.Date;
+import javax.swing.JDialog;
 
-import model.notification.performers.CommandPerformer;
+public class MailTestController extends AbstractTestController {
 
-public class CommandNotification extends AbstractNotification {
-
-    private static CommandNotification instance;
-
-    private CommandNotification() {
+    public MailTestController(JDialog owner, String output) {
+        super(owner, output);
     }
 
-    public static CommandNotification getInstance() {
-        if (instance == null) {
-            instance = new CommandNotification();
-        }
-        return instance;
-    }
-
-    public void ipMonitorIPChangeFiltered(String fromIP, String toIP, Date lastChecked, boolean firstTime) {
-        try {
-            new CommandPerformer().executeCommand(fromIP, toIP);
-        } catch (Exception e) {
-        }
-    }
-
-    public void ipMonitorIPCheckStart() {
-    }
-
-    public void ipMonitorIPCheckEnd() {
-    }
-
-    public void ipMonitorIntervalChange() {
-    }
-
-    public void ipMonitorStart() {
-    }
-
-    public void ipMonitorStop() {
-    }
-
-    public boolean canBeNotifiedWhenRunningAsService() {
-        return true;
+    protected void initialize() {
+        view.setTitle("Mail test results");
+        view.setSubTitle("Operation output");
     }
 }

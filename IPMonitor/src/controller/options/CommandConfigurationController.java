@@ -28,11 +28,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import controller.extras.InfoActionListener;
-import model.notification.configuration.AudioConfiguration;
 import model.notification.configuration.CommandConfiguration;
 import view.options.CommandConfigurationView;
 
@@ -48,7 +46,6 @@ public class CommandConfigurationController {
                 .addActionListener(new InfoActionListener("Tips for the command", false));
         commandConfigurationView.getJButtonOk().addActionListener(new OkAction());
         commandConfigurationView.getJButtonCancel().addActionListener(cancelAction);
-        commandConfigurationView.getJButtonBrowse().addActionListener(new BrowseAction());
         commandConfigurationView.getRootPane().registerKeyboardAction(cancelAction,
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
         commandConfigurationView.setVisible(true);
@@ -69,13 +66,4 @@ public class CommandConfigurationController {
         }
     }
 
-    private class BrowseAction implements ActionListener {
-
-        public void actionPerformed(ActionEvent event) {
-            JFileChooser jFileChooser = new JFileChooser(AudioConfiguration.getInstance().getFileName());
-            if (jFileChooser.showOpenDialog(commandConfigurationView) == JFileChooser.APPROVE_OPTION) {
-                commandConfigurationView.getJTextFieldFilePath().setText(jFileChooser.getSelectedFile().getPath());
-            }
-        }
-    }
 }

@@ -23,7 +23,7 @@
 package model.notification.performers;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import model.extras.InfoParser;
@@ -33,25 +33,17 @@ import model.service.helpers.ProcessRunner;
 
 public class CommandPerformer extends AbstractPerformer {
 
-    private static CommandPerformer instance;
-
-    private CommandPerformer() {
-    }
-
-    public static CommandPerformer getInstance() {
-        if (instance == null) {
-            instance = new CommandPerformer();
-        }
-        return instance;
-    }
+    private ProcessResult processResult;
 
     public void executeCommand(String fromIP, String toIP) throws IOException, InterruptedException {
-        List<String> allArgumentsList = new ArrayList<String>();
-        allArgumentsList
-                .add(new InfoParser().parseField(CommandConfiguration.getInstance().getCommand(), fromIP, toIP));
+        String parsedCommand = new InfoParser()
+                .parseField(CommandConfiguration.getInstance().getCommand(), fromIP, toIP);
+        List<String> allArgumentsList = Arrays.asList(parsedCommand.split(System.lineSeparator()));
 
-        ProcessResult processResult = ProcessRunner.run(allArgumentsList);
+        processResult = ProcessRunner.run(allArgumentsList);
+    }
 
-        System.out.println(processResult.getOutput());
+    public String getCommandOutput() {
+        return processResult == null ? "" : processResult.getOutput();
     }
 }

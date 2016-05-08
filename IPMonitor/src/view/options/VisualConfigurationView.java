@@ -71,7 +71,7 @@ public class VisualConfigurationView extends JDialog {
         messageTypeModel.setSelectedItem(messageTypeModel.getMessageTypeWrapper(VisualConfiguration.getInstance().getIcon()));
         jComboBoxIcons = new JComboBox<MessageTypeWrapper>(messageTypeModel);
         jButtonInfo = new JButtonInfo();
-        jPanelConfirmation = new view.panels.JPanelConfirmation(true, true);
+        jPanelConfirmation = new view.panels.JPanelConfirmation(true, true, true);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Visual notification configuration");

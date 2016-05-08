@@ -29,17 +29,6 @@ import view.systemtray.exceptions.SystemTrayNotSupportedException;
 
 public class VisualPerformer extends AbstractPerformer {
 
-    private static VisualPerformer instance;
-
-    private VisualPerformer() {
-    }
-
-    public static VisualPerformer getInstance() {
-        if (instance == null)
-            instance = new VisualPerformer();
-        return instance;
-    }
-
     public void displayMessage(String fromIP, String toIP) {
         try {
             InfoParser infoParser = new InfoParser();

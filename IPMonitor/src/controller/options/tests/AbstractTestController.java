@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package controller.options;
+package controller.options.tests;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,27 +30,30 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
-import view.options.MailTestView;
+import view.options.tests.OutputTestView;
 
-public class MailTestController {
+public abstract class AbstractTestController {
 
-    private MailTestView mailTestView;
+    protected OutputTestView view;
 
-    public MailTestController(JDialog owner, String debugOutputText) {
+    public AbstractTestController(JDialog owner, String output) {
         ActionListener OkAction = new OkAction();
 
-        mailTestView = new MailTestView(owner);
-        mailTestView.getJButtonOk().addActionListener(OkAction);
-        mailTestView.getRootPane().registerKeyboardAction(OkAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+        view = new OutputTestView(owner);
+        view.getJButtonOk().addActionListener(OkAction);
+        view.getRootPane().registerKeyboardAction(OkAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
-        mailTestView.getJTextAreaDebugOutput().setText(debugOutputText);
-        mailTestView.setVisible(true);
+        view.getJTextAreaOutput().setText(output);
+        initialize();
+        view.setVisible(true);
     }
+
+    protected abstract void initialize();
 
     private class OkAction implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
-            mailTestView.dispose();
+            view.dispose();
         }
     }
 }

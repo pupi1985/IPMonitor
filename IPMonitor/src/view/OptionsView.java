@@ -46,14 +46,14 @@ import view.options.panels.JPanelOptionsService;
 import view.panels.JPanelConfirmation;
 
 public class OptionsView extends JDialog {
-	
+
     private JPanelConfirmation jPanelConfirmation;
     private JPanelOptionsInterface jPanelOptionsInterface;
     private JPanelOptionsLogging jPanelOptionsLogging;
     private JPanelOptionsMonitor jPanelOptionsMonitor;
     private JPanelOptionsNotification jPanelOptionsNotification;
     private JPanelOptionsService jPanelOptionsService;
-    
+
     private IPMonitor ipMonitor;
 
     public OptionsView(Frame owner, IPMonitor ipMonitor) {
@@ -79,7 +79,7 @@ public class OptionsView extends JDialog {
         jPanelOptionsService = new JPanelOptionsService();
         JPanel jPanelOptionsLoggingTemp = new JPanel();
         jPanelOptionsLogging = new JPanelOptionsLogging();
-        jPanelConfirmation = new JPanelConfirmation(true, true);
+        jPanelConfirmation = new JPanelConfirmation(true, true, true);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Options");

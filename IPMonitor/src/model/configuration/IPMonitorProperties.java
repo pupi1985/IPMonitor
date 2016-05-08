@@ -80,8 +80,8 @@ public class IPMonitorProperties {
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_VISUAL_TEXT_VALUE = "From IP: %OLDIP%\nTo IP: %NEWIP%";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_VISUAL_ICON = "OptionsNotificationConfigurationVisualIcon";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_VISUAL_ICON_VALUE = "INFO";
-    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH = "OptionsNotificationConfigurationCommand";
-    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_PATH_VALUE = "";
+    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_COMMAND_LINE = "OptionsNotificationConfigurationCommandCommandLine";
+    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_COMMAND_COMMAND_LINE_VALUE = "path-to-executable-file" + System.lineSeparator() + "--argument1" + System.lineSeparator() + "%OLDIP%" + System.lineSeparator() + "%NEWIP%";
     public static final String OPTIONS_INTERFACE_LOOK_AND_FEEL_CLASS_NAME = "OptionsInterfaceLookAndFeelClassName";
     public static final String OPTIONS_INTERFACE_LOOK_AND_FEEL_CLASS_NAME_VALUE = UIManager.getCrossPlatformLookAndFeelClassName();
 }

@@ -95,7 +95,7 @@ public class MailConfigurationView extends JDialog {
         jTextAreaMessage = new JTextArea();
         jCheckBoxUseHTML = new JCheckBox();
         jButtonInfo = new JButtonInfo();
-        jPanelConfirmation = new JPanelConfirmation(true, true);
+        jPanelConfirmation = new JPanelConfirmation(true, true, true);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Email notification configuration");
@@ -217,7 +217,6 @@ public class MailConfigurationView extends JDialog {
         jTextFieldSubject.setText(MailConfiguration.getInstance().getSubject());
 
         jTextAreaMessage.setColumns(20);
-        jTextAreaMessage.setFont(jTextFieldServer.getFont());
         jTextAreaMessage.setRows(6);
         jTextAreaMessage.setText(MailConfiguration.getInstance().getText());
         jScrollPaneMessge.setViewportView(jTextAreaMessage);
@@ -229,53 +228,53 @@ public class MailConfigurationView extends JDialog {
         jPanelMessage.setLayout(jPanelMessageLayout);
         jPanelMessageLayout.setHorizontalGroup(
             jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMessageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneMessge)
-                    .addGroup(jPanelMessageLayout.createSequentialGroup()
-                        .addComponent(jCheckBoxUseHTML)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
-                        .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelMessageLayout.createSequentialGroup()
-                        .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelFromAddress)
-                            .addComponent(jLabelFromName)
-                            .addComponent(jLabelToAddresses)
-                            .addComponent(jLabelSubject))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldFromName)
-                            .addComponent(jTextFieldSubject)
-                            .addComponent(jTextFieldToAddresses)
-                            .addComponent(jTextFieldFromAddress))))
-                .addContainerGap())
+                .addGroup(jPanelMessageLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPaneMessge)
+                        .addGroup(jPanelMessageLayout.createSequentialGroup()
+                            .addComponent(jCheckBoxUseHTML)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelMessageLayout.createSequentialGroup()
+                            .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelFromAddress)
+                                .addComponent(jLabelFromName)
+                                .addComponent(jLabelToAddresses)
+                                .addComponent(jLabelSubject))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldFromName)
+                                .addComponent(jTextFieldSubject)
+                                .addComponent(jTextFieldToAddresses)
+                                .addComponent(jTextFieldFromAddress))))
+                    .addContainerGap())
         );
         jPanelMessageLayout.setVerticalGroup(
             jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMessageLayout.createSequentialGroup()
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFromName)
-                    .addComponent(jTextFieldFromName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFromAddress)
-                    .addComponent(jTextFieldFromAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelToAddresses)
-                    .addComponent(jTextFieldToAddresses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelSubject)
-                    .addComponent(jTextFieldSubject, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPaneMessge)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxUseHTML)
-                    .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanelMessageLayout.createSequentialGroup()
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFromName)
+                        .addComponent(jTextFieldFromName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFromAddress)
+                        .addComponent(jTextFieldFromAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelToAddresses)
+                        .addComponent(jTextFieldToAddresses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelSubject)
+                        .addComponent(jTextFieldSubject, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPaneMessge)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanelMessageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBoxUseHTML)
+                        .addComponent(jButtonInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
         );
 
         GroupLayout jPanelCenterLayout = new GroupLayout(jPanelCenter);
