@@ -185,16 +185,22 @@ public class MainController {
 
         public void ipMonitorIO() {
             SwingUtilities.invokeLater(new Runnable() {
-
                 public void run() {
                     mainView.getJLabelCurrentIPField().setText("URL error");
                 }
             });
         }
 
+        public void ipMonitorTimeout() {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    mainView.getJLabelCurrentIPField().setText("Connection timeout");
+                }
+            });
+        }
+
         public void ipMonitorIPNotFound() {
             SwingUtilities.invokeLater(new Runnable() {
-
                 public void run() {
                     mainView.getJLabelCurrentIPField().setText("IP missing in URL");
                 }

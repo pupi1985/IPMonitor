@@ -24,7 +24,9 @@ package model.ipreader;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,8 +47,13 @@ public class IPReader {
         this.url = url;
     }
 
-    public String getIP() throws IOException, IPNotFoundException {
-        String text = CommonFunctions.getInstance().readStringFromInputStream(new URL(url).openStream());
+    public String getIP() throws SocketTimeoutException, IOException, IPNotFoundException {
+        URL realUrl = new URL(url);
+        URLConnection con = realUrl.openConnection();
+        con.setConnectTimeout(20000); // In milliseconds
+        con.setReadTimeout(20000); // In milliseconds
+
+        String text = CommonFunctions.getInstance().readStringFromInputStream(con.getInputStream());
         String result = "";
         Pattern pattern = Pattern.compile(ConfigurationManager.getInstance().getIPPattern());
         Matcher matcher = pattern.matcher(text);

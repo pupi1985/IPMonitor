@@ -58,6 +58,10 @@ public class IPMonitorEventLogger implements IPMonitorListener, IPMonitorExcepti
         MainLogger.getInstance().write("IP not found in WEB page");
     }
 
+    public void ipMonitorTimeout() {
+        MainLogger.getInstance().write("Connection to remote host timed out");
+    }
+
     public void ipMonitorIO() {
         MainLogger.getInstance().write("Could not find WEB page");
     }

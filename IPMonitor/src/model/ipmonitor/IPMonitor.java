@@ -24,6 +24,7 @@ package model.ipmonitor;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -202,6 +203,12 @@ public class IPMonitor extends ObservableModelUnique<IPMonitorListener> {
         }
     }
 
+    private void notifySocketTimeoutException() {
+        for (IPMonitorExceptionListener listener : exceptionListeners) {
+            listener.ipMonitorTimeout();
+        }
+    }
+
     private void notifyIOException() {
         for (IPMonitorExceptionListener listener : exceptionListeners) {
             listener.ipMonitorIO();
@@ -249,10 +256,13 @@ public class IPMonitor extends ObservableModelUnique<IPMonitorListener> {
                     }
                 }
                 lastCheckFailed = false;
-            } catch (IPNotFoundException e1) {
+            } catch (IPNotFoundException e) {
                 notifyIPNotFoundException();
                 lastCheckFailed = true;
-            } catch (IOException e2) {
+            } catch (SocketTimeoutException e) {
+                notifySocketTimeoutException();
+                lastCheckFailed = true;
+            } catch (IOException e) {
                 notifyIOException();
                 lastCheckFailed = true;
             } finally {

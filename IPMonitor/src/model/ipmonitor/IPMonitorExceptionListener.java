@@ -28,6 +28,8 @@ public interface IPMonitorExceptionListener extends ObservableModelListener {
 
 	public void ipMonitorIPNotFound();
 
+	public void ipMonitorTimeout();
+
 	public void ipMonitorIO();
 
 }
