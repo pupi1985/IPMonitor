@@ -37,7 +37,7 @@ public class WindowsBasedService extends AbstractService {
 	}
 
 	public boolean isRunning() throws IOException {
-		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("Running: Yes");
+		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("running: yes");
 	}
 
 	public boolean shouldIncludeExitCode() {
