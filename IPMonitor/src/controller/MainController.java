@@ -27,12 +27,11 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Date;
 
 import javax.swing.AbstractAction;
@@ -212,39 +211,18 @@ public class MainController {
         }
     }
 
-    private class WindowListenerImpl implements WindowListener {
-
-        public void windowActivated(WindowEvent event) {
-        }
-
-        public void windowClosed(WindowEvent event) {
-            saveToFile();
-        }
+    private class WindowListenerImpl extends WindowAdapter {
 
         public void windowClosing(WindowEvent event) {
             saveToFile();
-        }
-
-        public void windowDeactivated(WindowEvent event) {
-        }
-
-        public void windowDeiconified(WindowEvent event) {
-        }
-
-        public void windowIconified(WindowEvent event) {
-            if (!ConfigurationManager.getInstance().getVisualConfigurationManager().isSystemTraySupported()) {
-                return;
+            try {
+                IPMonitorSystemTray.getInstance().removeIcons();
+            } catch (SystemTrayNotSupportedException ex) {
             }
-        }
-
-        public void windowOpened(WindowEvent event) {
         }
     }
 
-    private class TrayIconMouseListener implements ActionListener, MouseListener {
-
-        public void actionPerformed(ActionEvent event) {
-        }
+    private class TrayIconMouseListener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent event) {
             if (OperativeSystemGuesser.isMac()) {
@@ -261,18 +239,6 @@ public class MainController {
                 mainView.restore();
             }
         }
-
-        public void mouseEntered(MouseEvent event) {
-        }
-
-        public void mouseExited(MouseEvent event) {
-        }
-
-        public void mousePressed(MouseEvent event) {
-        }
-
-        public void mouseReleased(MouseEvent event) {
-        }
     }
 
     private abstract class IPMonitorAction extends AbstractAction {
@@ -287,7 +253,6 @@ public class MainController {
                 putValue(MNEMONIC_KEY, key);
             }
         }
-
     }
 
     private class CheckIPAction extends IPMonitorAction {
@@ -348,11 +313,7 @@ public class MainController {
         }
 
         public void actionPerformed(ActionEvent event) {
-            mainView.dispose();
-            try {
-                IPMonitorSystemTray.getInstance().removeIcons();
-            } catch (SystemTrayNotSupportedException ex) {
-            }
+            mainView.dispatchEvent(new WindowEvent(mainView, WindowEvent.WINDOW_CLOSING));
         }
     }
 
