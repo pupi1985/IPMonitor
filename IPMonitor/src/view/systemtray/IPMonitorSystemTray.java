@@ -23,6 +23,7 @@
 package view.systemtray;
 
 import java.awt.AWTException;
+import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
@@ -58,8 +59,10 @@ public class IPMonitorSystemTray {
     }
 
     public void addIcons() {
-        TrayIcon trayIcon = new TrayIcon(AboutInformation.getInstance().getImage(), "IP Monitor");
-        trayIcon.setImageAutoSize(true);
+        Image image = AboutInformation.getInstance().getImage();
+        TrayIcon trayIcon = new TrayIcon(image, "IP Monitor");
+        int trayIconWidth = trayIcon.getSize().width;
+        trayIcon = new TrayIcon(image.getScaledInstance(trayIconWidth, -1, Image.SCALE_SMOOTH));
         try {
             SystemTray.getSystemTray().add(trayIcon);
         } catch (AWTException e) {
