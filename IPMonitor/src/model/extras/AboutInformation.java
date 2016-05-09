@@ -42,7 +42,7 @@ public class AboutInformation {
     }
 
     public Image getImage() {
-        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tipmonitor32.png"));
+        return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tipmonitor64.png"));
     }
 
     public String getDeveloper() {

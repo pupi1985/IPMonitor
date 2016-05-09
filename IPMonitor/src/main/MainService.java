@@ -22,11 +22,15 @@
 
 package main;
 
-import model.configuration.*;
-import model.data.*;
-import model.extras.*;
-import model.ipmonitor.*;
-import org.tanukisoftware.wrapper.*;
+import org.tanukisoftware.wrapper.WrapperListener;
+import org.tanukisoftware.wrapper.WrapperManager;
+
+import model.configuration.ConfigurationManager;
+import model.configuration.IPMonitorPropertiesManager;
+import model.data.LastCheckPropertiesManager;
+import model.data.LastCheckServiceListener;
+import model.extras.CommonFunctions;
+import model.ipmonitor.IPMonitor;
 
 public class MainService {
 
