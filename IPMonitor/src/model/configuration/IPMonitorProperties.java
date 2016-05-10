@@ -30,6 +30,8 @@ public class IPMonitorProperties {
     public static final String MAINVIEW_LOCATION_Y = "MainViewLocationY";
     public static final String MAINVIEW_SIZE_X = "MainViewSizeX";
     public static final String MAINVIEW_SIZE_Y = "MainViewSizeY";
+    public static final String MAINVIEW_LAST_VISIBLE_STATE = "MainViewLastVisibleState";
+    public static final boolean MAINVIEW_LAST_VISIBLE_STATE_VALUE = true;
     public static final String OPTIONS_MONITOR_INTERVAL = "OptionsMonitorInterval";
     public static final int OPTIONS_MONITOR_INTERVAL_VALUE = 600;
     public static final String OPTIONS_MONITOR_AUTOSTART = "OptionsMonitorAutoStart";

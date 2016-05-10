@@ -65,6 +65,7 @@ public class IPMonitorPropertiesManager {
         }
         loadMainViewLocation(properties);
         loadMainViewSize(properties);
+        loadMainViewLastVisibleState(properties);
         loadLookAndFeelClassName(properties);
         loadVisualNotification(properties);
         loadInterval(properties);
@@ -98,6 +99,7 @@ public class IPMonitorPropertiesManager {
         Properties properties = new Properties();
         saveMainViewLocation(properties);
         saveMainViewSize(properties);
+        saveMainViewLastVisibleState(properties);
         saveLookAndFeelClassName(properties);
         saveVisualNotification(properties);
         saveInterval(properties);
@@ -170,6 +172,37 @@ public class IPMonitorPropertiesManager {
                     ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewSize().width));
             properties.setProperty(IPMonitorProperties.MAINVIEW_SIZE_Y, String.valueOf(
                     ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewSize().height));
+        } catch (Exception e) {
+        }
+    }
+
+    private void loadMainViewLastVisibleState(Properties properties) {
+        try {
+            if (!ConfigurationManager.getInstance().getVisualConfigurationManager().isSystemTraySupported()) {
+                return;
+            }
+        } catch (Exception e) {
+            // This is executed when running as a service
+        }
+        try {
+            ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewLastVisibleState(
+                    Boolean.valueOf(properties.getProperty(IPMonitorProperties.MAINVIEW_LAST_VISIBLE_STATE,
+                            String.valueOf(IPMonitorProperties.MAINVIEW_LAST_VISIBLE_STATE_VALUE))));
+        } catch (Exception e) {
+        }
+    }
+
+    private void saveMainViewLastVisibleState(Properties properties) {
+        try {
+            if (!ConfigurationManager.getInstance().getVisualConfigurationManager().isSystemTraySupported()) {
+                return;
+            }
+        } catch (Exception e) {
+            // This is executed when running as a service
+        }
+        try {
+            properties.setProperty(IPMonitorProperties.MAINVIEW_LAST_VISIBLE_STATE, String
+                    .valueOf(ConfigurationManager.getInstance().getVisualConfigurationManager().getMainViewLastVisibleState()));
         } catch (Exception e) {
         }
     }

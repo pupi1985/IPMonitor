@@ -117,7 +117,11 @@ public class MainController {
             public void run() {
                 // Try to get focus to the window as when removed from the dock
                 // it stays in the background
-                mainView.setVisible(true);
+                boolean visible = ConfigurationManager.getInstance().getVisualConfigurationManager()
+                        .getMainViewLastVisibleState();
+                if (visible) {
+                    mainView.setVisible(visible);
+                }
                 if (OperativeSystemGuesser.isMac()) {
                     mainView.restore();
                 }
@@ -140,6 +144,7 @@ public class MainController {
     private void saveToFile() {
         ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewLocation(mainView.getLocation());
         ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewSize(mainView.getSize());
+        ConfigurationManager.getInstance().getVisualConfigurationManager().setMainViewLastVisibleState(mainView.isVisible());
         new IPMonitorPropertiesManager(ipMonitor).saveToFile();
     }
 

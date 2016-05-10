@@ -119,5 +119,4 @@ public class ConfigurationManager {
 	public int getMinCheckingInterval() {
 		return this.minCheckingInterval;
 	}
-
 }

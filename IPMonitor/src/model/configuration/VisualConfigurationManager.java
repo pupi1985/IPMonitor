@@ -32,6 +32,7 @@ public class VisualConfigurationManager {
     private boolean isSystemTraySupported;
     private Point mainViewLocation = null;
     private Dimension mainViewSize = null;
+    private boolean mainViewLastVisibleState = true;
     private String lookAndFeelClassName = null;
 
     private VisualConfigurationManager() {
@@ -63,6 +64,14 @@ public class VisualConfigurationManager {
 
     public void setMainViewSize(Dimension dimension) {
         this.mainViewSize = dimension;
+    }
+
+    public boolean getMainViewLastVisibleState() {
+        return mainViewLastVisibleState;
+    }
+
+    public void setMainViewLastVisibleState(boolean visible) {
+        mainViewLastVisibleState = visible;
     }
 
     public String getLookAndFeelClassName() {
