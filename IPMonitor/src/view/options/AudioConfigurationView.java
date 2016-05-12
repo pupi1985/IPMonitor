@@ -37,9 +37,9 @@ import view.panels.JPanelConfirmation;
 
 public class AudioConfigurationView extends JDialog {
 
-	private JButton jButtonBrowse;
-	private JPanelConfirmation jPanelConfirmation;
-	private JTextField jTextFieldFilePath;
+    private JButton jButtonBrowse;
+    private JPanelConfirmation jPanelConfirmation;
+    private JTextField jTextFieldFilePath;
 
     public AudioConfigurationView() {
         initComponents();

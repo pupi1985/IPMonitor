@@ -40,6 +40,7 @@ import view.extras.JButtonInfo;
 import view.panels.JPanelConfirmation;
 
 public class CommandConfigurationView extends JDialog {
+
     private JButtonInfo jButtonInfo;
     private JPanelConfirmation jPanelConfirmation;
     private JTextArea jTextAreaCommand;

@@ -26,7 +26,7 @@ import javax.swing.JLabel;
 
 public class JLabelRequiredString extends JLabel {
 
-	public JLabelRequiredString() {
-		setText("Required field");
-	}
+    public JLabelRequiredString() {
+        setText("Required field");
+    }
 }

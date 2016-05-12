@@ -28,8 +28,8 @@ import javax.swing.JLabel;
 
 public class JLabelRequired extends JLabel {
 
-	public JLabelRequired() {
-		setText("*");
-		setForeground(Color.RED);
-	}
+    public JLabelRequired() {
+        setText("*");
+        setForeground(Color.RED);
+    }
 }

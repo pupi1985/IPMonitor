@@ -26,7 +26,7 @@ import javax.swing.JButton;
 
 public class JButtonConfigure extends JButton {
 
-	public JButtonConfigure() {
-		setText("Configure...");
-	}
+    public JButtonConfigure() {
+        setText("Configure...");
+    }
 }

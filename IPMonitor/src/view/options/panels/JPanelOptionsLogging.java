@@ -32,9 +32,9 @@ import javax.swing.LayoutStyle;
 
 public class JPanelOptionsLogging extends JPanel {
 
-	private JCheckBox jCheckBoxEnableLogging;
-	private JPanel jPanelLoggingConfiguration;
-	private JTextField jTextFieldDaysToKeepLogs;
+    private JCheckBox jCheckBoxEnableLogging;
+    private JPanel jPanelLoggingConfiguration;
+    private JTextField jTextFieldDaysToKeepLogs;
 
     public JPanelOptionsLogging() {
         initComponents();

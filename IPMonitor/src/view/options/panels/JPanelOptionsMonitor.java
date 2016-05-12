@@ -34,18 +34,18 @@ import model.configuration.ConfigurationManager;
 import model.ipmonitor.IPMonitor;
 
 public class JPanelOptionsMonitor extends JPanel {
-    
-	private JCheckBox jCheckBoxAutostart;
-	private JTextField jTextFieldHours;
-	private JTextField jTextFieldMinutes;
-	private JTextField jTextFieldSeconds;
-	private JTextField jTextFieldURL;
 
-	private IPMonitor ipMonitor = null;
-	
-	public JPanelOptionsMonitor() {
+    private JCheckBox jCheckBoxAutostart;
+    private JTextField jTextFieldHours;
+    private JTextField jTextFieldMinutes;
+    private JTextField jTextFieldSeconds;
+    private JTextField jTextFieldURL;
+
+    private IPMonitor ipMonitor = null;
+
+    public JPanelOptionsMonitor() {
     }
-    
+
     public JPanelOptionsMonitor(IPMonitor ipMonitor) {
         this.ipMonitor = ipMonitor;
         initComponents();
@@ -141,25 +141,25 @@ public class JPanelOptionsMonitor extends JPanel {
                 .addComponent(jCheckBoxAutostart)
                 .addContainerGap())
         );
-	}
+    }
 
-	public JTextField getJTextFieldHours() {
-		return jTextFieldHours;
-	}
+    public JTextField getJTextFieldHours() {
+        return jTextFieldHours;
+    }
 
-	public JTextField getJTextFieldMinutes() {
-		return jTextFieldMinutes;
-	}
+    public JTextField getJTextFieldMinutes() {
+        return jTextFieldMinutes;
+    }
 
-	public JTextField getJTextFieldSeconds() {
-		return jTextFieldSeconds;
-	}
+    public JTextField getJTextFieldSeconds() {
+        return jTextFieldSeconds;
+    }
 
-	public JTextField getJTextFieldURL() {
-		return jTextFieldURL;
-	}
+    public JTextField getJTextFieldURL() {
+        return jTextFieldURL;
+    }
 
-	public JCheckBox getJCheckBoxAutoStart() {
-		return jCheckBoxAutostart;
-	}
+    public JCheckBox getJCheckBoxAutoStart() {
+        return jCheckBoxAutostart;
+    }
 }

@@ -37,41 +37,41 @@ import model.service.ServiceManager;
 
 public class JPanelOptionsService extends JPanel {
 
-	private JButton jButtonInstall;
-	private JButton jButtonStart;
-	private JButton jButtonStop;
-	private JButton jButtonTest;
-	private JButton jButtonUninstall;
-	private JPanel jPanelTemp;
+    private JButton jButtonInstall;
+    private JButton jButtonStart;
+    private JButton jButtonStop;
+    private JButton jButtonTest;
+    private JButton jButtonUninstall;
+    private JPanel jPanelTemp;
 
-	public JPanelOptionsService() {
-		initComponents();
-	}
+    public JPanelOptionsService() {
+        initComponents();
+    }
 
-	private void initComponents() {
-		jPanelTemp = new JPanel();
-		jButtonInstall = new JButton();
-		jButtonStart = new JButton();
-		jButtonTest = new JButton();
-		jButtonUninstall = new JButton();
-		jButtonStop = new JButton();
+    private void initComponents() {
+        jPanelTemp = new JPanel();
+        jButtonInstall = new JButton();
+        jButtonStart = new JButton();
+        jButtonTest = new JButton();
+        jButtonUninstall = new JButton();
+        jButtonStop = new JButton();
 
-		setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
 
-		String serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase(Locale.ENGLISH);
+        String serviceName = ServiceManager.getInstance().getService().getServiceName().toLowerCase(Locale.ENGLISH);
 
-		jButtonInstall.setText("Install " + serviceName);
+        jButtonInstall.setText("Install " + serviceName);
 
-		jButtonStart.setText("Start " + serviceName);
+        jButtonStart.setText("Start " + serviceName);
 
-		jButtonTest.setText("Test " + serviceName);
+        jButtonTest.setText("Test " + serviceName);
 
-		jButtonUninstall.setText("Uninstall " + serviceName);
+        jButtonUninstall.setText("Uninstall " + serviceName);
 
-		jButtonStop.setText("Stop " + serviceName);
+        jButtonStop.setText("Stop " + serviceName);
 
-		GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
-		jPanelTemp.setLayout(jPanelTempLayout);
+        GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
+        jPanelTemp.setLayout(jPanelTempLayout);
         jPanelTempLayout.setHorizontalGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(jPanelTempLayout.createSequentialGroup()
                 .addContainerGap()
@@ -88,9 +88,9 @@ public class JPanelOptionsService extends JPanel {
             .addGroup(jPanelTempLayout.createSequentialGroup()
                 .addComponent(jButtonTest, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-		jPanelTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
-				jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
-		});
+        jPanelTempLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {
+                jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
+        });
 
         jPanelTempLayout.setVerticalGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTempLayout.createSequentialGroup()
@@ -107,34 +107,34 @@ public class JPanelOptionsService extends JPanel {
                 .addComponent(jButtonTest))
             .addContainerGap()));
 
-		jPanelTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {
-				jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
-		});
+        jPanelTempLayout.linkSize(SwingConstants.VERTICAL, new Component[] {
+                jButtonInstall, jButtonStart, jButtonStop, jButtonTest, jButtonUninstall
+        });
 
-		add(jPanelTemp, new GridBagConstraints());
-	}
+        add(jPanelTemp, new GridBagConstraints());
+    }
 
-	public JButton getJButtonInstall() {
-		return jButtonInstall;
-	}
+    public JButton getJButtonInstall() {
+        return jButtonInstall;
+    }
 
-	public JButton getJButtonUninstall() {
-		return jButtonUninstall;
-	}
+    public JButton getJButtonUninstall() {
+        return jButtonUninstall;
+    }
 
-	public JButton getJButtonStart() {
-		return jButtonStart;
-	}
+    public JButton getJButtonStart() {
+        return jButtonStart;
+    }
 
-	public JButton getJButtonStop() {
-		return jButtonStop;
-	}
+    public JButton getJButtonStop() {
+        return jButtonStop;
+    }
 
-	public JButton getJButtonTest() {
-		return jButtonTest;
-	}
+    public JButton getJButtonTest() {
+        return jButtonTest;
+    }
 
-	public JPanel getJPanelInnerPanel() {
-		return jPanelTemp;
-	}
+    public JPanel getJPanelInnerPanel() {
+        return jPanelTemp;
+    }
 }
