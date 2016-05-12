@@ -65,7 +65,6 @@ public class VisualConfigurationView extends JDialog {
         JLabel jLabelText = new JLabel();
         JScrollPane jScrollPaneText = new JScrollPane();
         jTextAreaText = new JTextArea(VisualConfiguration.getInstance().getText());
-        jTextAreaText.setFont(jTextFieldTitle.getFont());
         JLabel jLabelIcon = new JLabel();
         MessageTypeModel messageTypeModel = new MessageTypeModel();
         messageTypeModel.setSelectedItem(messageTypeModel.getMessageTypeWrapper(VisualConfiguration.getInstance().getIcon()));

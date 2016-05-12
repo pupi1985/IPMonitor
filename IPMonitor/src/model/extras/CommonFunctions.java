@@ -33,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import javax.swing.UIManager;
+
 import model.configuration.ConfigurationManager;
 import model.ipmonitor.IPMonitor;
 import model.logger.IPMonitorEventLogger;
@@ -85,5 +87,10 @@ public class CommonFunctions {
             sb.append(line).append(System.lineSeparator());
         }
         return sb.toString();
+    }
+
+    public void loadLookAndFeel(String lookAndFeelClassName) throws Exception {
+        UIManager.setLookAndFeel(lookAndFeelClassName);
+        UIManager.getDefaults().put("TextArea.font", UIManager.getFont("TextField.font"));
     }
 }

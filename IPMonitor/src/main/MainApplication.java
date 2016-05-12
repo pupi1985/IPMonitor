@@ -22,8 +22,6 @@
 
 package main;
 
-import javax.swing.UIManager;
-
 import controller.MainController;
 import model.configuration.ConfigurationManager;
 import model.configuration.IPMonitorPropertiesManager;
@@ -52,7 +50,7 @@ public class MainApplication {
 
     private void loadLookAndFeel() {
         try {
-            UIManager.setLookAndFeel(
+            CommonFunctions.getInstance().loadLookAndFeel(
                     ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName());
         } catch (Exception e) {
         }

@@ -37,7 +37,7 @@ import controller.extras.LookAndFeelInfoWrapper;
 import model.configuration.ConfigurationManager;
 
 public class JPanelOptionsInterface extends JPanel {
-	
+
     private JList<LookAndFeelInfoWrapper> jListLookAndFeel;
 
     public JPanelOptionsInterface() {
@@ -58,7 +58,10 @@ public class JPanelOptionsInterface extends JPanel {
         jListLookAndFeel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jListLookAndFeel.setVisibleRowCount(6);
         jScrollPaneLookAndFeel.setViewportView(jListLookAndFeel);
-        jListLookAndFeel.setSelectedValue(lookAndFeelInfoModel.getLookAndFeelInfoWrapper(ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName()), true);
+        jListLookAndFeel.setSelectedValue(
+                lookAndFeelInfoModel.getLookAndFeelInfoWrapper(
+                        ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName()),
+                true);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);

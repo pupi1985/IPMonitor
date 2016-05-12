@@ -49,6 +49,7 @@ import controller.options.tests.MailTestController;
 import model.configuration.ConfigurationManager;
 import model.configuration.IPMonitorProperties;
 import model.configuration.IPMonitorPropertiesManager;
+import model.extras.CommonFunctions;
 import model.ipmonitor.IPMonitor;
 import model.ipmonitor.exceptions.InvalidIntervalException;
 import model.logger.MainLogger;
@@ -192,8 +193,7 @@ public class OptionsController {
             try {
                 ConfigurationManager.getInstance().getVisualConfigurationManager()
                         .setLookAndFeelClassName(lookAndFeelInfoWrapper.getClassName());
-                UIManager.setLookAndFeel(
-                        ConfigurationManager.getInstance().getVisualConfigurationManager().getLookAndFeelClassName());
+                CommonFunctions.getInstance().loadLookAndFeel(lookAndFeelInfoWrapper.getClassName());
                 SwingUtilities.updateComponentTreeUI(optionsView.getOwner());
                 SwingUtilities.updateComponentTreeUI(optionsView);
                 optionsView.pack();

@@ -37,6 +37,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import model.extras.AboutInformation;
@@ -75,42 +76,42 @@ public class AboutView extends JDialog {
 		setTitle("About IP Monitor");
 		setResizable(false);
 
+		Font labelFont = UIManager.getFont("Label.font");
+		Font labelFontItalic = labelFont.deriveFont(labelFont.getStyle() | Font.ITALIC);
+		Font labelFontBold = labelFont.deriveFont(labelFont.getStyle() | Font.BOLD);
+
 		jPanelMainBorder.setBorder(BorderFactory.createEtchedBorder());
 
-		jLabelImageField.setIcon(new ImageIcon(AboutInformation.getInstance().getImage()));
+        jLabelImageField.setIcon(new ImageIcon(AboutInformation.getInstance().getImage()));
 
-		jLabelNameField.setFont(jLabelNameField.getFont().deriveFont(jLabelNameField.getFont().getStyle() | Font.BOLD,
-				jLabelNameField.getFont().getSize() + 9));
-		jLabelNameField.setText(AboutInformation.getInstance().getName());
+        jLabelNameField.setFont(labelFontBold.deriveFont((float) labelFontBold.getSize() + 9));
+        jLabelNameField.setText(AboutInformation.getInstance().getName());
 
-		jLabelVersion.setFont(jLabelVersion.getFont().deriveFont((jLabelVersion.getFont().getStyle() | Font.ITALIC)));
-		jLabelVersion.setLabelFor(jLabelVersionField);
-		jLabelVersion.setText("Version:");
+        jLabelVersion.setFont(labelFontItalic);
+        jLabelVersion.setLabelFor(jLabelVersionField);
+        jLabelVersion.setText("Version:");
 
-		jLabelVersionField
-				.setFont(jLabelVersionField.getFont().deriveFont(jLabelVersionField.getFont().getStyle() | Font.BOLD));
-		jLabelVersionField.setText(AboutInformation.getInstance().getVersion());
+        jLabelVersionField.setFont(labelFontBold);
+        jLabelVersionField.setText(AboutInformation.getInstance().getVersion());
 
-		jLabelDate.setFont(jLabelDate.getFont().deriveFont((jLabelDate.getFont().getStyle() | Font.ITALIC)));
-		jLabelDate.setText("Date:");
+        jLabelDate.setFont(labelFontItalic);
+        jLabelDate.setText("Date:");
 
-		jLabelDateField.setFont(jLabelDateField.getFont().deriveFont(jLabelDateField.getFont().getStyle() | Font.BOLD));
-		jLabelDateField.setText(
-				DateFormat.getDateInstance(DateFormat.MEDIUM).format(AboutInformation.getInstance().getDate()));
+        jLabelDateField.setFont(labelFontBold);
+        jLabelDateField.setText(
+                DateFormat.getDateInstance(DateFormat.MEDIUM).format(AboutInformation.getInstance().getDate()));
 
-		jLabelDeveloper
-				.setFont(jLabelDeveloper.getFont().deriveFont((jLabelDeveloper.getFont().getStyle() | Font.ITALIC)));
-		jLabelDeveloper.setText("Developed by:");
+        jLabelDeveloper.setFont(labelFontItalic);
+        jLabelDeveloper.setText("Developed by:");
 
-		jLabelDeveloperField.setFont(
-				jLabelDeveloperField.getFont().deriveFont(jLabelDeveloperField.getFont().getStyle() | Font.BOLD));
-		jLabelDeveloperField.setText(AboutInformation.getInstance().getDeveloper());
+        jLabelDeveloperField.setFont(labelFontBold);
+        jLabelDeveloperField.setText(AboutInformation.getInstance().getDeveloper());
 
-		jLabelURL.setFont(jLabelURL.getFont().deriveFont((jLabelURL.getFont().getStyle() | Font.ITALIC)));
-		jLabelURL.setText("URL:");
+        jLabelURL.setFont(labelFontItalic);
+        jLabelURL.setText("URL:");
 
 		jLabelURLField.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		jLabelURLField.setFont(jLabelURLField.getFont().deriveFont(jLabelURLField.getFont().getStyle() | Font.BOLD));
+		jLabelURLField.setFont(labelFontBold);
 		jLabelURLField.setForeground(new Color(51, 102, 255));
 		jLabelURLField.setText(AboutInformation.getInstance().getVisualUrl());
 

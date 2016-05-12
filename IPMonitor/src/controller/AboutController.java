@@ -32,7 +32,7 @@ import java.net.URI;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
-import javax.swing.event.MouseInputListener;
+import javax.swing.event.MouseInputAdapter;
 
 import model.extras.AboutInformation;
 import view.AboutView;
@@ -60,7 +60,7 @@ public class AboutController {
         }
     }
 
-    private class JLabelUrlMouseListener implements MouseInputListener {
+    private class JLabelUrlMouseListener extends MouseInputAdapter {
 
         public void mouseClicked(MouseEvent event) {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -78,18 +78,6 @@ public class AboutController {
 
         public void mouseExited(MouseEvent event) {
             aboutView.getJLabelURLField().setText(AboutInformation.getInstance().getVisualUrl());
-        }
-
-        public void mousePressed(MouseEvent event) {
-        }
-
-        public void mouseReleased(MouseEvent event) {
-        }
-
-        public void mouseDragged(MouseEvent event) {
-        }
-
-        public void mouseMoved(MouseEvent event) {
         }
     }
 }
