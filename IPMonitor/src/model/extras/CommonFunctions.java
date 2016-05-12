@@ -68,7 +68,7 @@ public class CommonFunctions {
     }
 
     public void postLoadProperties(IPMonitor ipMonitor) {
-        new File(model.configuration.ConfigurationManager.getInstance().getLogFilesDirectoryPath()).mkdirs();
+        new File(ConfigurationManager.getInstance().getLogFilesDirectoryPath()).mkdirs();
         MainLogger.getInstance().deleteOldFiles();
         ipMonitor.addIPMonitorListener(new IPMonitorEventLogger());
     }

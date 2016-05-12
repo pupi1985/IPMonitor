@@ -27,96 +27,138 @@ import java.net.URISyntaxException;
 
 public class ConfigurationManager {
 
-	private static ConfigurationManager instance = new ConfigurationManager();
+    private static ConfigurationManager instance = new ConfigurationManager();
 
-	private final String basePath;
+    private final String basePath;
 
-	private boolean service = false;
-	private boolean autostart = false;
-	private final String configurationFilePath;
-	private final String lastCheckFilePath;
-	private final String wrapperExecutableDirectoryPath;
-	private final String wrapperScriptDirectoryPath;
-	private final String logFilesDirectoryPath;
-	private final String logFileNameFormat = "yyyy-MM-dd";
-	private final String ipPattern = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
-	private final int minCheckingInterval = 600;
+    private boolean service = false;
+    private boolean autostart = false;
+    private String configurationFilePath;
+    private String lastCheckFilePath;
+    private String wrapperExecutableDirectoryPath;
+    private String wrapperScriptDirectoryPath;
+    private String logFilesDirectoryPath;
+    private final String logFileNameFormat = "yyyy-MM-dd";
+    private final String ipPattern = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
+    private final int minCheckingInterval = 600;
 
-	private ConfigurationManager() {
-		String basePath = "";
-		try {
-			basePath = ConfigurationManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-		} catch (URISyntaxException e) {
-		}
-		this.basePath = new File(basePath).getParent();
+    private ConfigurationManager() {
+        String basePath = "";
+        try {
+            basePath = ConfigurationManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        } catch (URISyntaxException e) {
+        }
+        this.basePath = new File(basePath).getParent();
 
-		configurationFilePath = this.getPath("files/ipmonitor.cfg");
-		lastCheckFilePath = this.getPath("files/lastcheck.dat");
-		wrapperExecutableDirectoryPath = this.getPath("lib/jsw/bin/");
-		wrapperScriptDirectoryPath = this.getPath("files/jsw/");
-		logFilesDirectoryPath = this.getPath("logs/");
-	}
+        configurationFilePath = this.getPath("files/ipmonitor.cfg");
+        lastCheckFilePath = this.getPath("files/lastcheck.dat");
+        wrapperExecutableDirectoryPath = this.getPath("lib/jsw/bin/");
+        wrapperScriptDirectoryPath = this.getPath("files/jsw/");
+        logFilesDirectoryPath = this.getPath("logs/");
+    }
 
-	public static ConfigurationManager getInstance() {
-		return instance;
-	}
+    public static ConfigurationManager getInstance() {
+        return instance;
+    }
 
-	public String getPath(String aPath) {
-		return this.basePath + "/" + aPath;
-	}
+    public String fixTrailingDelimiter(String aPath) {
+        if (!aPath.endsWith(File.separator)) {
+            return aPath + File.separator;
+        }
+        return aPath;
+    }
 
-	public VisualConfigurationManager getVisualConfigurationManager() {
-		if (!service) {
-			return VisualConfigurationManager.getInstance();
-		}
-		return null;
-	}
+    public String getPath(String aPath) {
+        return fixTrailingDelimiter(basePath) + aPath;
+    }
 
-	public boolean isService() {
-		return service;
-	}
+    public VisualConfigurationManager getVisualConfigurationManager() {
+        if (!service) {
+            return VisualConfigurationManager.getInstance();
+        }
+        return null;
+    }
 
-	public void setService(boolean service) {
-		this.service = service;
-	}
+    public boolean isService() {
+        return service;
+    }
 
-	public boolean isAutostart() {
-		return autostart;
-	}
+    public void setService(boolean service) {
+        this.service = service;
+    }
 
-	public void setAutostart(boolean autostart) {
-		this.autostart = autostart;
-	}
+    public boolean isAutostart() {
+        return autostart;
+    }
 
-	public String getConfigurationFilePath() {
-		return configurationFilePath;
-	}
+    public void setAutostart(boolean autostart) {
+        this.autostart = autostart;
+    }
 
-	public String getLastCheckFilePath() {
-		return lastCheckFilePath;
-	}
+    public String getConfigurationFilePath() {
+        return configurationFilePath;
+    }
 
-	public String getWrapperExecutableDirectoryPath() {
-		return wrapperExecutableDirectoryPath;
-	}
+    public void setConfigurationFilePath(String configurationFilePath) {
+        if (configurationFilePath == null || configurationFilePath.isEmpty()) {
+            return;
+        }
+        this.configurationFilePath = configurationFilePath;
+    }
 
-	public String getWrapperScriptDirectoryPath() {
-		return wrapperScriptDirectoryPath;
-	}
+    public String getLastCheckFilePath() {
+        return lastCheckFilePath;
+    }
 
-	public String getLogFilesDirectoryPath() {
-		return logFilesDirectoryPath;
-	}
+    public void setLastCheckFilePath(String lastCheckFilePath) {
+        if (lastCheckFilePath == null || lastCheckFilePath.isEmpty()) {
+            return;
+        }
+        this.lastCheckFilePath = lastCheckFilePath;
+    }
 
-	public String getLogFileNameFormat() {
-		return logFileNameFormat;
-	}
+    public String getWrapperExecutableDirectoryPath() {
+        return wrapperExecutableDirectoryPath;
+    }
 
-	public String getIPPattern() {
-		return this.ipPattern;
-	}
+    public void setWrapperExecutableDirectoryPath(String wrapperExecutableDirectoryPath) {
+        if (wrapperExecutableDirectoryPath == null || wrapperExecutableDirectoryPath.isEmpty()) {
+            return;
+        }
+        this.wrapperExecutableDirectoryPath = fixTrailingDelimiter(wrapperExecutableDirectoryPath);
+    }
 
-	public int getMinCheckingInterval() {
-		return this.minCheckingInterval;
-	}
+    public String getWrapperScriptDirectoryPath() {
+        return wrapperScriptDirectoryPath;
+    }
+
+    public void setWrapperScriptDirectoryPath(String wrapperScriptDirectoryPath) {
+        if (wrapperScriptDirectoryPath == null || wrapperScriptDirectoryPath.isEmpty()) {
+            return;
+        }
+        this.wrapperScriptDirectoryPath = fixTrailingDelimiter(wrapperScriptDirectoryPath);
+    }
+
+    public String getLogFilesDirectoryPath() {
+        return logFilesDirectoryPath;
+    }
+
+    public void setLogFilesDirectoryPath(String logFilesDirectoryPath) {
+        if (logFilesDirectoryPath == null || logFilesDirectoryPath.isEmpty()) {
+            return;
+        }
+        this.logFilesDirectoryPath = fixTrailingDelimiter(logFilesDirectoryPath);
+    }
+
+    public String getLogFileNameFormat() {
+        return logFileNameFormat;
+    }
+
+    public String getIPPattern() {
+        return this.ipPattern;
+    }
+
+    public int getMinCheckingInterval() {
+        return this.minCheckingInterval;
+    }
 }
