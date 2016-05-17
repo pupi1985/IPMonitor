@@ -67,10 +67,13 @@ public class MailPerformer extends AbstractPerformer {
         properties.put("mail.transport.protocol", protocol);
         properties.put("mail." + protocol + ".host", MailConfiguration.getInstance().getHost());
         properties.put("mail." + protocol + ".port", MailConfiguration.getInstance().getPort());
+        properties.put("mail." + protocol + ".connectiontimeout", 30000);
+        properties.put("mail." + protocol + ".timeout", 30000);
+        properties.put("mail." + protocol + ".quitwait", "false");
+
         if (MailConfiguration.getInstance().isAuthenticationRequired()) {
             properties.put("mail." + protocol + ".auth", "true");
         }
-        properties.put("mail." + protocol + ".quitwait", "false");
 
         return properties;
     }
