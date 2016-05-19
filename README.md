@@ -6,15 +6,21 @@ IP Monitor is a simple application which monitors your public IP address for cha
 
 #### Features
 
-  * Automatically checks your public IP address for changes
-  * Provides several ways of notifying IP changes such as playing a sound, sending an email, displaying a popup or executing a command
-  * Can be run as a Windows service or Linux/Mac daemon
-  * Provides logging support
-  * Portable application
-  * Flexible paths
-  * LookAndFeel support
-  * Multiplatform
-  * Open source
-  * Free
+ *  Automatically checks your public IP address for changes
+ *  Provides several ways of notifying IP changes such as playing a sound, sending an email, displaying a popup or executing a command
+ *  Can be run as a Windows service or Linux/Mac daemon
+ *  Provides logging support
+ *  Portable application
+ *  Flexible paths
+ *  LookAndFeel support
+ *  Multiplatform
+ *  Open source
+ *  Free
 
-For more information you can check the Wiki.
+#### Requirements
+
+ *  Java 7+
+
+Navigate to the [Releases](https://github.com/pupi1985/IPMonitor/releases) section in order to download the latest version of IP Monitor.
+
+For more information you can check the [Wiki](https://github.com/pupi1985/IPMonitor/wiki).
