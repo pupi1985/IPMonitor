@@ -42,22 +42,22 @@ public class AboutInformation {
     }
 
     public String getVersion() {
-        return "0.04";
+        return "0.05";
     }
 
     public Date getDate() {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse("2010-03-27");
+            return new SimpleDateFormat("yyyy-MM-dd").parse("2016-05-19");
         } catch (Exception e) {
             return null;
         }
     }
 
     public String getUrl() {
-        return "http://www.ip-monitor.com.ar";
+        return "http://github.com/pupi1985/IPMonitor";
     }
 
     public String getVisualUrl() {
-        return "www.ip-monitor.com.ar";
+        return "github.com/pupi1985/IPMonitor";
     }
 }
