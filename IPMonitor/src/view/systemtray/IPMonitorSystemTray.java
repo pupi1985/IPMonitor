@@ -59,7 +59,7 @@ public class IPMonitorSystemTray {
     }
 
     public void addIcons() {
-        Image image = AboutInformation.getInstance().getImage();
+        Image image = new AboutInformation().getImage();
         TrayIcon trayIcon = new TrayIcon(image, "IP Monitor");
         int trayIconWidth = trayIcon.getSize().width;
         trayIcon = new TrayIcon(image.getScaledInstance(trayIconWidth, -1, Image.SCALE_SMOOTH));

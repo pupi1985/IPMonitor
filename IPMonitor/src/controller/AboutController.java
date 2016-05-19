@@ -40,11 +40,13 @@ import view.AboutView;
 public class AboutController {
 
     private AboutView aboutView;
+    private AboutInformation aboutInformation;
 
     public AboutController(JFrame owner) {
         ActionListener okAction = new OkAction();
+        aboutInformation = new AboutInformation();
 
-        aboutView = new AboutView(owner);
+        aboutView = new AboutView(owner, aboutInformation);
         aboutView.getJButtonOk().addActionListener(okAction);
         aboutView.getJLabelURLField().addMouseListener(new JLabelUrlMouseListener());
         aboutView.getRootPane().registerKeyboardAction(okAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
@@ -65,19 +67,18 @@ public class AboutController {
         public void mouseClicked(MouseEvent event) {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    Desktop.getDesktop().browse(new URI(AboutInformation.getInstance().getUrl()));
+                    Desktop.getDesktop().browse(new URI(aboutInformation.getUrl()));
                 } catch (Exception e) {
                 }
             }
         }
 
         public void mouseEntered(MouseEvent event) {
-            aboutView.getJLabelURLField()
-                    .setText("<html><u>" + AboutInformation.getInstance().getVisualUrl() + "</u></html>");
+            aboutView.getJLabelURLField().setText("<html><u>" + aboutInformation.getVisualUrl() + "</u></html>");
         }
 
         public void mouseExited(MouseEvent event) {
-            aboutView.getJLabelURLField().setText(AboutInformation.getInstance().getVisualUrl());
+            aboutView.getJLabelURLField().setText(aboutInformation.getVisualUrl());
         }
     }
 }

@@ -45,13 +45,16 @@ import view.panels.JPanelConfirmation;
 
 public class AboutView extends JDialog {
 
+    private AboutInformation aboutInformation;
+
     private JLabel jLabelURLField;
     private JPanelConfirmation jPanelConfirmation;
     private JPanel jPanelMain;
     private JPanel jPanelMainBorder;
 
-    public AboutView(Frame owner) {
+    public AboutView(Frame owner, AboutInformation aboutInformation) {
         super(owner, true);
+        this.aboutInformation = aboutInformation;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -82,30 +85,30 @@ public class AboutView extends JDialog {
 
         jPanelMainBorder.setBorder(BorderFactory.createEtchedBorder());
 
-        jLabelImageField.setIcon(new ImageIcon(AboutInformation.getInstance().getImage()));
+        jLabelImageField.setIcon(new ImageIcon(aboutInformation.getImage()));
 
         jLabelNameField.setFont(labelFontBold.deriveFont((float) labelFontBold.getSize() + 9));
-        jLabelNameField.setText(AboutInformation.getInstance().getName());
+        jLabelNameField.setText(aboutInformation.getName());
 
         jLabelVersion.setFont(labelFontItalic);
         jLabelVersion.setLabelFor(jLabelVersionField);
         jLabelVersion.setText("Version:");
 
         jLabelVersionField.setFont(labelFontBold);
-        jLabelVersionField.setText(AboutInformation.getInstance().getVersion());
+        jLabelVersionField.setText(aboutInformation.getVersion());
 
         jLabelDate.setFont(labelFontItalic);
         jLabelDate.setText("Date:");
 
         jLabelDateField.setFont(labelFontBold);
         jLabelDateField.setText(
-                DateFormat.getDateInstance(DateFormat.MEDIUM).format(AboutInformation.getInstance().getDate()));
+                DateFormat.getDateInstance(DateFormat.MEDIUM).format(aboutInformation.getDate()));
 
         jLabelDeveloper.setFont(labelFontItalic);
         jLabelDeveloper.setText("Developed by:");
 
         jLabelDeveloperField.setFont(labelFontBold);
-        jLabelDeveloperField.setText(AboutInformation.getInstance().getDeveloper());
+        jLabelDeveloperField.setText(aboutInformation.getDeveloper());
 
         jLabelURL.setFont(labelFontItalic);
         jLabelURL.setText("URL:");
@@ -113,7 +116,7 @@ public class AboutView extends JDialog {
         jLabelURLField.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jLabelURLField.setFont(labelFontBold);
         jLabelURLField.setForeground(new Color(51, 102, 255));
-        jLabelURLField.setText(AboutInformation.getInstance().getVisualUrl());
+        jLabelURLField.setText(aboutInformation.getVisualUrl());
 
         GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
         jPanelTemp.setLayout(jPanelTempLayout);

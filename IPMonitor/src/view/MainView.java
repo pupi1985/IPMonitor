@@ -122,8 +122,9 @@ public class MainView extends JFrame {
         popupMenu.add(menuItemExit);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle(AboutInformation.getInstance().getName());
-        setIconImage(AboutInformation.getInstance().getImage());
+        AboutInformation aboutInformation = new AboutInformation();
+        setTitle(aboutInformation.getName());
+        setIconImage(aboutInformation.getImage());
 
         jPanelCenterBorder.setBorder(BorderFactory.createEtchedBorder());
         jPanelCenterBorder.setLayout(new GridBagLayout());

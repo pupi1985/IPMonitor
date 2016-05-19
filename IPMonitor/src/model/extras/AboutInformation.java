@@ -29,18 +29,6 @@ import java.util.Date;
 
 public class AboutInformation {
 
-    private static AboutInformation instance;
-
-    public static AboutInformation getInstance() {
-        if (instance == null) {
-            instance = new AboutInformation();
-        }
-        return instance;
-    }
-
-    private AboutInformation() {
-    }
-
     public Image getImage() {
         return Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tipmonitor64.png"));
     }
