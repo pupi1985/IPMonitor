@@ -1,5 +1,9 @@
 #!/bin/sh
-cd $(dirname $(readlink -f $0))
+
+# This script is just an attempt to avoid having to open a terminal and run
+# IP Monitor as root using `sudo java -jar IPMonitor.jar`
+
+cd "$(dirname $(readlink -f $0))"
 
 IPM_CMD="java -jar IPMonitor.jar"
 
