@@ -53,7 +53,6 @@ public class MailPerformer extends AbstractPerformer {
         } else {
             session = Session.getInstance(getProperties());
         }
-        session.setDebug(false);
 
         session.setDebugOut(printStream);
         session.setDebug(true);
