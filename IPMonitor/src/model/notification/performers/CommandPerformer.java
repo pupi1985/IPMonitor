@@ -38,7 +38,7 @@ public class CommandPerformer extends AbstractPerformer {
     public void executeCommand(String fromIP, String toIP) throws IOException, InterruptedException {
         String parsedCommand = new InfoParser()
                 .parseField(CommandConfiguration.getInstance().getCommand(), fromIP, toIP);
-        List<String> allArgumentsList = Arrays.asList(parsedCommand.split(System.lineSeparator()));
+        List<String> allArgumentsList = Arrays.asList(parsedCommand.split("\n"));
 
         processResult = ProcessRunner.run(allArgumentsList);
     }

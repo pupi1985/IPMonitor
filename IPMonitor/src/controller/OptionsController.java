@@ -304,18 +304,18 @@ public class OptionsController {
 
         public void actionPerformed(ActionEvent event) {
             JOptionPane.showMessageDialog(null,
-                    "This test might take a few minutes depending on network" + System.lineSeparator()
-                            + "congestion and email notification configuration." + System.lineSeparator()
-                            + System.lineSeparator() + "Close this dialog to start the test.",
+                    "This test might take a few minutes depending on network\n" +
+                            "congestion and email notification configuration.\n\n" +
+                            "Close this dialog to start the test.",
                     "Please wait", JOptionPane.INFORMATION_MESSAGE);
             MailPerformer mailPerformer = new MailPerformer();
-            String result = System.lineSeparator() + System.lineSeparator();
+            String result = "\n\n";
             try {
                 mailPerformer.sendMail(getOldIP(), getNewIP());
                 result += "Email has been successfully delivered";
             } catch (Exception e) {
-                result += "An error has been detected while trying to send the email." + System.lineSeparator()
-                        + "Check the network settings and the email notification configuration.";
+                result += "An error has been detected while trying to send the email.\n" +
+                        "Check the network settings and the email notification configuration.";
             } finally {
                 new MailTestController(optionsView, mailPerformer.getLastMailDebugInformation() + result);
             }
@@ -378,8 +378,8 @@ public class OptionsController {
                 ProcessResult processResult = serviceOperation();
                 StringBuffer output = new StringBuffer(processResult.getOutput().trim());
                 if (ServiceManager.getInstance().getService().shouldIncludeExitCode()) {
-                    output.append(System.lineSeparator());
-                    output.append(System.lineSeparator());
+                    output.append("\n");
+                    output.append("\n");
                     output.append("Exit code: ");
                     output.append(processResult.getExitCode());
                 }

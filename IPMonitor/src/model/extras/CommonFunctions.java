@@ -84,7 +84,7 @@ public class CommonFunctions {
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
-            sb.append(line).append(System.lineSeparator());
+            sb.append(line).append("\n");
         }
         return sb.toString();
     }
