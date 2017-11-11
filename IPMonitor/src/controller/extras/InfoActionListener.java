@@ -33,12 +33,12 @@ public class InfoActionListener implements ActionListener {
     public InfoActionListener(String title, boolean ipOnly) {
         this.title = title;
         text = "Use the following expressions to get the correspondig result:\n" +
-                "%OLDIP% = Shows the previous IP\n" +
-                "%NEWIP% = Shows the current IP";
+                "%OLDIP% = Shows the previous IP address (it could be a placeholder when testing)\n" +
+                "%NEWIP% = Shows the current IP address (it will be a placeholder when testing)";
         if (!ipOnly) {
             text += "\n" +
-                    "%DATE% = Shows the IP change date\n" +
-                    "%TIME% = Shows the IP change time";
+                    "%DATE% = Shows the IP address change date\n" +
+                    "%TIME% = Shows the IP address change time";
         }
     }
 
