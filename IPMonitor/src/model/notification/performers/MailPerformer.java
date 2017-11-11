@@ -84,8 +84,12 @@ public class MailPerformer extends AbstractPerformer {
         message.setFrom(MailConfiguration.getInstance().getFromAddress());
         message.addRecipients(RecipientType.TO, MailConfiguration.getInstance().getToAddresses());
         message.setSubject(infoParser.parseField(MailConfiguration.getInstance().getSubject(), fromIP, toIP));
-        message.setContent(infoParser.parseField(MailConfiguration.getInstance().getText(), fromIP, toIP),
-                (MailConfiguration.getInstance().isHTML()) ? "text/html" : "text/plain");
+        message.setContent(
+            infoParser.parseField(MailConfiguration.getInstance().getText(), fromIP, toIP),
+            MailConfiguration.getInstance().isHTML()
+                ? "text/html; charset=utf-8"
+                : "text/plain; charset=utf-8"
+        );
 
         return message;
     }
