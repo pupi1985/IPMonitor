@@ -53,11 +53,19 @@ public class AboutInformation {
         }
     }
 
-    public String getUrl() {
+    public String getProjectLinkUrl() {
         return "http://github.com/pupi1985/IPMonitor";
     }
 
-    public String getVisualUrl() {
+    public String getProjectLinkText() {
         return "github.com/pupi1985/IPMonitor";
+    }
+
+    public String getDonateLinkUrl() {
+        return "https://www.paypal.me/pupi1985";
+    }
+
+    public String getDonateLinkText() {
+        return "Donate with PayPal";
     }
 }

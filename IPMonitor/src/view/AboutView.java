@@ -47,7 +47,8 @@ public class AboutView extends JDialog {
 
     private AboutInformation aboutInformation;
 
-    private JLabel jLabelURLField;
+    private JLabel jLabelProjectLinkField;
+    private JLabel jLabelDonateLinkField;
     private JPanelConfirmation jPanelConfirmation;
     private JPanel jPanelMain;
     private JPanel jPanelMainBorder;
@@ -71,8 +72,10 @@ public class AboutView extends JDialog {
         JLabel jLabelDateField = new JLabel();
         JLabel jLabelDeveloper = new JLabel();
         JLabel jLabelDeveloperField = new JLabel();
-        JLabel jLabelURL = new JLabel();
-        jLabelURLField = new JLabel();
+        JLabel jLabelProjectLink = new JLabel();
+        JLabel jLabelDonateLink = new JLabel();
+        jLabelProjectLinkField = new JLabel();
+        jLabelDonateLinkField = new JLabel();
         jPanelConfirmation = new JPanelConfirmation(true, false, false);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,8 +83,8 @@ public class AboutView extends JDialog {
         setResizable(false);
 
         Font labelFont = UIManager.getFont("Label.font");
-        Font labelFontItalic = labelFont.deriveFont(labelFont.getStyle() | Font.ITALIC);
         Font labelFontBold = labelFont.deriveFont(labelFont.getStyle() | Font.BOLD);
+        Color linkColor = new Color(51, 102, 255);
 
         jPanelMainBorder.setBorder(BorderFactory.createEtchedBorder());
 
@@ -90,33 +93,36 @@ public class AboutView extends JDialog {
         jLabelNameField.setFont(labelFontBold.deriveFont((float) labelFontBold.getSize() + 9));
         jLabelNameField.setText(aboutInformation.getName());
 
-        jLabelVersion.setFont(labelFontItalic);
         jLabelVersion.setLabelFor(jLabelVersionField);
         jLabelVersion.setText("Version:");
 
         jLabelVersionField.setFont(labelFontBold);
         jLabelVersionField.setText(aboutInformation.getVersion());
 
-        jLabelDate.setFont(labelFontItalic);
-        jLabelDate.setText("Date:");
+        jLabelDate.setText("Release date:");
 
         jLabelDateField.setFont(labelFontBold);
         jLabelDateField.setText(
                 DateFormat.getDateInstance(DateFormat.MEDIUM).format(aboutInformation.getDate()));
 
-        jLabelDeveloper.setFont(labelFontItalic);
         jLabelDeveloper.setText("Developed by:");
 
         jLabelDeveloperField.setFont(labelFontBold);
         jLabelDeveloperField.setText(aboutInformation.getDeveloper());
 
-        jLabelURL.setFont(labelFontItalic);
-        jLabelURL.setText("URL:");
+        jLabelProjectLink.setText("Project URL:");
 
-        jLabelURLField.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabelURLField.setFont(labelFontBold);
-        jLabelURLField.setForeground(new Color(51, 102, 255));
-        jLabelURLField.setText(aboutInformation.getVisualUrl());
+        jLabelProjectLinkField.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabelProjectLinkField.setFont(labelFontBold);
+        jLabelProjectLinkField.setForeground(linkColor);
+        jLabelProjectLinkField.setText(aboutInformation.getProjectLinkText());
+
+        jLabelDonateLink.setText("Support this project:");
+
+        jLabelDonateLinkField.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabelDonateLinkField.setFont(labelFontBold);
+        jLabelDonateLinkField.setForeground(linkColor);
+        jLabelDonateLinkField.setText(aboutInformation.getDonateLinkText());
 
         GroupLayout jPanelTempLayout = new GroupLayout(jPanelTemp);
         jPanelTemp.setLayout(jPanelTempLayout);
@@ -126,11 +132,13 @@ public class AboutView extends JDialog {
                                 .addComponent(jLabelVersion, GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabelDate, GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabelDeveloper, GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabelURL, GroupLayout.Alignment.TRAILING))
+                                .addComponent(jLabelProjectLink, GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelDonateLink, GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelVersionField).addComponent(jLabelDateField)
-                                .addComponent(jLabelDeveloperField).addComponent(jLabelURLField)))
+                                .addComponent(jLabelDeveloperField).addComponent(jLabelProjectLinkField)
+                                .addComponent(jLabelDonateLinkField)))
                 .addGroup(jPanelTempLayout.createSequentialGroup().addComponent(jLabelImageField)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabelNameField)));
         jPanelTempLayout.setVerticalGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -148,7 +156,10 @@ public class AboutView extends JDialog {
                                 .addComponent(jLabelDeveloper).addComponent(jLabelDeveloperField))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelURL).addComponent(jLabelURLField))));
+                                .addComponent(jLabelProjectLink).addComponent(jLabelProjectLinkField))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelTempLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelDonateLink).addComponent(jLabelDonateLinkField))));
 
         GroupLayout jPanelMainBorderLayout = new GroupLayout(jPanelMainBorder);
         jPanelMainBorder.setLayout(jPanelMainBorderLayout);
@@ -184,8 +195,12 @@ public class AboutView extends JDialog {
         pack();
     }
 
-    public JLabel getJLabelURLField() {
-        return jLabelURLField;
+    public JLabel getJLabelProjectLinkField() {
+        return jLabelProjectLinkField;
+    }
+
+    public JLabel getJLabelDonateLinkField() {
+        return jLabelDonateLinkField;
     }
 
     public JButton getJButtonOk() {

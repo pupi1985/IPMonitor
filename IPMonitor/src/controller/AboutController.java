@@ -48,7 +48,8 @@ public class AboutController {
 
         aboutView = new AboutView(owner, aboutInformation);
         aboutView.getJButtonOk().addActionListener(okAction);
-        aboutView.getJLabelURLField().addMouseListener(new JLabelUrlMouseListener());
+        aboutView.getJLabelProjectLinkField().addMouseListener(new JLabelProjectLinkMouseListener());
+        aboutView.getJLabelDonateLinkField().addMouseListener(new JLabelDonateLinkMouseListener());
         aboutView.getRootPane().registerKeyboardAction(okAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
                 JComponent.WHEN_IN_FOCUSED_WINDOW);
         aboutView.getRootPane().setDefaultButton(aboutView.getJButtonOk());
@@ -62,23 +63,43 @@ public class AboutController {
         }
     }
 
-    private class JLabelUrlMouseListener extends MouseInputAdapter {
+    private class JLabelProjectLinkMouseListener extends MouseInputAdapter {
 
         public void mouseClicked(MouseEvent event) {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    Desktop.getDesktop().browse(new URI(aboutInformation.getUrl()));
+                    Desktop.getDesktop().browse(new URI(aboutInformation.getProjectLinkUrl()));
                 } catch (Exception e) {
                 }
             }
         }
 
         public void mouseEntered(MouseEvent event) {
-            aboutView.getJLabelURLField().setText("<html><u>" + aboutInformation.getVisualUrl() + "</u></html>");
+            aboutView.getJLabelProjectLinkField().setText("<html><u>" + aboutInformation.getProjectLinkText() + "</u></html>");
         }
 
         public void mouseExited(MouseEvent event) {
-            aboutView.getJLabelURLField().setText(aboutInformation.getVisualUrl());
+            aboutView.getJLabelProjectLinkField().setText(aboutInformation.getProjectLinkText());
+        }
+    }
+
+    private class JLabelDonateLinkMouseListener extends MouseInputAdapter {
+
+        public void mouseClicked(MouseEvent event) {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    Desktop.getDesktop().browse(new URI(aboutInformation.getDonateLinkUrl()));
+                } catch (Exception e) {
+                }
+            }
+        }
+
+        public void mouseEntered(MouseEvent event) {
+            aboutView.getJLabelDonateLinkField().setText("<html><u>" + aboutInformation.getDonateLinkText() + "</u></html>");
+        }
+
+        public void mouseExited(MouseEvent event) {
+            aboutView.getJLabelDonateLinkField().setText(aboutInformation.getDonateLinkText());
         }
     }
 }
