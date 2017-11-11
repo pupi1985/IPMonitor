@@ -42,12 +42,12 @@ public class AboutInformation {
     }
 
     public String getVersion() {
-        return "0.05.1";
+        return "0.5.2";
     }
 
     public Date getDate() {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse("2017-09-06");
+            return new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-11");
         } catch (Exception e) {
             return null;
         }
