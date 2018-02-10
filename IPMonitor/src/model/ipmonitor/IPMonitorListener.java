@@ -28,16 +28,15 @@ import model.observable.ObservableModelListener;
 
 public interface IPMonitorListener extends ObservableModelListener {
 
-	public void ipMonitorIPChange(String fromIP, String toIP, Date lastChecked, boolean firstTime);
+    public void ipMonitorIPChange(String fromIP, String toIP, Date lastChecked, boolean firstTime);
 
-	public void ipMonitorStart();
+    public void ipMonitorStart();
 
-	public void ipMonitorStop();
+    public void ipMonitorStop();
 
-	public void ipMonitorIntervalChange();
+    public void ipMonitorIntervalChange();
 
-	public void ipMonitorIPCheckStart();
+    public void ipMonitorIPCheckStart();
 
-	public void ipMonitorIPCheckEnd();
-
+    public void ipMonitorIPCheckEnd();
 }

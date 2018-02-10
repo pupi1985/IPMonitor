@@ -28,19 +28,19 @@ import java.util.Locale;
 
 public class WindowsBasedService extends AbstractService {
 
-	public String getServiceName() {
-		return "Service";
-	}
+    public String getServiceName() {
+        return "Service";
+    }
 
-	protected String getScriptFileName() {
-		return "IPMonitor.bat";
-	}
+    protected String getScriptFileName() {
+        return "IPMonitor.bat";
+    }
 
-	public boolean isRunning() throws IOException {
-		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("running: yes");
-	}
+    public boolean isRunning() throws IOException {
+        return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("running: yes");
+    }
 
-	public boolean shouldIncludeExitCode() {
-		return false;
-	}
+    public boolean shouldIncludeExitCode() {
+        return false;
+    }
 }

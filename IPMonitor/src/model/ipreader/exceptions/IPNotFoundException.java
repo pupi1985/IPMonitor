@@ -22,8 +22,7 @@
 
 package model.ipreader.exceptions;
 
-import model.extras.exceptions.*;
+import model.extras.exceptions.AbstractIPMonitorException;
 
 public class IPNotFoundException extends AbstractIPMonitorException {
-	
 }

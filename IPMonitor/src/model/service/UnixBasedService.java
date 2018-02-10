@@ -28,19 +28,19 @@ import java.util.Locale;
 
 public class UnixBasedService extends AbstractService {
 
-	public String getServiceName() {
-		return "Daemon";
-	}
+    public String getServiceName() {
+        return "Daemon";
+    }
 
-	protected String getScriptFileName() {
-		return "IPMonitor.sh";
-	}
+    protected String getScriptFileName() {
+        return "IPMonitor.sh";
+    }
 
-	public boolean isRunning() throws IOException {
-		return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("is running");
-	}
+    public boolean isRunning() throws IOException {
+        return runScriptWithArguments(Arrays.asList("status")).getOutput().toLowerCase(Locale.ENGLISH).contains("is running");
+    }
 
-	public boolean shouldIncludeExitCode() {
-		return true;
-	}
+    public boolean shouldIncludeExitCode() {
+        return true;
+    }
 }

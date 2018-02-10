@@ -22,25 +22,24 @@
 
 package controller.extras;
 
-import java.awt.TrayIcon.*;
+import java.awt.TrayIcon.MessageType;
 
 public class MessageTypeWrapper {
 
-	private String name;
+    private String name;
 
-	private MessageType messageType;
+    private MessageType messageType;
 
-	public MessageTypeWrapper(String name, MessageType messageType) {
-		this.name = name;
-		this.messageType = messageType;
-	}
+    public MessageTypeWrapper(String name, MessageType messageType) {
+        this.name = name;
+        this.messageType = messageType;
+    }
 
-	public MessageType getMessageType() {
-		return messageType;
-	}
+    public MessageType getMessageType() {
+        return messageType;
+    }
 
-	public String toString() {
-		return name;
-	}
-
+    public String toString() {
+        return name;
+    }
 }

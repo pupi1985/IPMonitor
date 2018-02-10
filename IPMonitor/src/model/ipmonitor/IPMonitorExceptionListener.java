@@ -26,10 +26,9 @@ import model.observable.ObservableModelListener;
 
 public interface IPMonitorExceptionListener extends ObservableModelListener {
 
-	public void ipMonitorIPNotFound();
+    public void ipMonitorIPNotFound();
 
-	public void ipMonitorTimeout();
+    public void ipMonitorTimeout();
 
-	public void ipMonitorIO();
-
+    public void ipMonitorIO();
 }
