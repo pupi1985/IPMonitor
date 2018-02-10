@@ -25,9 +25,11 @@ package view.options;
 import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,6 +40,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
+import model.configuration.ConnectionSecurityType;
 import model.notification.configuration.MailConfiguration;
 import view.extras.JButtonInfo;
 import view.panels.JPanelConfirmation;
@@ -47,7 +50,7 @@ public class MailConfigurationView extends JDialog {
     private JButtonInfo jButtonInfo;
     private JCheckBox jCheckBoxRequiresAuthentication;
     private JCheckBox jCheckBoxUseHTML;
-    private JCheckBox jCheckBoxUseSSL;
+    private JComboBox<ConnectionSecurityType> jComboBoxConnectionSecurity;
     private JPanel jPanelAuthentication;
     private JPanel jPanelCenter;
     private JPanelConfirmation jPanelConfirmation;
@@ -71,30 +74,48 @@ public class MailConfigurationView extends JDialog {
     private void initComponents() {
         jPanelCenter = new JPanel();
         JPanel jPanelClientConfiguration = new JPanel();
+
         JLabel jLabelServer = new JLabel();
         jTextFieldServer = new JTextField();
+
         JLabel jLabelPort = new JLabel();
         jTextFieldPort = new JTextField();
+
         jCheckBoxRequiresAuthentication = new JCheckBox();
+
         jPanelAuthentication = new JPanel();
+
         JLabel jLabelUser = new JLabel();
         jTextFieldUser = new JTextField();
+
         JLabel jLabelPassword = new JLabel();
-        jCheckBoxUseSSL = new JCheckBox();
         jPasswordFieldPassword = new JPasswordField();
+
+        JLabel jLabelConnectionSecurity = new JLabel();
+        jComboBoxConnectionSecurity = new JComboBox<>();
+        jComboBoxConnectionSecurity.setModel(new DefaultComboBoxModel<ConnectionSecurityType>(ConnectionSecurityType.values()));
+
         JPanel jPanelMessage = new JPanel();
+
         JLabel jLabelFromName = new JLabel();
         jTextFieldFromName = new JTextField();
+
         JLabel jLabelFromAddress = new JLabel();
         jTextFieldFromAddress = new JTextField();
+
         JLabel jLabelToAddresses = new JLabel();
         jTextFieldToAddresses = new JTextField();
+
         JLabel jLabelSubject = new JLabel();
         jTextFieldSubject = new JTextField();
+
         JScrollPane jScrollPaneMessge = new JScrollPane();
         jTextAreaMessage = new JTextArea();
+
         jCheckBoxUseHTML = new JCheckBox();
+
         jButtonInfo = new JButtonInfo();
+
         jPanelConfirmation = new JPanelConfirmation(true, true, true);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -123,8 +144,8 @@ public class MailConfigurationView extends JDialog {
 
         jLabelPassword.setText("Password:");
 
-        jCheckBoxUseSSL.setSelected(MailConfiguration.getInstance().isSSL());
-        jCheckBoxUseSSL.setText("Use SSL");
+        jComboBoxConnectionSecurity.setSelectedItem(MailConfiguration.getInstance().getConnectionSecurity());
+        jLabelConnectionSecurity.setText("Connection security:");
 
         jPasswordFieldPassword.setText(MailConfiguration.getInstance().getPassword());
 
@@ -137,13 +158,15 @@ public class MailConfigurationView extends JDialog {
                 .addGroup(jPanelAuthenticationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAuthenticationLayout.createSequentialGroup()
                         .addGroup(jPanelAuthenticationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelConnectionSecurity)
                             .addComponent(jLabelPassword)
                             .addComponent(jLabelUser))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAuthenticationLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldUser, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                            .addComponent(jPasswordFieldPassword, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
-                    .addComponent(jCheckBoxUseSSL))
+                            .addComponent(jPasswordFieldPassword, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                            .addComponent(jComboBoxConnectionSecurity, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
+                    .addComponent(jComboBoxConnectionSecurity))
                 .addContainerGap())
         );
         jPanelAuthenticationLayout.setVerticalGroup(
@@ -156,8 +179,10 @@ public class MailConfigurationView extends JDialog {
                 .addGroup(jPanelAuthenticationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPassword)
                     .addComponent(jPasswordFieldPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBoxUseSSL))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelAuthenticationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelConnectionSecurity)
+                    .addComponent(jComboBoxConnectionSecurity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
 
         GroupLayout jPanelClientConfigurationLayout = new GroupLayout(jPanelClientConfiguration);
@@ -320,8 +345,8 @@ public class MailConfigurationView extends JDialog {
         return jCheckBoxUseHTML;
     }
 
-    public JCheckBox getJCheckBoxUseSSL() {
-        return jCheckBoxUseSSL;
+    public JComboBox<ConnectionSecurityType> getJComboBoxConnectionSecurity() {
+        return jComboBoxConnectionSecurity;
     }
 
     public JTextArea getJTextAreaMessage() {

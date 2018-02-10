@@ -82,7 +82,7 @@ public class IPMonitorPropertiesManager {
         loadMailNotificationConfigurationUser(properties);
         loadMailNotificationConfigurationPassword(properties);
         loadMailNotificationConfigurationAuthenticationRequired(properties);
-        loadMailNotificationConfigurationUseSSL(properties);
+        loadMailNotificationConfigurationConnectionSecurity(properties);
         loadMailNotificationConfigurationFromName(properties);
         loadMailNotificationConfigurationFromAddress(properties);
         loadMailNotificationConfigurationToAddresses(properties);
@@ -116,7 +116,7 @@ public class IPMonitorPropertiesManager {
         saveMailNotificationConfigurationUser(properties);
         saveMailNotificationConfigurationPassword(properties);
         saveMailNotificationConfigurationAuthenticationRequired(properties);
-        saveMailNotificationConfigurationUseSSL(properties);
+        saveMailNotificationConfigurationConnectionSecurity(properties);
         saveMailNotificationConfigurationFromName(properties);
         saveMailNotificationConfigurationFromAddress(properties);
         saveMailNotificationConfigurationToAddresses(properties);
@@ -461,16 +461,21 @@ public class IPMonitorPropertiesManager {
                 String.valueOf(MailConfiguration.getInstance().isAuthenticationRequired()));
     }
 
-    private void loadMailNotificationConfigurationUseSSL(Properties properties) {
-        MailConfiguration.getInstance()
-                .setSSL(Boolean.valueOf(properties.getProperty(
-                        IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_USE_SSL, String
-                                .valueOf(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_USE_SSL_VALUE))));
+    private void loadMailNotificationConfigurationConnectionSecurity(Properties properties) {
+           String ConnectionSecurityTypeText = properties.getProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY,
+                   IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY_VALUE);
+           ConnectionSecurityType connectionSecurityType;
+           try {
+               connectionSecurityType = ConnectionSecurityType.valueOf(ConnectionSecurityTypeText);
+           } catch (IllegalArgumentException e) {
+               connectionSecurityType = ConnectionSecurityType.valueOf(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY_VALUE);
+           }
+           MailConfiguration.getInstance().setConnectionSecurity(connectionSecurityType);
     }
 
-    private void saveMailNotificationConfigurationUseSSL(Properties properties) {
-        properties.setProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_USE_SSL,
-                String.valueOf(MailConfiguration.getInstance().isSSL()));
+    private void saveMailNotificationConfigurationConnectionSecurity(Properties properties) {
+        properties.setProperty(IPMonitorProperties.OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY,
+                MailConfiguration.getInstance().getConnectionSecurity().name());
     }
 
     private void loadMailNotificationConfigurationFromName(Properties properties) {

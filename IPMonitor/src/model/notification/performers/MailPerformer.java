@@ -35,6 +35,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
+import model.configuration.ConnectionSecurityType;
 import model.extras.InfoParser;
 import model.notification.configuration.MailConfiguration;
 
@@ -62,13 +63,17 @@ public class MailPerformer extends AbstractPerformer {
 
     private Properties getProperties() {
         Properties properties = new Properties();
-        String protocol = (MailConfiguration.getInstance().isSSL()) ? "smtps" : "smtp";
+        ConnectionSecurityType connectionSecurity = MailConfiguration.getInstance().getConnectionSecurity();
+        boolean isTLS = connectionSecurity.equals(ConnectionSecurityType.STARTTLS);
+        String protocol = connectionSecurity.equals(ConnectionSecurityType.SSL_TLS) ? "smtps" : "smtp";
+
         properties.put("mail.transport.protocol", protocol);
         properties.put("mail." + protocol + ".host", MailConfiguration.getInstance().getHost());
         properties.put("mail." + protocol + ".port", MailConfiguration.getInstance().getPort());
         properties.put("mail." + protocol + ".connectiontimeout", 30000);
         properties.put("mail." + protocol + ".timeout", 30000);
         properties.put("mail." + protocol + ".quitwait", "false");
+        properties.put("mail." + protocol + ".starttls.enable", isTLS);
 
         if (MailConfiguration.getInstance().isAuthenticationRequired()) {
             properties.put("mail." + protocol + ".auth", "true");

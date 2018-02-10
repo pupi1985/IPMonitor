@@ -35,6 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import controller.extras.InfoActionListener;
+import model.configuration.ConnectionSecurityType;
 import model.notification.configuration.MailConfiguration;
 import view.options.MailConfigurationView;
 
@@ -90,8 +91,9 @@ public class MailConfigurationController {
                 .setAuthenticationRequired(mailConfigurationView.getJCheckBoxRequiresAuthentication().isSelected());
     }
 
-    private void setUseSSL() {
-        MailConfiguration.getInstance().setSSL(mailConfigurationView.getJCheckBoxUseSSL().isSelected());
+    private void setConnectionSecurity() {
+        MailConfiguration.getInstance().setConnectionSecurity(
+                ((ConnectionSecurityType) mailConfigurationView.getJComboBoxConnectionSecurity().getSelectedItem()));
     }
 
     private void setFromName() {
@@ -172,7 +174,7 @@ public class MailConfigurationController {
                 setUser();
                 setPassword();
                 setRequiresAuthentication();
-                setUseSSL();
+                setConnectionSecurity();
                 setFromName();
                 setFromAddress();
                 setToAddresses();

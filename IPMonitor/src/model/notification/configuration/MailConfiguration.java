@@ -27,13 +27,16 @@ import java.io.UnsupportedEncodingException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import model.configuration.ConnectionSecurityType;
+
 public class MailConfiguration extends AbstractConfiguration {
 
     private static MailConfiguration instance;
 
     private String host;
     private int port;
-    private boolean useSSL;
+    private ConnectionSecurityType connectionSecurity;
+
     private boolean authenticationRequired;
     private String user;
     private String password;
@@ -86,12 +89,12 @@ public class MailConfiguration extends AbstractConfiguration {
         this.host = host;
     }
 
-    public boolean isSSL() {
-        return useSSL;
+    public ConnectionSecurityType getConnectionSecurity() {
+        return this.connectionSecurity;
     }
 
-    public void setSSL(boolean useSSL) {
-        this.useSSL = useSSL;
+    public void setConnectionSecurity(ConnectionSecurityType connectionSecurity) {
+        this.connectionSecurity = connectionSecurity;
     }
 
     public boolean isAuthenticationRequired() {

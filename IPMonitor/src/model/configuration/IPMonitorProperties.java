@@ -62,8 +62,8 @@ public class IPMonitorProperties {
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_PASSWORD_VALUE = "";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_AUTHENTICATION_REQUIRED = "OptionsNotificationConfigurationMailAuthenticationRequired";
     public static final boolean OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_AUTHENTICATION_REQUIRED_VALUE = false;
-    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_USE_SSL = "OptionsNotificationConfigurationMailUseSSL";
-    public static final boolean OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_USE_SSL_VALUE = false;
+    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY = "OptionsNotificationConfigurationMailConnectionSecurity";
+    public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_CONNECTION_SECURITY_VALUE = "NONE";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_NAME = "OptionsNotificationConfigurationMailFromName";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_NAME_VALUE = "";
     public static final String OPTIONS_NOTIFICATION_CONFIGURATION_MAIL_FROM_ADDRESS = "OptionsNotificationConfigurationMailFromAddress";
