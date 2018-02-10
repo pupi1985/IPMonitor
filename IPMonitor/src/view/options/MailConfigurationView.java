@@ -241,9 +241,10 @@ public class MailConfigurationView extends JDialog {
         jTextFieldSubject.setColumns(40);
         jTextFieldSubject.setText(MailConfiguration.getInstance().getSubject());
 
-        jTextAreaMessage.setColumns(20);
         jTextAreaMessage.setRows(6);
+        jTextAreaMessage.setColumns(20);
         jTextAreaMessage.setText(MailConfiguration.getInstance().getText());
+
         jScrollPaneMessge.setViewportView(jTextAreaMessage);
 
         jCheckBoxUseHTML.setSelected(MailConfiguration.getInstance().isHTML());

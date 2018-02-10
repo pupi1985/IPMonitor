@@ -53,19 +53,21 @@ public class OutputTestView extends JDialog {
     private void initComponents() {
         JPanel jPanelCenter = new JPanel();
         jPanelCenterBorder = new JPanel();
+
         JScrollPane jScrollPaneTextAreaOutput = new JScrollPane();
         jScrollPaneTextAreaOutput.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPaneTextAreaOutput.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPaneTextAreaOutput.setAutoscrolls(true);
+
         jTextAreaOutput = new JTextArea();
         jTextAreaOutput.setEditable(false);
+        jTextAreaOutput.setRows(20);
+        jTextAreaOutput.setColumns(40);
+
+        jScrollPaneTextAreaOutput.setViewportView(jTextAreaOutput);
+
         jPanelConfirmation = new JPanelConfirmation(true, false, false);
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
-        jScrollPaneTextAreaOutput.setViewportView(jTextAreaOutput);
-        jTextAreaOutput.setRows(20);
-        jTextAreaOutput.setColumns(40);
 
         GroupLayout jPanelCenterBorderLayout = new GroupLayout(jPanelCenterBorder);
         jPanelCenterBorderLayout.setHorizontalGroup(
